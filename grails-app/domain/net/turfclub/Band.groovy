@@ -2,11 +2,17 @@ package net.turfclub
 
 class Band {
     String bandName
-    Booking booking
-    String website
+    String email
+    String homePage
+    String phone
 
     static hasMany = [bookings : Booking]
 
     static constraints = {
+        bandName(nullable:false)
+        homePage(url:true)
+        email(email:true)
+        phone()
+
     }
 }

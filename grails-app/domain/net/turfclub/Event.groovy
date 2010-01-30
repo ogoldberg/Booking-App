@@ -5,8 +5,7 @@ class Event {
     String eventTitle
     String cover
     String sponsor
-    Booking booking
-
+    
     static hasMany = [ bookings:Booking ]
 
     static constraints = {
