@@ -3,18 +3,15 @@ package net.turfclub
 class Event {
     Date date
     String eventTitle
-    String headliner
-    String opener
     String cover
     String sponsor
+    Booking booking
 
-
+    static hasMany = [ bookings:Booking ]
 
     static constraints = {
         date(blank:false)
         eventTitle()
-        headliner(blank:false)
-        opener()
         sponsor()
         cover(blank:false)
     }
