@@ -6,9 +6,11 @@ class Booking {
     Date startTime
     Boolean confirmed
     Boolean headliner
-    ShiroUser booker
+    //ShiroUser booker
 
     
     static constraints = {
+        event(nullable:false)
+        band(nullable:false)
     }
 }
