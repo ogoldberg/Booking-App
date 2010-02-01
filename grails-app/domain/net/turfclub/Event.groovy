@@ -19,7 +19,6 @@ class Event {
     static constraints = {
         date(blank:false)
         eventTitle()
-        sponsor()
         description(nullable:true, maxSize:5000)
         cover(blank:false)
     }
