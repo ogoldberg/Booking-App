@@ -5,6 +5,7 @@ class Band {
     String email
     String homePage
     String phone
+    String contact
 
     static hasMany = [bookings : Booking]
 
@@ -13,6 +14,7 @@ class Band {
         homePage(url:true)
         email(email:true)
         phone()
+        contact()
 
     }
 }
