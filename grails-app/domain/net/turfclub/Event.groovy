@@ -3,7 +3,6 @@ package net.turfclub
 class Event {
     Date date
     String eventTitle
-    Booking booking
     String cover
     String description
     
