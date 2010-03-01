@@ -13,6 +13,7 @@ class BootStrap {
 
                 createDummyBands()
                 createDummyEvents()
+                createDummySponsors()
             }
         }
 
@@ -59,8 +60,23 @@ class BootStrap {
         )
         if (!e2.validate()) {
             println "Event didn't validate!"
-            println e1.errors.allErrors
+            println e2.errors.allErrors
         }
         e2.save()
     }
+
+    def createDummySponsors() {
+        def s1 = new Sponsor(name: 'City Pages',
+                             website: 'http://citypages.com',
+                             contact: 'Mary Jane',
+                             phone: '612.555.5555',
+                             email: 'mjane@citypages.com'
+    )
+    if (!s1.validate()) {
+            println "Event didn't validate!"
+            println s1.errors.allErrors
+        }
+        s1.save()
+}
+
 } 
