@@ -6,6 +6,10 @@ class Sponsorship {
     String contributionType
     String description
     String notes
+
+    String toString(){
+        return sponsor
+    }
     
 
     static constraints = {
