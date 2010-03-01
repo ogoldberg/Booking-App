@@ -56,32 +56,6 @@
                             <td valign="top" class="value">${fieldValue(bean: eventInstance, field: "cover")}</td>
                             
                         </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name"><g:message code="event.sponsorships.label" default="Sponsorships" /></td>
-                            
-                            <td valign="top" style="text-align: left;" class="value">
-                                <ul>
-                                <g:each in="${eventInstance.sponsorships}" var="s">
-                                    <li><g:link controller="sponsorship" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></li>
-                                </g:each>
-                                </ul>
-                            </td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name"><g:message code="event.bookings.label" default="Bookings" /></td>
-                            
-                            <td valign="top" style="text-align: left;" class="value">
-                                <ul>
-                                <g:each in="${eventInstance.bookings}" var="b">
-                                    <li><g:link controller="booking" action="show" id="${b.id}">${b?.encodeAsHTML()}</g:link></li>
-                                </g:each>
-                                </ul>
-                            </td>
-                            
-                        </tr>
                          <tr class="prop">
                                 <td valign="top" class="name">
                                   <label for="sponsorships"><g:message code="event.sponsorships.label" default="Sponsorships" /></label>
