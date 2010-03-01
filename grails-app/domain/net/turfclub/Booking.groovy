@@ -8,7 +8,9 @@ class Booking {
     Boolean headliner
     //ShiroUser booker
 
-    
+     String toString() {
+       this.band
+    }
     static constraints = {
         }
 }
