@@ -32,28 +32,19 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                  <label for="event"><g:message code="booking.event.label" default="Event" /></label>
+                                  <label for="eventDate"><g:message code="booking.eventDate.label" default="Event Date" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'event', 'errors')}">
-                                    <g:select name="event.id" from="${net.turfclub.Event.list()}" optionKey="id" value="${bookingInstance?.event?.id}"  />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="band"><g:message code="booking.band.label" default="Band" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'band', 'errors')}">
-                                    <g:select name="band.id" from="${net.turfclub.Band.list()}" optionKey="id" value="${bookingInstance?.band?.id}"  />
+                                <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'eventDate', 'errors')}">
+                                    <g:select name="eventDate.id" from="${net.turfclub.Event.list()}" optionKey="id" value="${bookingInstance?.eventDate?.id}"  />
                                 </td>
                             </tr>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                  <label for="startTime"><g:message code="booking.startTime.label" default="Start Time" /></label>
+                                  <label for="appearanceNumber"><g:message code="booking.appearanceNumber.label" default="Appearance Number" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'startTime', 'errors')}">
-                                    <g:datePicker name="startTime" precision="day" value="${bookingInstance?.startTime}"  />
+                                <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'appearanceNumber', 'errors')}">
+                                    <g:textField name="appearanceNumber" value="${fieldValue(bean: bookingInstance, field: 'appearanceNumber')}" />
                                 </td>
                             </tr>
                         
@@ -63,6 +54,15 @@
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'confirmed', 'errors')}">
                                     <g:checkBox name="confirmed" value="${bookingInstance?.confirmed}" />
+                                </td>
+                            </tr>
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="band"><g:message code="booking.band.label" default="Band" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'band', 'errors')}">
+                                    <g:select name="band.id" from="${net.turfclub.Band.list()}" optionKey="id" value="${bookingInstance?.band?.id}"  />
                                 </td>
                             </tr>
                         
