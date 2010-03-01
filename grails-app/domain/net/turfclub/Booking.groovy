@@ -1,16 +1,14 @@
 package net.turfclub
 
 class Booking {
-    Event event
+    Event eventDate
     Band band
-    Date startTime
+    Integer appearanceNumber = 0
     Boolean confirmed
     Boolean headliner
     //ShiroUser booker
 
     
     static constraints = {
-        event(nullable:false)
-        band(nullable:false)
-    }
+        }
 }
