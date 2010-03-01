@@ -29,7 +29,7 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="bandName"><g:message code="band.bandName.label" default="Band Name" /></label>
+                                    <label for="bandName"><g:message code="band.bandName.label" default="Band Name *" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: bandInstance, field: 'bandName', 'errors')}">
                                     <g:textField name="bandName" value="${bandInstance?.bandName}" />
