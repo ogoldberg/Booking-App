@@ -1,7 +1,7 @@
 package net.turfclub
 
 class Event {
-    Date date
+    Date eventDate
     String eventTitle
     String cover
     String description
@@ -16,8 +16,8 @@ class Event {
                        sponsorships:Sponsorship ]
 
     static constraints = {
-        date(blank:false)
-        eventTitle()
+        eventDate(blank:false)
+        eventTitle(blank:true, nullable:true)
         description(nullable:true, maxSize:5000)
         cover(blank:false)
     }
