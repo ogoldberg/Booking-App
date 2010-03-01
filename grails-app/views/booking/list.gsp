@@ -22,11 +22,9 @@
                     <thead>
                         <tr>
                         
-                            <g:sortableColumn property="id" title="${message(code: 'booking.id.label', default: 'Id')}" />
-                        
                             <th><g:message code="booking.eventDate.label" default="Event Date" /></th>
                    	    
-                            <g:sortableColumn property="appearanceNumber" title="${message(code: 'booking.appearanceNumber.label', default: 'Appearance Number')}" />
+                            <g:sortableColumn property="appearanceOrder" title="${message(code: 'booking.appearanceOrder.label', default: 'Appearance Order')}" />
                         
                             <g:sortableColumn property="confirmed" title="${message(code: 'booking.confirmed.label', default: 'Confirmed')}" />
                         
@@ -40,11 +38,9 @@
                     <g:each in="${bookingInstanceList}" status="i" var="bookingInstance">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                         
-                            <td><g:link action="show" id="${bookingInstance.id}">${fieldValue(bean: bookingInstance, field: "id")}</g:link></td>
-                        
-                            <td>${fieldValue(bean: bookingInstance, field: "eventDate")}</td>
-                        
-                            <td>${fieldValue(bean: bookingInstance, field: "appearanceNumber")}</td>
+                            <td><g:link action="show" id="${bookingInstance.id}">${fieldValue(bean: bookingInstance, field: "eventDate")}</g:link></td>
+                                                
+                            <td>${fieldValue(bean: bookingInstance, field: "appearanceOrder")}</td>
                         
                             <td><g:formatBoolean boolean="${bookingInstance.confirmed}" /></td>
                         

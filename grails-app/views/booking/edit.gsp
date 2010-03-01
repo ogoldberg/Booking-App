@@ -41,10 +41,10 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                  <label for="appearanceNumber"><g:message code="booking.appearanceNumber.label" default="Appearance Number" /></label>
+                                  <label for="appearanceOrder"><g:message code="booking.appearanceOrder.label" default="Appearance Number" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'appearanceNumber', 'errors')}">
-                                    <g:textField name="appearanceNumber" value="${fieldValue(bean: bookingInstance, field: 'appearanceNumber')}" />
+                                <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'appearanceOrder', 'errors')}">
+                                    <g:textField name="appearanceOrder" value="${fieldValue(bean: bookingInstance, field: 'appearanceOrder')}" />
                                 </td>
                             </tr>
                         

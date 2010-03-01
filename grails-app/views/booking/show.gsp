@@ -37,9 +37,9 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name"><g:message code="booking.appearanceNumber.label" default="Appearance Number" /></td>
+                            <td valign="top" class="name"><g:message code="booking.appearanceOrder.label" default="Appearance Number" /></td>
                             
-                            <td valign="top" class="value">${fieldValue(bean: bookingInstance, field: "appearanceNumber")}</td>
+                            <td valign="top" class="value">${fieldValue(bean: bookingInstance, field: "appearanceOrder")}</td>
                             
                         </tr>
                     
