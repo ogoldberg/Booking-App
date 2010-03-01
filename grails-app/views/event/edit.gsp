@@ -32,10 +32,11 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                  <label for="date"><g:message code="event.date.label" default="Date" /></label>
+                                  <label for="eventDate"><g:message code="event.eventDate.label" default="Event Date" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'date', 'errors')}">
-                                    <g:datePicker name="date" precision="day" value="${eventInstance?.date}"  />
+                                   <calendar:resources lang="en" theme="green"/>
+                                    <calendar:datePicker name="eventDate" precision="day" dateFormat="%m/%e/%Y" value="${eventInstance?.eventDate}"  />
                                 </td>
                             </tr>
                         

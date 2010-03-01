@@ -40,7 +40,7 @@
                         
                             <td><g:link action="show" id="${eventInstance.id}">${fieldValue(bean: eventInstance, field: "id")}</g:link></td>
                         
-                            <td><g:formatDate date="${eventInstance.date}" /></td>
+                            <td><g:formatDate date="${eventInstance.eventDate}" /></td>
                         
                             <td>${fieldValue(bean: eventInstance, field: "eventTitle")}</td>
                         

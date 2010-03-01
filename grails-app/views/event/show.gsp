@@ -32,7 +32,7 @@
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="event.date.label" default="Date" /></td>
                             
-                            <td valign="top" class="value"><g:formatDate date="${eventInstance?.date}" /></td>
+                            <td valign="top" class="value"><g:formatDate date="${eventInstance?.eventDate}" /></td>
                             
                         </tr>
                     
@@ -82,6 +82,37 @@
                             </td>
                             
                         </tr>
+                         <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="sponsorships"><g:message code="event.sponsorships.label" default="Sponsorships" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'sponsorships', 'errors')}">
+
+<ul>
+<g:each in="${eventInstance?.sponsorships?}" var="s">
+    <li><g:link controller="sponsorship" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></li>
+</g:each>
+</ul>
+<g:link controller="sponsorship" action="create" params="['event.id': eventInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'sponsorship.label', default: 'Sponsorship')])}</g:link>
+
+                                </td>
+                            </tr>
+
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="bookings"><g:message code="event.bookings.label" default="Bookings" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'bookings', 'errors')}">
+
+<ul>
+<g:each in="${eventInstance?.bookings?}" var="b">
+    <li><g:link controller="booking" action="show" id="${b.id}">${b?.encodeAsHTML()}</g:link></li>
+</g:each>
+</ul>
+<g:link controller="booking" action="create" params="['event.id': eventInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'booking.label', default: 'Booking')])}</g:link>
+
+                                </td>
+                            </tr>
                     
                     </tbody>
                 </table>

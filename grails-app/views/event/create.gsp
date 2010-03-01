@@ -29,16 +29,17 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="date"><g:message code="event.date.label" default="Date" /></label>
+                                    <label for="date"><g:message code="event.date.label" default="Date *" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'date', 'errors')}">
-                                    <g:datePicker name="date" precision="day" value="${eventInstance?.date}"  />
+                                <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'eventDate', 'errors')}">
+                                  <calendar:resources lang="en" theme="green"/>
+                                    <calendar:datePicker name="eventDate" precision="day" dateFormat="%m/%e/%Y" value="${eventInstance?.eventDate}"  />
                                 </td>
                             </tr>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="eventTitle"><g:message code="event.eventTitle.label" default="Event Title" /></label>
+                                    <label for="eventTitle"><g:message code="event.eventTitle.label" default="Event Title (optional)" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'eventTitle', 'errors')}">
                                     <g:textField name="eventTitle" value="${eventInstance?.eventTitle}" />
@@ -47,7 +48,7 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="description"><g:message code="event.description.label" default="Description" /></label>
+                                    <label for="description"><g:message code="event.description.label" default="Description (optional)" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'description', 'errors')}">
                                     <g:textArea name="description" cols="40" rows="5" value="${eventInstance?.description}" />
@@ -56,7 +57,7 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="cover"><g:message code="event.cover.label" default="Cover" /></label>
+                                    <label for="cover"><g:message code="event.cover.label" default="Cover *" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'cover', 'errors')}">
                                     <g:textField name="cover" value="${eventInstance?.cover}" />
