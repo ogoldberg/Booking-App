@@ -49,9 +49,18 @@ class BootStrap {
             cover: '$7'
         )
         if (!e1.validate()) {
-            println "User didn't validate!"
+            println "Event didn't validate!"
             println e1.errors.allErrors
         }
         e1.save()
+
+        def e2 = new Event(eventDate: '5/30/2010',
+            cover: '$12'
+        )
+        if (!e2.validate()) {
+            println "Event didn't validate!"
+            println e1.errors.allErrors
+        }
+        e2.save()
     }
 } 
