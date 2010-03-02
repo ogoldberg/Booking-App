@@ -80,7 +80,7 @@
         <g:each in="${bookingInstanceList}" status="i" var="bookingInstance">
           <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 
-            <td><g:link action="show" controller="booking" id="${bookingInstance.id}">${fieldValue(bean: bookingInstance, field: "eventDate")}</g:link></td>
+            <td><g:link action="show" controller="booking" id="${bookingInstance.id}">${fieldValue(bean: bookingInstance, field: "event")}</g:link></td>
 
           <td>${fieldValue(bean: bookingInstance, field: "appearanceOrder")}</td>
 

@@ -32,7 +32,7 @@
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="booking.eventDate.label" default="Event Date" /></td>
                             
-                            <td valign="top" class="value"><g:link controller="event" action="show" id="${bookingInstance?.eventDate?.id}">${bookingInstance?.eventDate?.encodeAsHTML()}</g:link></td>
+                            <td valign="top" class="value"><g:link controller="event" action="show" id="${bookingInstance?.event?.id}">${bookingInstance?.event?.encodeAsHTML()}</g:link></td>
                             
                         </tr>
                     

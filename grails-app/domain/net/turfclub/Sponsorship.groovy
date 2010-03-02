@@ -1,7 +1,7 @@
 package net.turfclub
 
 class Sponsorship {
-    Event eventDate
+    Event event
     Sponsor sponsor
     String contributionType
     String description

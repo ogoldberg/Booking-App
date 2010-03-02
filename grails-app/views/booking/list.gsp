@@ -42,7 +42,7 @@
                         
                             <td><g:link action="show" id="${bookingInstance.id}">${fieldValue(bean: bookingInstance, field: "id")}</g:link></td>
                         
-                            <td>${fieldValue(bean: bookingInstance, field: "eventDate")}</td>
+                            <td>${fieldValue(bean: bookingInstance, field: "event")}</td>
                         
                             <td>${fieldValue(bean: bookingInstance, field: "band")}</td>
                         

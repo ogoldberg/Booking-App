@@ -1,7 +1,7 @@
 package net.turfclub
 
 class Booking {
-    Event eventDate
+    Event event
     Band band
     Integer appearanceOrder = 0
     Boolean confirmed
@@ -13,7 +13,7 @@ class Booking {
        this.band
     }
     static constraints = {
-        eventDate(nullable:false)
+        event(nullable:false)
         band(nullable:false)
         stage(nullable:false)
         appearanceOrder(nullable:true)
