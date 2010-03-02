@@ -11,13 +11,10 @@ class EventTests extends GrailsUnitTestCase {
         super.tearDown()
     }
 
-    void testValidEvent() {
-        def event = new Event(date: new Date('6/2/2009'),
+    void testEventToString() {
+        def event = new Event(eventDate: new Date('6/2/2009'),
                               eventTitle: 'NoiseFest',
-                              sponsor: 'Schlafly',
                               cover: '$5')
-
-        assertEquals 'NoiseFest', event.toString()
-            
+        assertEquals 'June 2, 2009', event.toString()
     }
 }
