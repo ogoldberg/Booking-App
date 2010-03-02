@@ -14,6 +14,7 @@ class BootStrap {
                 createDummyBands()
                 createDummyEvents()
                 createDummySponsors()
+                createDummyStages()
             }
         }
 
@@ -78,5 +79,25 @@ class BootStrap {
         }
         s1.save()
 }
+    def createDummyStages() {
+        def s1 = new Stage(stage: "Main Stage")
+         if (!s1.validate()) {
+            println "Event didn't validate!"
+            println s1.errors.allErrors
+        }
+        s1.save()
+        def s2 = new Stage(stage: "Old Stage")
+        if (!s2.validate()) {
+            println "Event didn't validate!"
+            println s2.errors.allErrors
+        }
+        s2.save()
+        def s3 = new Stage(stage: "Clown Lounge")
+        if (!s3.validate()) {
+            println "Event didn't validate!"
+            println s3.errors.allErrors
+        }
+        s3.save()
 
+    }
 } 

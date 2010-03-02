@@ -22,15 +22,17 @@
                     <thead>
                         <tr>
                         
+                            <g:sortableColumn property="id" title="${message(code: 'booking.id.label', default: 'Id')}" />
+                        
                             <th><g:message code="booking.eventDate.label" default="Event Date" /></th>
+                   	    
+                            <th><g:message code="booking.band.label" default="Band" /></th>
+                   	    
+                            <th><g:message code="booking.stage.label" default="Stage" /></th>
                    	    
                             <g:sortableColumn property="appearanceOrder" title="${message(code: 'booking.appearanceOrder.label', default: 'Appearance Order')}" />
                         
                             <g:sortableColumn property="confirmed" title="${message(code: 'booking.confirmed.label', default: 'Confirmed')}" />
-                        
-                            <th><g:message code="booking.band.label" default="Band" /></th>
-                   	    
-                            <g:sortableColumn property="headliner" title="${message(code: 'booking.headliner.label', default: 'Headliner')}" />
                         
                         </tr>
                     </thead>
@@ -38,15 +40,17 @@
                     <g:each in="${bookingInstanceList}" status="i" var="bookingInstance">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                         
-                            <td><g:link action="show" id="${bookingInstance.id}">${fieldValue(bean: bookingInstance, field: "eventDate")}</g:link></td>
-                                                
-                            <td>${fieldValue(bean: bookingInstance, field: "appearanceOrder")}</td>
+                            <td><g:link action="show" id="${bookingInstance.id}">${fieldValue(bean: bookingInstance, field: "id")}</g:link></td>
                         
-                            <td><g:formatBoolean boolean="${bookingInstance.confirmed}" /></td>
+                            <td>${fieldValue(bean: bookingInstance, field: "eventDate")}</td>
                         
                             <td>${fieldValue(bean: bookingInstance, field: "band")}</td>
                         
-                            <td><g:formatBoolean boolean="${bookingInstance.headliner}" /></td>
+                            <td>${fieldValue(bean: bookingInstance, field: "stage")}</td>
+                        
+                            <td>${fieldValue(bean: bookingInstance, field: "appearanceOrder")}</td>
+                        
+                            <td><g:formatBoolean boolean="${bookingInstance.confirmed}" /></td>
                         
                         </tr>
                     </g:each>

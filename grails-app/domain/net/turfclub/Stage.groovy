@@ -1,10 +1,10 @@
 package net.turfclub
 
 class Stage {
-    String name
+    String stage
 
     String toString() {
-        this.name
+        this.stage
     }
 
 

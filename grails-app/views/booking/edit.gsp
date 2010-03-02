@@ -41,7 +41,25 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                  <label for="appearanceOrder"><g:message code="booking.appearanceOrder.label" default="Appearance Number" /></label>
+                                  <label for="band"><g:message code="booking.band.label" default="Band" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'band', 'errors')}">
+                                    <g:select name="band.id" from="${net.turfclub.Band.list()}" optionKey="id" value="${bookingInstance?.band?.id}"  />
+                                </td>
+                            </tr>
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="stage"><g:message code="booking.stage.label" default="Stage" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'stage', 'errors')}">
+                                    <g:select name="stage.id" from="${net.turfclub.Stage.list()}" optionKey="id" value="${bookingInstance?.stage?.id}"  />
+                                </td>
+                            </tr>
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="appearanceOrder"><g:message code="booking.appearanceOrder.label" default="Appearance Order" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'appearanceOrder', 'errors')}">
                                     <g:textField name="appearanceOrder" value="${fieldValue(bean: bookingInstance, field: 'appearanceOrder')}" />
@@ -54,15 +72,6 @@
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'confirmed', 'errors')}">
                                     <g:checkBox name="confirmed" value="${bookingInstance?.confirmed}" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="band"><g:message code="booking.band.label" default="Band" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'band', 'errors')}">
-                                    <g:select name="band.id" from="${net.turfclub.Band.list()}" optionKey="id" value="${bookingInstance?.band?.id}"  />
                                 </td>
                             </tr>
                         

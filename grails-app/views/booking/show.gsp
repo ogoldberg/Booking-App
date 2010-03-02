@@ -37,7 +37,21 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name"><g:message code="booking.appearanceOrder.label" default="Appearance Number" /></td>
+                            <td valign="top" class="name"><g:message code="booking.band.label" default="Band" /></td>
+                            
+                            <td valign="top" class="value"><g:link controller="band" action="show" id="${bookingInstance?.band?.id}">${bookingInstance?.band?.encodeAsHTML()}</g:link></td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name"><g:message code="booking.stage.label" default="Stage" /></td>
+                            
+                            <td valign="top" class="value"><g:link controller="stage" action="show" id="${bookingInstance?.stage?.id}">${bookingInstance?.stage?.encodeAsHTML()}</g:link></td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name"><g:message code="booking.appearanceOrder.label" default="Appearance Order" /></td>
                             
                             <td valign="top" class="value">${fieldValue(bean: bookingInstance, field: "appearanceOrder")}</td>
                             
@@ -47,13 +61,6 @@
                             <td valign="top" class="name"><g:message code="booking.confirmed.label" default="Confirmed" /></td>
                             
                             <td valign="top" class="value"><g:formatBoolean boolean="${bookingInstance?.confirmed}" /></td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name"><g:message code="booking.band.label" default="Band" /></td>
-                            
-                            <td valign="top" class="value"><g:link controller="band" action="show" id="${bookingInstance?.band?.id}">${bookingInstance?.band?.encodeAsHTML()}</g:link></td>
                             
                         </tr>
                     
