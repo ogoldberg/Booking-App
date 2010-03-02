@@ -36,7 +36,7 @@
         <g:each in="${eventInstanceList}" status="i" var="eventInstance">
           <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 
-            <td><g:link action="show" id="${eventInstance.id}">
+            <td><g:link action="show" controller="event" id="${eventInstance.id}">
             <turfclub:formatDate date="${eventInstance.eventDate}" />
           </g:link></td>
 
@@ -55,43 +55,46 @@
       <g:paginate total="${eventInstanceTotal}" />
     </div>
 
-     <div class="list">
-       <h1>Booking List</h1>
-                <table>
-                    <thead>
-                        <tr>
+    <div class="list">
+      <h1>Booking List</h1>
+      <div class="nav">
+        <span class="menuButton"><g:link class="create" controller="booking" action="create"><g:message code="default.new.label" args="['Booking']" /></g:link></span>
+      </div>
+      <table>
+        <thead>
+          <tr>
 
-                            <th><g:message code="booking.eventDate.label" default="Event Date" /></th>
+            <th><g:message code="booking.eventDate.label" default="Event Date" /></th>
 
-                            <g:sortableColumn property="appearanceOrder" title="${message(code: 'booking.appearanceOrder.label', default: 'Appearance Order')}" />
+        <g:sortableColumn property="appearanceOrder" title="${message(code: 'booking.appearanceOrder.label', default: 'Appearance Order')}" />
 
-                            <g:sortableColumn property="confirmed" title="${message(code: 'booking.confirmed.label', default: 'Confirmed')}" />
+        <g:sortableColumn property="confirmed" title="${message(code: 'booking.confirmed.label', default: 'Confirmed')}" />
 
-                            <th><g:message code="booking.band.label" default="Band" /></th>
+        <th><g:message code="booking.band.label" default="Band" /></th>
 
-                            <g:sortableColumn property="headliner" title="${message(code: 'booking.headliner.label', default: 'Headliner')}" />
+        <g:sortableColumn property="headliner" title="${message(code: 'booking.headliner.label', default: 'Headliner')}" />
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <g:each in="${bookingInstanceList}" status="i" var="bookingInstance">
-                        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+        </tr>
+        </thead>
+        <tbody>
+        <g:each in="${bookingInstanceList}" status="i" var="bookingInstance">
+          <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 
-                            <td><g:link action="show" id="${bookingInstance.id}">${fieldValue(bean: bookingInstance, field: "eventDate")}</g:link></td>
+            <td><g:link action="show" controller="booking" id="${bookingInstance.id}">${fieldValue(bean: bookingInstance, field: "eventDate")}</g:link></td>
 
-                            <td>${fieldValue(bean: bookingInstance, field: "appearanceOrder")}</td>
+          <td>${fieldValue(bean: bookingInstance, field: "appearanceOrder")}</td>
 
-                            <td><g:formatBoolean boolean="${bookingInstance.confirmed}" /></td>
+          <td><g:formatBoolean boolean="${bookingInstance.confirmed}" /></td>
 
-                            <td>${fieldValue(bean: bookingInstance, field: "band")}</td>
+          <td>${fieldValue(bean: bookingInstance, field: "band")}</td>
 
-                            <td><g:formatBoolean boolean="${bookingInstance.headliner}" /></td>
+          <td><g:formatBoolean boolean="${bookingInstance.headliner}" /></td>
 
-                        </tr>
-                    </g:each>
-                    </tbody>
-                </table>
-            </div>
+          </tr>
+        </g:each>
+        </tbody>
+      </table>
+    </div>
   </div>
 </body>
 </html>
