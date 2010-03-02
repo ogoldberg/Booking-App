@@ -10,7 +10,8 @@ class EventController {
 
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [eventInstanceList: Event.list(params), eventInstanceTotal: Event.count()]
+        [eventInstanceList: Event.findAllByEventDateGreaterThanEquals(new Date()),
+            eventInstanceTotal: Event.count()]
     }
 
     def create = {
