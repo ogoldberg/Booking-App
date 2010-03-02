@@ -10,7 +10,7 @@
         <div id="spinner" class="spinner" style="display:none;">
             <img src="${resource(dir:'images',file:'spinner.gif')}" alt="Spinner" />
         </div>
-        <div id="grailsLogo" class="logo"><a href="http://grails.org"><img src="${resource(dir:'images',file:'grails_logo.png')}" alt="Grails" border="0" /></a></div>
+        <div id="turfclubBanner" class="logo" ali ><a href="http://turfclub.net"><img src="${resource(dir:'images',file:'turfbanner.png')}" alt="Turf Club" border="0" /></a></div>
         <g:layoutBody />
     </body>
 </html>
