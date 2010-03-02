@@ -32,7 +32,7 @@
                                     <label for="eventDate"><g:message code="booking.eventDate.label" default="Event Date" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'eventDate', 'errors')}">
-                                    <g:select name="eventDate.id" from="${net.turfclub.Event.list()}" optionKey="eventDate" value="${bookingInstance?.eventDate?.id}"  />
+                                    <g:select name="eventDate.id" from="${net.turfclub.Event.list()}" optionKey="id" value="${bookingInstance?.eventDate?.id}"  />
                                 </td>
                             </tr>
                         
