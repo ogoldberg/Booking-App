@@ -32,7 +32,7 @@
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="event.date.label" default="Date" /></td>
                             
-                            <td valign="top" class="value"><g:formatDate date="${eventInstance?.eventDate}" /></td>
+                            <td valign="top" class="value"><turfclub:formatDate date="${eventInstance.eventDate}" /></td>
                             
                         </tr>
                     
