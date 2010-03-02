@@ -6,6 +6,7 @@ class Booking {
     Integer appearanceOrder = 0
     Boolean confirmed
     Boolean headliner
+    Stage stage
     //ShiroUser booker
 
      String toString() {
