@@ -36,6 +36,15 @@
                                     <calendar:datePicker name="eventDate" precision="day" dateFormat="%m/%e/%Y" value="${eventInstance?.eventDate}"  />
                                 </td>
                             </tr>
+
+                             <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="cover"><g:message code="event.cover.label" default="Cover *" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'cover', 'errors')}">
+                                    <g:textField name="cover" value="${eventInstance?.cover}" />
+                                </td>
+                            </tr>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
@@ -53,17 +62,8 @@
                                 <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'description', 'errors')}">
                                     <g:textArea name="description" cols="40" rows="5" value="${eventInstance?.description}" />
                                 </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="cover"><g:message code="event.cover.label" default="Cover *" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'cover', 'errors')}">
-                                    <g:textField name="cover" value="${eventInstance?.cover}" />
-                                </td>
-                            </tr>
-                        
+                            </tr>                        
+                                                 
                         </tbody>
                     </table>
                 </div>
