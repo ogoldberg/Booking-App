@@ -22,8 +22,8 @@ class BookingController {
     def save = {
         def bookingInstance = new Booking(params)
         if (bookingInstance.save(flush: true)) {
-            flash.message = "${message(code: 'default.created.message', args: [message(code: 'booking.label', default: 'Booking'), bookingInstance.id])}"
-            redirect(action: "show", id: bookingInstance.id)
+            flash.message = "${bookingInstance.band} added to event"
+            redirect(action: "show", controller: "event", id: bookingInstance.eventDate.id)
         }
         else {
             render(view: "create", model: [bookingInstance: bookingInstance])
