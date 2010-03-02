@@ -9,7 +9,7 @@ class Event {
 
     
     String toString() {
-        return eventTitle
+        return eventDate.format('MMMM d, yyyy')
         }
         
     static hasMany = [ bookings:Booking,
