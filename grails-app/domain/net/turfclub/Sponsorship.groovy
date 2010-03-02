@@ -1,7 +1,7 @@
 package net.turfclub
 
 class Sponsorship {
-    Event event
+    Event eventDate
     Sponsor sponsor
     String contributionType
     String description
@@ -13,7 +13,7 @@ class Sponsorship {
     
 
     static constraints = {
-        event(nullable:false)
+        eventDate(nullable:false)
         sponsor(nullable:false)
         contributionType(inList:["Marketing", "Drink Special", "Promotion", "Cash", "Other"])
         description(nullable:true, blank:true)
