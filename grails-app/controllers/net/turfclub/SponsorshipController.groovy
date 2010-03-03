@@ -23,7 +23,7 @@ class SponsorshipController {
         def sponsorshipInstance = new Sponsorship(params)
         if (sponsorshipInstance.save(flush: true)) {
             flash.message = "${sponsorshipInstance.sponsor} sponsorship added to event"
-            redirect(action: "show", controller: "event", id: sponsorshipInstance.eventDate.id)
+            redirect(action: "show", controller: "event", id: sponsorshipInstance.event.id)
         }
         else {
             render(view: "create", model: [sponsorshipInstance: sponsorshipInstance])
