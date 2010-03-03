@@ -32,7 +32,7 @@
                                     <label for="event"><g:message code="sponsorship.event.label" default="Event" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: sponsorshipInstance, field: 'event', 'errors')}">
-                                    <g:select name="eventDate.id" from="${net.turfclub.Event.list()}" optionKey="id" value="${sponsorshipInstance?.eventDate?.id}"  />
+                                    <g:select name="event.id" from="${net.turfclub.Event.list()}" optionKey="id" value="${sponsorshipInstance?.event?.id}"  />
                                 </td>
                             </tr>
                         
