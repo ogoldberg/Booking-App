@@ -12,8 +12,15 @@
   <script>
   $(document).ready(function(){
     var data = "http://localhost:8080/turf/band/bandNames";
-$("#example").autocomplete(data, { autoFill:true, minChars:1});
+    $("#bandName").autocomplete(data, { autoFill:true, minChars:1});
+ 
+    $("foo").click(function(){
+      var i=1;
+      alert ($("#bandName").current);
+      alert ($("#bandName").emptyList);
   });
+
+ });
   </script>
 
 </head>
@@ -45,18 +52,11 @@ $("#example").autocomplete(data, { autoFill:true, minChars:1});
           <g:select name="event.id" from="${net.turfclub.Event.list()}" optionKey="id" value="${bookingInstance?.event?.id}"  />
           </td>
           </tr>
-
           <tr class="prop">
-            <td valign="top" class="name">
+            <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'band', 'errors')}">
               <label for="band"><g:message code="booking.band.label" default="Band" /></label>
             </td>
-            <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'band', 'errors')}">
-          <g:select name="band.id" from="${net.turfclub.Band.list()}" optionKey="id" value="${bookingInstance?.band?.id}"  />
-          </td>
-          </tr>
-          <tr>
-            <td>Band</td>
-            <td><input id="example" />
+            <td><input id="bandName" name="bandName"  />
             </td>
           </tr>
           <tr class="prop">
@@ -93,6 +93,7 @@ $("#example").autocomplete(data, { autoFill:true, minChars:1});
             <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'headliner', 'errors')}">
           <g:checkBox name="headliner" value="${bookingInstance?.headliner}" />
           </td>
+
           </tr>
 
           </tbody>

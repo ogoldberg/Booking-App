@@ -20,7 +20,16 @@ class BookingController {
     }
 
     def save = {
+        //find band in db by bandName
+             def band = Band.findByBandName(params.bandName)
+        //if band does not exist, save a new band
+                if (!band) {
+                    band = new Band(bandName: params.bandName).save()
+                }
+        //associate band with booking
+    
         def bookingInstance = new Booking(params)
+            bookingInstance.band = band
         if (bookingInstance.save(flush: true)) {
             flash.message = "${bookingInstance.band} added to event"
             redirect(action: "show", controller: "event", id: bookingInstance.event.id)
