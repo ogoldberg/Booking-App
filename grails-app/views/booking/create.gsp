@@ -11,8 +11,8 @@
   <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.js"></script>
   <script>
   $(document).ready(function(){
-    var data = "${Band.allBandNames().join('|')}".split("|");
-$("#example").autocomplete(data);
+    var data = "http://localhost:8080/turf/band/bandNames";
+$("#example").autocomplete(data, { autoFill:true, minChars:1});
   });
   </script>
 

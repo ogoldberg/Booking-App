@@ -1,4 +1,5 @@
 package net.turfclub
+import grails.converters.JSON
 
 class BandController {
 
@@ -13,6 +14,18 @@ class BandController {
         [bandInstanceList: Band.list(params), bandInstanceTotal: Band.count()]
     }
 
+    def bandNames = {
+        println "band names params" + params
+        println "I'm being called" + new Date()
+        println "letter is " + params["q"]
+        def bandList = Band.findByBandNameIlike(params.q +"%").collect {
+            it.bandName
+        }
+
+        render bandList.join("\n")
+
+
+    }
     def create = {
         def bandInstance = new Band()
         bandInstance.properties = params

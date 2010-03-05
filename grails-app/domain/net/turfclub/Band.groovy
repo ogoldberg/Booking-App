@@ -13,11 +13,7 @@ class Band {
     }
 
 
-    static def allBandNames() {
-        Band.list().collect {
-            it.bandName
-        }
-    }
+    
     
     static hasMany = [bookings : Booking]
 
