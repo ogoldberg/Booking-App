@@ -1,4 +1,5 @@
 package net.turfclub
+import grails.converters.JSON
 
 class EventController {
 
@@ -12,6 +13,20 @@ class EventController {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [eventInstanceList: Event.findAllByEventDateGreaterThanEquals(new Date()),
             eventInstanceTotal: Event.count()]
+    }
+    def eventfeed = {
+        def events = [
+            [
+                title: "Yo",
+                start: (new Date().time / 1000).toLong(),
+                url : createLink(controller:'event', action:'show', id:'1')
+
+            ]
+
+
+
+        ]
+render events as JSON
     }
 
     def create = {
