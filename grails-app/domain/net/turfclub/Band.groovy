@@ -12,6 +12,13 @@ class Band {
        this.bandName
     }
 
+
+    static def allBandNames() {
+        Band.list().collect {
+            it.bandName
+        }
+    }
+    
     static hasMany = [bookings : Booking]
 
     static constraints = {
