@@ -7,10 +7,7 @@
         <g:javascript library="application" />
     </head>
     <body>
-        <div id="spinner" class="spinner" style="display:none;">
-            <img src="${resource(dir:'images',file:'spinner.gif')}" alt="Spinner" />
-        </div>
-        <div id="turfclubBanner" class="logo" ali ><a href="http://turfclub.net"><img src="${resource(dir:'images',file:'turfbanner.png')}" alt="Turf Club" border="0" /></a></div>
+        <div id="turfclubBanner" class="logo" align="left" align="top" ><a href="http://turfclub.net"><img src="${resource(dir:'images',file:'turfbanner.png')}" alt="Turf Club" border="0" /></a></div>
         <g:layoutBody />
     </body>
 </html>
