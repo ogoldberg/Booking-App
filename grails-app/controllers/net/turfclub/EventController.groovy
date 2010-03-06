@@ -16,23 +16,27 @@ class EventController {
     }
 
     def eventfeed = {
+
         def events = Event.list().collect { event ->
              [
                 title: event.eventDate.format('MMMM d, yyyy'),
                 start: (event.eventDate.time / 1000).toLong(),
                 url : createLink(controller:'event', action:'show', id:event.id)
             ]
-
-
         }
 
-render events as JSON
+        render events as JSON
     }
 
     def create = {
+        println "In create method" + params
         def eventInstance = new Event()
         eventInstance.properties = params
+        if (params.d) {
+            eventInstance.eventDate=Date.parse("MM-dd-yyyy", params.d)
+        }
         return [eventInstance: eventInstance]
+
     }
 
     def save = {

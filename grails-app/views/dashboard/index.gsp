@@ -20,11 +20,30 @@
     // page is now ready, initialize the calendar...
 
     $('#calendar').fullCalendar({
-      events: "http://localhost:8080/turf/event/eventfeed"
-        // put your options and callbacks here
-    })
+  
 
-});
+    events: "http://localhost:8080/turf/event/eventfeed",
+
+        // put your options and callbacks here
+    dayClick: function(date, allDay, jsEvent, view) {
+
+        var clicked_date = date.getDate();
+
+        var clicked_month = date.getMonth();
+
+        var clicked_year = date.getFullYear();
+
+
+        var formattedDate = clicked_month + 1 + "-" +
+                            clicked_date + "-" +
+                            clicked_year
+                          
+        window.location="http://localhost:8080/turf/event/create?d=" +
+          formattedDate;
+
+    }
+    });
+    });
 
 </script>
 <style type='text/css'>
