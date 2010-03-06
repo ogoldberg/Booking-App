@@ -20,7 +20,7 @@ class EventController {
              [
                 title: event.eventDate.format('MMMM d, yyyy'),
                 start: (event.eventDate.time / 1000).toLong(),
-                url : createLink(controller:'event', action:'show', id:'1')
+                url : createLink(controller:'event', action:'show', id:event.id)
             ]
 
 
