@@ -14,18 +14,18 @@ class EventController {
         [eventInstanceList: Event.findAllByEventDateGreaterThanEquals(new Date()),
             eventInstanceTotal: Event.count()]
     }
-    def eventfeed = {
-        def events = [
-            [
-                title: "Yo",
-                start: (new Date().time / 1000).toLong(),
-                url : createLink(controller:'event', action:'show', id:'1')
 
+    def eventfeed = {
+        def events = Event.list().collect { event ->
+             [
+                title: event.eventDate.format('MMMM d, yyyy'),
+                start: (event.eventDate.time / 1000).toLong(),
+                url : createLink(controller:'event', action:'show', id:'1')
             ]
 
 
+        }
 
-        ]
 render events as JSON
     }
 
