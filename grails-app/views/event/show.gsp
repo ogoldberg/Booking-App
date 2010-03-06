@@ -56,6 +56,15 @@
                             <td valign="top" class="value">${fieldValue(bean: eventInstance, field: "cover")}</td>
                             
                         </tr>
+
+
+
+                         <tr class="prop">
+                            <td valign="top" class="name"><g:message code="event.booker.label" default="Booker" /></td>
+
+                            <td valign="top" class="value">${fieldValue(bean: eventInstance, field: "booker")}</td>
+
+                        </tr>
                          <tr class="prop">
                                 <td valign="top" class="name">
                                   <label for="sponsorships"><g:message code="event.sponsorships.label" default="Sponsorships" /></label>

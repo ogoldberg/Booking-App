@@ -36,7 +36,18 @@
                                     <calendar:datePicker name="eventDate" precision="day" dateFormat="%m/%e/%Y" value="${eventInstance?.eventDate}"  />
                                 </td>
                             </tr>
-
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="event"><g:message code="event.booker.label" default="Booker" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'booker', 'errors')}">
+                                    <g:select name="booker" 
+                                              from="${ShiroUser.list()}"
+                                              optionKey="id"
+                                              optionValue="username"
+                                              value="${eventInstance?.booker?.id}"  />
+                                </td>
+                            </tr>
                              <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="cover"><g:message code="event.cover.label" default="Cover *" /></label>
