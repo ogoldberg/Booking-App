@@ -47,7 +47,9 @@ class BootStrap {
     }
 
     def createDummyEvents() {
-        def e1 = new Event(eventDate: '4/20/2010',
+        def e1 = new Event(
+            booker: ShiroUser.findByUsername("admin"),
+            eventDate: '4/20/2010',
             cover: '$7'
         )
         if (!e1.validate()) {
@@ -56,7 +58,9 @@ class BootStrap {
         }
         e1.save()
 
-        def e2 = new Event(eventDate: '5/30/2010',
+        def e2 = new Event(
+            booker: ShiroUser.findByUsername("admin"),
+            eventDate: '5/30/2010',
             cover: '$12'
         )
         if (!e2.validate()) {
