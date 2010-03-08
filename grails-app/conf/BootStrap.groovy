@@ -7,6 +7,9 @@ class BootStrap {
         user.addToPermissions("*:*")
         user.save()
 
+        def bob = new ShiroUser(username: "bob", passwordHash: new Sha1Hash("bobbob").toHex())
+        bob.save()
+
         if (grails.util.GrailsUtil.environment == 'development') {
             if (!Event.get(1)) {
                 // TODO if we haven't loaded the data yet
