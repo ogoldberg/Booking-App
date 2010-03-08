@@ -67,7 +67,8 @@ table.fc-header {
 	
 .fc-header-title {
 	margin-top: 0;
-	white-space: nowrap;
+        white-space: nowrap;
+               
 	}
 	
 .fc-header-space {
@@ -240,7 +241,7 @@ table.fc-header {
 .fc-event a {
 	border-style: solid; 
 	border-color: #36c;     /* default BORDER color (probably the same as background-color) */
-	background-color: #36c; /* default BACKGROUND color */
+	background-color: orange; /* default BACKGROUND color */
 	color: #fff;            /* default TEXT color */
 	}
 	
@@ -255,6 +256,14 @@ table.fc-header {
 	 *     color: red;
 	 *     }
 	 */
+.finalized,
+.fc-agenda .finalized .fc-event-time,
+.finalized a {
+    background-color: green; /* background color */
+    border-color: green;     /* border color */
+    color: white;           /* text color */
+    }
+
 	 
 .fc-event {
 	text-align: left;
