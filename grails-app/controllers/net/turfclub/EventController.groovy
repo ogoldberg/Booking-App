@@ -1,6 +1,7 @@
 package net.turfclub
 import grails.converters.JSON
 
+
 class EventController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]

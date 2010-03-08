@@ -10,10 +10,7 @@ class Band {
 
     String toString() {
        this.bandName
-    }
-
-
-    
+    }    
     
     static hasMany = [bookings : Booking]
 
