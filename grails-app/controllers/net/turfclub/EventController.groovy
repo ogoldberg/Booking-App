@@ -20,9 +20,10 @@ class EventController {
 
         def events = Event.list().collect { event ->
              [
-                title: event.eventDate.format('MMMM d, yyyy'),
+                title: event.booker.toString(),
                 start: (event.eventDate.time / 1000).toLong(),
-                url : createLink(controller:'event', action:'show', id:event.id)
+                url : createLink(controller:'event', action:'show', id:event.id),
+                className: event.finalized ? ["finalized"] : ""
             ]
         }
 
