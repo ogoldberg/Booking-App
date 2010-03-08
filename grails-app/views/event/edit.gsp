@@ -29,12 +29,19 @@
       <div class="dialog">
         <table>
           <tbody>
-
             <tr class="prop">
               <td valign="top" class="name">
-                <label for="eventDate"><g:message code="event.eventDate.label" default="Event Date" /></label>
+                <label for="finalized"><g:message code="event.finalized.label" default="Finalized" /></label>
               </td>
-              <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'date', 'errors')}">
+              <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'finalized', 'errors')}">
+          <g:checkBox name="finalized" value="${eventInstance?.finalized}" />
+          </td>
+          </tr>
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="eventDate"><g:message code="event.eventDate.label" default="Event Date" /></label>
+            </td>
+            <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'date', 'errors')}">
           <calendar:resources lang="en" theme="green"/>
           <calendar:datePicker name="eventDate" precision="day" dateFormat="%m/%e/%Y" value="${eventInstance?.eventDate}"  />
           </td>

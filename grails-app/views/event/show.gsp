@@ -21,12 +21,19 @@
             <div class="dialog">
                 <table>
                     <tbody>
-                    
+                                           
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="event.id.label" default="Id" /></td>
                             
                             <td valign="top" class="value">${fieldValue(bean: eventInstance, field: "id")}</td>
                             
+                        </tr>
+
+                         <tr class="prop">
+                            <td valign="top" class="name"><g:message code="event.finalized.label" default="Finalized" /></td>
+
+                            <td valign="top" class="value"><g:formatBoolean boolean="${eventInstance?.finalized}" /></td>
+
                         </tr>
                     
                         <tr class="prop">
