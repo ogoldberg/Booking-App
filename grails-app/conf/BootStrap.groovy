@@ -3,11 +3,18 @@ import org.apache.shiro.crypto.hash.Sha1Hash
 class BootStrap {
 
     def init = { servletContext ->
-        def user = new ShiroUser(username: "admin", passwordHash: new Sha1Hash("admin").toHex())
+        def user = new ShiroUser(username: "admin", passwordHash: new Sha1Hash("admin0").toHex(),
+				password : 'admin0',
+				passwordConfirm : 'admin0',
+        )
         user.addToPermissions("*:*")
         user.save()
 
-        def bob = new ShiroUser(username: "bob", passwordHash: new Sha1Hash("bobbob").toHex())
+        def bob = new ShiroUser(username: "bob", 
+        
+				password : 'admin0',
+				passwordConfirm : 'admin0',
+                passwordHash: new Sha1Hash("bobbob0").toHex())
         bob.save()
 
         if (grails.util.GrailsUtil.environment == 'development') {
