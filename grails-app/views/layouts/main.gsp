@@ -8,6 +8,7 @@
     </head>
     <body>
         <div id="turfclubBanner" class="logo" align="left" align="top" ><a href="http://turfclub.net"><img src="${resource(dir:'images',file:'turfbanner.png')}" alt="Turf Club" border="0" /></a></div>
-        <g:layoutBody />
+    <g:link controller="auth" action="signOut">Sign Out</g:link>
+    <g:layoutBody />
     </body>
 </html>
