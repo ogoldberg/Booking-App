@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="layout" content="main" />
      <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar.css')}" />
-    <!-- <link rel="stylesheet" href="${resource(dir:'css',file:'jquery-ui-1.8rc3.custom.css')}" />-->
+   <link rel="stylesheet" href="${resource(dir:'css',file:'jquery-ui-1.8rc3.custom.css')}" />
      <g:set var="entityName" value="${message(code: 'event.label', default: 'Event')}" />
   <title><g:message code="default.list.label" args="[entityName]" /></title>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
