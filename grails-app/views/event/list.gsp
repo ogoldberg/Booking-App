@@ -24,6 +24,8 @@
 
         <g:sortableColumn property="date" title="${message(code: 'event.date.label', default: 'Date')}" />
 
+        <g:sortableColumn property="finalized" title="Finalized" />
+
         <g:sortableColumn property="eventTitle" title="${message(code: 'event.eventTitle.label', default: 'Event Title')}" />
 
         <g:sortableColumn property="description" title="${message(code: 'event.description.label', default: 'Description')}" />
@@ -39,6 +41,8 @@
             <td><g:link action="show" id="${eventInstance.id}">
             <turfclub:formatDate date="${eventInstance.eventDate}" />
           </g:link></td>
+
+           <td><g:formatBoolean boolean="${eventInstance.finalized}" /></td>
 
           <td>${fieldValue(bean: eventInstance, field: "eventTitle")}</td>
 
