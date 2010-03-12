@@ -14,7 +14,7 @@ class BootStrap {
         
 				password : 'admin0',
 				passwordConfirm : 'admin0',
-                passwordHash: new Sha1Hash("bobbob0").toHex())
+                passwordHash: new Sha1Hash("admin0").toHex())
         bob.save()
 
         if (grails.util.GrailsUtil.environment == 'development') {
