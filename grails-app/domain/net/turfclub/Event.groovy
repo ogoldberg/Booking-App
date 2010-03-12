@@ -24,6 +24,6 @@ class Event {
         finalized(nullable:true)
         eventTitle(blank:true, nullable:true)
         description(nullable:true, maxSize:5000)
-        cover(blank:false)
+        cover(nullable:true)
     }
 }
