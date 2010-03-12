@@ -20,7 +20,7 @@
     // page is now ready, initialize the calendar...
 
     $('#calendar').fullCalendar({
-  
+            aspectRatio: 2,
 
     events: "/turf/event/eventfeed",
 
@@ -49,7 +49,6 @@
 <style type='text/css'>
 
 	body {
-		margin-top: 40px;
 		text-align: center;
 		font-size: 14px;
 		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
@@ -59,14 +58,14 @@
 		width: 900px;
 		margin: 0 auto;
 		}
+		
 
 </style>
 
 </head>
 <body>
   <div class="body">
-    <h1>Event Calendar</h1>
-    <g:if test="${flash.message}">
+       <g:if test="${flash.message}">
       <div class="message">${flash.message}</div>
     </g:if>
     <div id="calendar"></div>
