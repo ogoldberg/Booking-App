@@ -7,7 +7,7 @@
      <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar.css')}" />
    <link rel="stylesheet" href="${resource(dir:'css',file:'jquery-ui-1.8rc3.custom.css')}" />
      <g:set var="entityName" value="${message(code: 'event.label', default: 'Event')}" />
-  <title><g:message code="default.list.label" args="[entityName]" /></title>
+  <title>Calendar</title>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 <g:javascript src="jquery.js" />
 <g:javascript src="ui.core.js" />
@@ -22,7 +22,7 @@
     $('#calendar').fullCalendar({
   
 
-    events: "http://localhost:8080/turf/event/eventfeed",
+    events: "/turf/event/eventfeed",
 
         // put your options and callbacks here
     dayClick: function(date, allDay, jsEvent, view) {
@@ -38,7 +38,7 @@
                             clicked_date + "-" +
                             clicked_year
                           
-        window.location="http://localhost:8080/turf/event/create?d=" +
+        window.location="/turf/event/create?d=" +
           formattedDate;
 
     }
@@ -64,10 +64,6 @@
 
 </head>
 <body>
-  <div class="nav">
-    <span class="menuButton"><a class="home" href="${createLink(uri: '/')}">Home</a></span>
-    <span class="menuButton"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
-  </div>
   <div class="body">
     <h1>Event Calendar</h1>
     <g:if test="${flash.message}">
