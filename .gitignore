@@ -17,3 +17,4 @@ web-app/index.gsp
 web-app/images/mascot_real.png
 .DS_Store
 *~
+prodDb.*
