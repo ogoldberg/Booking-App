@@ -5,7 +5,11 @@ import org.apache.shiro.crypto.hash.Sha1Hash
 class ShiroUserController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-    static navigation = true
+    static navigation = [
+        group:'tabs',
+        title:'User',
+        order:4
+    ]
     def index = {
         redirect(action: "list", params: params)
     }

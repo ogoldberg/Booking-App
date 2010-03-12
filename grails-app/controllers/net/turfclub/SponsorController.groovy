@@ -3,7 +3,9 @@ package net.turfclub
 class SponsorController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-    static navigation = true
+    static navigation = [
+        order:3
+    ]
     def index = {
         redirect(action: "list", params: params)
     }

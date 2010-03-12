@@ -4,7 +4,9 @@ import grails.converters.JSON
 class BandController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-    static navigation = true
+    static navigation = [
+        order:2
+    ]
     def index = {
         redirect(action: "list", params: params)
     }
