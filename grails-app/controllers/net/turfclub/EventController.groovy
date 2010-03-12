@@ -3,7 +3,7 @@ import grails.converters.JSON
 
 
 class EventController {
-
+    static navigation = true
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index = {

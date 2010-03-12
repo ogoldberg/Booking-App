@@ -5,7 +5,7 @@ import org.apache.shiro.crypto.hash.Sha1Hash
 class ShiroUserController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-
+    static navigation = true
     def index = {
         redirect(action: "list", params: params)
     }
@@ -23,11 +23,13 @@ class ShiroUserController {
 
      def save = {
         def shiroUserInstance = new ShiroUser(params)
+        shiroUserInstance.passwordHash = new Sha1Hash(shiroUserInstance.password).toHex()
         // Generate a new password hash
         if(!shiroUserInstance.hasErrors() && shiroUserInstance.save()) {
-            shiroUserInstance.passwordHash = new Sha1Hash(shiroUserInstance.password).toHex()
+            
             flash.message = "ShiroUser ${shiroUserInstance.id} created"
             redirect(action:show, params:[username:shiroUserInstance.username])
+           
         }
         else {
             render(view:'create',model:[shiroUserInstance:shiroUserInstance])
@@ -72,7 +74,7 @@ class ShiroUserController {
             shiroUserInstance.properties = params
             println "Validating"
             if (!shiroUserInstance.hasErrors() && shiroUserInstance.validate()) {
-            println "VAlidated!"
+            println "Validated!"
 
                 if (params.password) {
                     // We know that the password and password confirm are equal
