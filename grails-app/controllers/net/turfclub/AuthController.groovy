@@ -6,12 +6,19 @@ import org.apache.shiro.web.SavedRequest
 import org.apache.shiro.web.WebUtils
 
 class AuthController {
+    static navigation = [
+		[group:'tabs', action:'login', order: 6, title:'Login', isVisible: { !SecurityUtils.subject?.isAuthenticated() }],
+		[group:'tabs', action:'signOut', order: 6, isVisible: { SecurityUtils.subject?.isAuthenticated() }]
+    ]
     def shiroSecurityManager
 
     def index = { redirect(action: "login", params: params) }
 
     def login = {
+        println SecurityUtils.subject
+        println 'foo'
         return [ username: params.username, rememberMe: (params.rememberMe != null), targetUri: params.targetUri ]
+
     }
 
     def signIn = {
