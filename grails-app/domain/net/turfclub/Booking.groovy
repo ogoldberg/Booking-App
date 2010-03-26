@@ -3,9 +3,9 @@ package net.turfclub
 class Booking {
     Event event
     Band band
-    Integer appearanceOrder = 0
-    Boolean confirmed
-    Boolean headliner
+    Date appearanceTime
+    Boolean confirmed = false
+    Boolean headliner = false
     Stage stage
     //ShiroUser booker
 
@@ -16,9 +16,9 @@ class Booking {
         event(nullable:false)
         band(nullable:false)
         stage(nullable:false)
-        appearanceOrder(nullable:true)
-        confirmed(nullable:true)
-        headliner(nullable:true)
+        appearanceTime()
+        confirmed()
+        headliner()
         
 
 

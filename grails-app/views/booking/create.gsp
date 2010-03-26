@@ -70,10 +70,10 @@
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="appearanceOrder"><g:message code="booking.appearanceOrder.label" default="Appearance Order" /></label>
+              <label for="appearanceOrder"><g:message code="booking.appearanceTime.label" default="Appearance Time" /></label>
             </td>
-            <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'appearanceOrder', 'errors')}">
-          <g:textField name="appearanceOrder" value="${fieldValue(bean: bookingInstance, field: 'appearanceOrder')}" />
+            <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'appearanceTime', 'errors')}">
+          <turfclub:eventTimeSelectors date="${bookingInstance?.appearanceTime}" />
           </td>
           </tr>
 

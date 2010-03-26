@@ -30,7 +30,7 @@
                    	    
                             <th><g:message code="booking.stage.label" default="Stage" /></th>
                    	    
-                            <g:sortableColumn property="appearanceOrder" title="${message(code: 'booking.appearanceOrder.label', default: 'Appearance Order')}" />
+                            <g:sortableColumn property="appearanceOrder" title="${message(code: 'booking.appearanceTime.label', default: 'Appearance Time')}" />
                         
                             <g:sortableColumn property="confirmed" title="${message(code: 'booking.confirmed.label', default: 'Confirmed')}" />
                         
@@ -48,7 +48,7 @@
                         
                             <td>${fieldValue(bean: bookingInstance, field: "stage")}</td>
                         
-                            <td>${fieldValue(bean: bookingInstance, field: "appearanceOrder")}</td>
+                            <td>${fieldValue(bean: bookingInstance, field: "appearanceTime")}</td>
                         
                             <td><g:formatBoolean boolean="${bookingInstance.confirmed}" /></td>
                         
