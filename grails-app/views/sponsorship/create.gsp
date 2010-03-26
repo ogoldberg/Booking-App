@@ -6,6 +6,23 @@
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'sponsorship.label', default: 'Sponsorship')}" />
         <title><g:message code="default.create.label" args="[entityName]" /></title>
+          <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+  <link rel="stylesheet" href="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.css" type="text/css" />
+  <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.js"></script>
+  <script>
+  $(document).ready(function(){
+    var data = "http://localhost:8080/turf/sponsor/names";
+    $("#sponsor").autocomplete(data, { autoFill:true, minChars:1});
+
+    $("foo").click(function(){
+      var i=1;
+      alert ($("#sponsor").current);
+      alert ($("#sponsor").emptyList);
+  });
+
+ });
+  </script>
+
     </head>
     <body>
         <div class="nav">
@@ -40,9 +57,8 @@
                                 <td valign="top" class="name">
                                     <label for="sponsor"><g:message code="sponsorship.sponsor.label" default="Sponsor" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean: sponsorshipInstance, field: 'sponsor', 'errors')}">
-                                    <g:select name="sponsor.id" from="${net.turfclub.Sponsor.list()}" optionKey="id" value="${sponsorshipInstance?.sponsor?.id}"  />
-                                </td>
+                                <td><input id="sponsor" name="sponsor"  />
+          </td>
                             </tr>
                         
                             <tr class="prop">

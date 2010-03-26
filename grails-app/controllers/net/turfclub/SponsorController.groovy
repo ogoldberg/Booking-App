@@ -106,4 +106,11 @@ class SponsorController {
         response.contentLength = sponsor?.logo.length
         response.outputStream.write(sponsor?.logo)
     }
+
+    def names = {
+        def sponsorList = Sponsor.findByNameIlike(params.q +"%").collect {
+            it.name
+    }
+     render sponsorList.join("\n")
+}
 }
