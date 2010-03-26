@@ -7,14 +7,13 @@ class Event {
     String eventTitle
     String cover
     String description
-
-    
+    Boolean featured = false
+      
 
     
     String toString() {
         return eventDate.format('MMMM d, yyyy')
-    }
-        
+    }        
     static hasMany = [ bookings:Booking,
                        sponsorships:Sponsorship ]
 
