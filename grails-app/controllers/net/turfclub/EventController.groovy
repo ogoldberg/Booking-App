@@ -34,7 +34,7 @@ class EventController {
         def eventInstance = new Event()
         eventInstance.properties = params
         if (params.d) {
-            eventInstance.eventDate=Date.parse("MM-dd-yyyy", params.d)
+            eventInstance.eventDate=Date.parse("MM-dd-yyyy hh:mm", params.d + ' 21:00')
         }
         return [eventInstance: eventInstance]
 
