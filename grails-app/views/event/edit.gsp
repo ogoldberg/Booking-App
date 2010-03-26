@@ -47,6 +47,16 @@
           </td>
           </tr>
 
+
+          <tr class="prop">
+            <td>
+              <label for="showHour"><g:message code="event.eventDate.label" default="Time" /></label>
+            </td>
+            <td>
+          <turfclub:eventTimeSelectors date="${eventInstance.eventDate}" />
+          </td>
+          </tr>
+
           <tr class="prop">
             <td valign="top" class="name">
               <label for="eventTitle"><g:message code="event.eventTitle.label" default="Event Title" /></label>
