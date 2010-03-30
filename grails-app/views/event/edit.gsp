@@ -1,5 +1,5 @@
 
-<%@ page import="net.turfclub.Event" %>
+<%@ page import="net.turfclub.*" %>
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -54,6 +54,19 @@
             </td>
             <td>
           <turfclub:eventTimeSelectors date="${eventInstance.eventDate}" />
+          </td>
+          </tr>
+
+           <tr class="prop">
+            <td valign="top" class="name">
+              <label for="event"><g:message code="event.booker.label" default="Booker" /></label>
+            </td>
+            <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'booker', 'errors')}">
+          <g:select name="booker.id"
+                    from="${ShiroUser.list()}"
+                    optionKey="id"
+                    optionValue="username"
+                    value="${eventInstance?.booker?.id}"  />
           </td>
           </tr>
 
