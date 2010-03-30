@@ -60,7 +60,7 @@ class BootStrap {
         def e1 = new Event(
             booker: ShiroUser.findByUsername("admin"),
             eventDate: '4/20/2010',
-            cover: '$7'
+            cover: 7
         )
         if (!e1.validate()) {
             println "Event didn't validate!"
@@ -71,7 +71,7 @@ class BootStrap {
         def e2 = new Event(
             booker: ShiroUser.findByUsername("admin"),
             eventDate: '5/30/2010',
-            cover: '$12'
+            cover: 12
         )
         if (!e2.validate()) {
             println "Event didn't validate!"

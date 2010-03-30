@@ -5,8 +5,9 @@ class Event {
     Date eventDate
     Boolean finalized
     String eventTitle
-    String cover
+    double cover
     String description
+    String internalNotes
     Boolean featured = false
       
 
@@ -15,7 +16,11 @@ class Event {
         return eventDate.format('MMMM d, yyyy')
     }        
     static hasMany = [ bookings:Booking,
-                       sponsorships:Sponsorship ]
+        sponsorships:Sponsorship ]
+
+    static mapping = {
+        bookings sort: "appearanceTime"
+    }
 
     static constraints = {
         booker(nullable:false)
@@ -23,6 +28,7 @@ class Event {
         finalized(nullable:true)
         eventTitle(blank:true, nullable:true)
         description(nullable:true, maxSize:5000)
+        internalNotes(nullable:true, maxSize:5000)
         cover(nullable:true)
     }
 }
