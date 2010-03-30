@@ -290,3 +290,7 @@ th.desc a {
     float: left;
     width: 50%;
 }
+
+.right {
+    text-align: right;
+}
