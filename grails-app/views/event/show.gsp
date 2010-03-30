@@ -18,7 +18,6 @@
       alert ($("#bandName").emptyList);
   });
   $('.confirmedSwitcher').click(function() {
-       alert("Confirmed events automatically appear on public website.\n\Unconfrimed events do not appear on public website.")
        $.post('${createLink(controller:"event",
                             action:"confirmBooking")}',
               {'confirmed' : $(this).attr('checked'), 'id' : $(this).attr("bookingId") });
@@ -141,6 +140,12 @@
     </div>-->
   <div class="dialog">
     <g:render template='createBooking' model="[eventInstance:eventInstance]" />
+    <br />
+    <ul type="none">
+      <li>Confirmed bookings appear on the public facing website, while unconfirmed bookings do not.</li>
+      <li>Appearance Time effects the order in which bands appear on the website (latest to earliest).</li>
+      <li>The headliner will appear styled differently from the other bands.</li>
+    </ul>
   </div>
 
 </body>
