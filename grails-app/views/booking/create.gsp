@@ -51,7 +51,7 @@
               <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'eventDate', 'errors')}">
           <g:select name="event.id" from="${net.turfclub.Event.list()}" optionKey="id" value="${bookingInstance?.event?.id}"  />
           </td>
-          </tr>
+          </tr>          
           <tr class="prop">
             <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'band', 'errors')}">
               <label for="band"><g:message code="booking.band.label" default="Band" /></label>
@@ -70,10 +70,10 @@
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="appearanceOrder"><g:message code="booking.appearanceTime.label" default="Appearance Time" /></label>
+              <label for="appearanceTime"><g:message code="booking.appearanceTime.label" default="Appearance Time" /></label>
             </td>
             <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'appearanceTime', 'errors')}">
-          <turfclub:eventTimeSelectors date="${bookingInstance?.appearanceTime}" />
+          <turfclub:eventTimeSelectors prefix="booking" date="${bookingInstance?.appearanceTime}" />
           </td>
           </tr>
 

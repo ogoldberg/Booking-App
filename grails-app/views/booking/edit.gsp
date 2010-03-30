@@ -6,6 +6,22 @@
     <meta name="layout" content="main" />
   <g:set var="entityName" value="${message(code: 'booking.label', default: 'Booking')}" />
   <title><g:message code="default.edit.label" args="[entityName]" /></title>
+   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+  <link rel="stylesheet" href="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.css" type="text/css" />
+  <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.js"></script>
+  <script>
+  $(document).ready(function(){
+    var data = "http://localhost:8080/turf/band/bandNames";
+    $("#bandName").autocomplete(data, { autoFill:true, minChars:1});
+
+    $("foo").click(function(){
+      var i=1;
+      alert ($("#bandName").current);
+      alert ($("#bandName").emptyList);
+  });
+
+ });
+  </script>
 </head>
 <body>
   <div class="nav">
@@ -41,20 +57,19 @@
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="appearanceOrder"><g:message code="booking.appearanceTime.label" default="Appearance Time" /></label>
+              <label for="appearanceTime"><g:message code="booking.appearanceTime.label" default="Appearance Time" /></label>
             </td>
             <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'appearanceTime', 'errors')}">
-          <turfclub:bookingTimeSelectors date="${bookingInstance?.appearanceTime}" />
+          <turfclub:eventTimeSelectors prefix="booking" date="${bookingInstance?.appearanceTime}" />
           </td>
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name">
+            <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'band', 'errors')}">
               <label for="band"><g:message code="booking.band.label" default="Band" /></label>
             </td>
-            <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'band', 'errors')}">
-          <g:select name="band.id" from="${net.turfclub.Band.list()}" optionKey="id" value="${bookingInstance?.band?.id}"  />
-          </td>
+            <td><input id="bandName" name="bandName"  />
+            </td>
           </tr>
 
           <tr class="prop">

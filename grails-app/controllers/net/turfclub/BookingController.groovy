@@ -84,6 +84,9 @@ class BookingController {
                     return
                 }
             }
+            bookingInstance.appearanceTime = miscService.parseDate(bookingInstance.event.eventDate.format('MM/dd/yyyy'),
+                params.remove('bookingTime'),
+                params.remove('bookingAmPm'))
             bookingInstance.properties = params
             if (!bookingInstance.hasErrors() && bookingInstance.save(flush: true)) {
                 flash.message = "${message(code: 'default.updated.message', args: [message(code: 'booking.label', default: 'Booking'), bookingInstance.id])}"
