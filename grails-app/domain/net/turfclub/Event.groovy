@@ -27,7 +27,7 @@ class Event {
         eventDate(blank:false)
         finalized(nullable:true)
         eventTitle(blank:true, nullable:true)
-        description(nullable:true, maxSize:5000)
+        description(nullable:true, maxSize:2000)
         internalNotes(nullable:true, maxSize:5000)
         cover(nullable:true)
     }
