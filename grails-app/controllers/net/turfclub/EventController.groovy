@@ -127,5 +127,13 @@ class EventController {
         render ''
     }
 
+    def finalizeBooking = {
+        println "params are:" + params
+       def eventInstance = Event.get(params.id)
+       eventInstance?.finalized = (params.finalized == 'true')
+
+        render ''
+    }
+
     
 }

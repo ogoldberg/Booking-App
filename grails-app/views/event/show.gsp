@@ -1,10 +1,10 @@
-<%@ page import="net.turfclub.Event" %>
+<%@ page import="net.turfclub.*" %>
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <g:set var="entityName" value="${message(code: 'event.label', default: 'Event')}" />
+  <g:set var="entityName" value="${message(code: 'event.label', default: 'Event')}" />
   <title><g:message code="default.show.label" args="[entityName]" /></title>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+ <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
   <link rel="stylesheet" href="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.css" type="text/css" />
   <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.js"></script>
   <script>
@@ -17,14 +17,21 @@
       alert ($("#bandName").current);
       alert ($("#bandName").emptyList);
   });
+  
   $('.confirmedSwitcher').click(function() {
        $.post('${createLink(controller:"event",
-                            action:"confirmBooking")}',
+action:"confirmBooking")}',
               {'confirmed' : $(this).attr('checked'), 'id' : $(this).attr("bookingId") });
+            });
+
+  $('.finalizedSwitcher').click(function() {
+       $.post('${createLink(controller:"event",
+action:"finalizeBooking")}',
+              {'finalized' : $(this).attr('checked'), 'id' : $(this).attr("eventId") });
             });
       });
   </script>
-    <meta name="layout" content="main" />
+  <meta name="layout" content="main" />
 </head>
 <body>
   <div class="nav">
@@ -45,7 +52,7 @@
           <tr class="prop">
             <td valign="top" class="name"><g:message code="event.finalized.label" default="Finalized" /></td>
 
-        <td valign="top" class="value"><g:formatBoolean boolean="${eventInstance?.finalized}" /></td>
+            <td> <g:checkBox class="finalizedSwitcher" eventId="${eventInstance.id}" name="finalized" value="${eventInstance.finalized}" /></td>
 
         </tr>
 
@@ -142,9 +149,11 @@
     <g:render template='createBooking' model="[eventInstance:eventInstance]" />
     <br />
     <ul type="none">
+      <h1>Notes</h1>
       <li>Confirmed bookings appear on the public facing website, while unconfirmed bookings do not.</li>
-      <li>Appearance Time effects the order in which bands appear on the website (latest to earliest).</li>
+      <li>Appearance Time affects the order in which bands appear on the website (latest to earliest).</li>
       <li>The headliner will appear styled differently from the other bands.</li>
+      <li>The finalized checkbox is just an internal flag to indicate that the booking of a show is complete.<br /> A finalized event will turn from orange to green on the calendar view.</li>
     </ul>
   </div>
 
