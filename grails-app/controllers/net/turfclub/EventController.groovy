@@ -118,4 +118,14 @@ class EventController {
             redirect(action: "list")
         }
     }
+    
+    def confirmBooking = {
+        println "params are:" + params
+       def bookingInstance = Booking.get(params.id)
+       bookingInstance?.confirmed = (params.confirmed == 'true')
+        
+        render ''
+    }
+
+    
 }
