@@ -1,7 +1,7 @@
 <%@ page import="net.turfclub.Event;" %>
 
 <div class="halfwidth">
-  <h1 id="adduser">New Booking</h1>
+  <h1 id="adduser">Book a Band</h1>
    <g:form action="save" controller="booking" method="POST" name="newBookingForm">
     <input type="hidden" id="event.id" name="event.id"
            value="${eventInstance?.id}" />

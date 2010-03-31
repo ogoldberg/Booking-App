@@ -67,7 +67,11 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="band.notes.label" default="Notes" /></td>
 
-        <td valign="top" class="value">${fieldValue(bean: bandInstance, field: "notes")}</td>
+       <td><comments:render bean="${bandInstance}" /><br />
+                <comments:each bean="${bandInstance}">
+                      ${comment.body} - Posted by ${comment.poster}
+          </comments:each>
+          </td>
 
         </tr>
 
