@@ -1,6 +1,7 @@
 package net.turfclub
+import org.grails.comments.*
 
-class Booking {
+class Booking implements Commentable {
     Event event
     Band band
     Date appearanceTime

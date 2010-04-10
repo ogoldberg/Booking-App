@@ -1,13 +1,13 @@
 package net.turfclub
+import org.grails.comments.*
 
-class Event {
+class Event implements Commentable {
     ShiroUser booker
     Date eventDate
     Boolean finalized
     String eventTitle
     double cover
     String description
-    String internalNotes
     Boolean featured = false
       
 
@@ -28,7 +28,6 @@ class Event {
         finalized(nullable:true)
         eventTitle(blank:true, nullable:true)
         description(nullable:true, maxSize:2000)
-        internalNotes(nullable:true, maxSize:5000)
         cover(nullable:true)
     }
 }

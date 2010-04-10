@@ -1,13 +1,13 @@
 package net.turfclub
+import org.grails.comments.*
 
-class Sponsor {
+class Sponsor implements Commentable {
     String name
     String website
     byte[] logo
     String contact
     String phone
     String email
-    String notes
     
     String toString(){
         return name
@@ -21,6 +21,5 @@ class Sponsor {
         contact(nullable:true)
         phone(nullable:true)
         email(email:true, nullable:true)
-        notes(nullable:true, maxSize:2000)
     }
 }

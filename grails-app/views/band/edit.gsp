@@ -79,9 +79,11 @@
                                 <td valign="top" class="name">
                                   <label for="notes"><g:message code="band.notes.label" default="Notes" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean: bandInstance, field: 'notes', 'errors')}">
-                                    <g:textArea name="notes" cols="40" rows="5" value="${bandInstance?.notes}" />
-                                </td>
+                                <td><comments:render bean="${bandInstance}" /><br />
+                <comments:each bean="${bandInstance}">
+                      ${comment.body} - Posted by ${comment.poster}
+          </comments:each>
+          </td>
                             </tr>
                         
                             <tr class="prop">

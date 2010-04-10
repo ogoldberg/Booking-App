@@ -1,12 +1,12 @@
 package net.turfclub
+import org.grails.comments.*
 
-class Sponsorship {
+class Sponsorship implements Commentable {
     Event event
     Sponsor sponsor
     String contributionType
     String description
-    String notes
-
+    
     String toString(){
         return sponsor
     }
@@ -17,6 +17,5 @@ class Sponsorship {
         sponsor(nullable:false)
         contributionType(inList:["Marketing", "Drink Special", "Promotion", "Cash", "Other"])
         description(nullable:true, blank:true)
-        notes(nullable:true, blank:true, maxSize:5000)
     }
 }

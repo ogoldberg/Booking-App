@@ -1,4 +1,5 @@
-// locations to search for config files that get merged into the main config
+import org.apache.shiro.SecurityUtils
+// // locations to search for config files that get merged into the main config
 // config files can either be Java properties files or ConfigSlurper scripts
 
 // grails.config.locations = [ "classpath:${appName}-config.properties",
@@ -41,6 +42,8 @@ grails.enable.native2ascii = true
 grails.logging.jul.usebridge = true
 // packages to include in Spring bean scanning
 grails.spring.bean.packages = []
+
+grails.commentable.poster.evaluator = { SecurityUtils.subject.getPrincipal() }
 
 // set per-environment serverURL stem for creating absolute links
 environments {
