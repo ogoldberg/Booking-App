@@ -29,6 +29,12 @@ class EventController {
         render events as JSON
     }
 
+    def todaysEvent = {
+// get todays event, and create some awesome
+// html to send back.
+render '<b>hello</b>'
+}
+
     def create = {
         println "In create method" + params
         def eventInstance = new Event()
