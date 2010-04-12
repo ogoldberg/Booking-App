@@ -32,9 +32,15 @@ class EventController {
     def todaysEvent = {
 // get todays event, and create some awesome
 // html to send back.
+println "I got called" + new Date()
 render '<b>hello</b>'
 }
 
+    def showTodaysEvent = {
+// get todays event, and create some awesome
+// html to send back.
+
+}
     def create = {
         println "In create method" + params
         def eventInstance = new Event()
