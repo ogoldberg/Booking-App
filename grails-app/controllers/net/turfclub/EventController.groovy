@@ -1,9 +1,10 @@
 package net.turfclub
 import grails.converters.JSON
-
+import groovy.time.*
 
 class EventController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    def miscService
 
     def index = {
         redirect(action: "list", params: params)
@@ -11,7 +12,7 @@ class EventController {
 
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [eventInstanceList: Event.findAllByEventDateGreaterThanEquals(new Date()),
+        [eventInstanceList: Event.findAllByEventDateGreaterThanEquals(new Date() - 1),
             eventInstanceTotal: Event.count()]
     }
 
@@ -52,8 +53,17 @@ render '<b>hello</b>'
 
     }
 
+    // params: 
+    // eventDate_value:04/14/2010,
+    // eventTime:9:00, 
+    // eventAmPm:PM
     def save = {
+        println "Params are: " + params
         def eventInstance = new Event(params)
+        eventInstance.eventDate = 
+                miscService.parseDate(params.remove('eventDate_value'),
+                params.remove('eventTime'),
+                params.remove('eventAmPm'))
         if (eventInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'event.label', default: 'Event'), eventInstance.id])}"
             redirect(action: "show", id: eventInstance.id)
