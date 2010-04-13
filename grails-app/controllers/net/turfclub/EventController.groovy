@@ -107,7 +107,15 @@ render '<b>hello</b>'
                     return
                 }
             }
+
             eventInstance.properties = params
+            // set eventdate explicitly, after setting properties = params.
+            // because we know BEST!
+            eventInstance.eventDate = 
+                miscService.parseDate(
+                params.remove('eventDate_value'),
+                params.remove('eventTime'),
+                params.remove('eventAmPm'))
             if (!eventInstance.hasErrors() && eventInstance.save(flush: true)) {
                 flash.message = "${message(code: 'default.updated.message', args: [message(code: 'event.label', default: 'Event'), eventInstance.id])}"
                 redirect(action: "show", id: eventInstance.id)
