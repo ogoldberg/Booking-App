@@ -5,6 +5,7 @@ import groovy.time.*
 class EventController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
     def miscService
+    def eventService
 
     def index = {
         redirect(action: "list", params: params)
@@ -31,17 +32,39 @@ class EventController {
     }
 
     def todaysEvent = {
-// get todays event, and create some awesome
-// html to send back.
-println "I got called" + new Date()
-render '<b>hello</b>'
-}
+
+        def todaysHtml = ''
+        def todaysEvents = eventService.todaysEvents()
+
+        if (todaysEvents) {
+            todaysHtml = g.render(template:'/event/todaysEvent', 
+                            model : [ events : todaysEvents ])
+        }
+        else {
+            todaysHtml = '<b>Come have a drink</b>'
+        }
+        
+        def data = [ 
+            'result' : [ 
+                'todaysEvent' : todaysHtml 
+            ]
+        ]
+
+        def output =  "${params.callback}(${data as JSON})"
+        render output
+
+    }
+
+    def createHtmlForEvent(eventData) {
+        def output = '<div>' + eventData.event.title
+    }
 
     def showTodaysEvent = {
-// get todays event, and create some awesome
-// html to send back.
+        // get todays event, and create some awesome
+        // html to send back.
 
-}
+    }
+
     def create = {
         println "In create method" + params
         def eventInstance = new Event()
@@ -96,6 +119,7 @@ render '<b>hello</b>'
     }
 
     def update = {
+        println "params inuupdate" + params
         def eventInstance = Event.get(params.id)
         if (eventInstance) {
             if (params.version) {
