@@ -36,6 +36,29 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
 
     }
 
+    // We should be able to see yesterday's event, IF
+    // it's earlier than 2:00 a.m.
+    void testYesterdaysEvent() {
+
+        // Create event on May 6
+        createDummyEvent('Yesterdays Event', 
+            Date.parse("yyyy-MM-dd HH:mm", "2010-05-06 21:00"))
+
+        // Create event on May 7
+        createDummyEvent('Todays Event', 
+            Date.parse("yyyy-MM-dd HH:mm", "2010-05-07 21:00"))
+
+        // Pretend like we're logging in at 1:59 a.m. on May 07
+        // We should still see May 6's event.
+        def may7at159 = new GregorianCalendar(2010, Calendar.MAY, 7, 1, 59, 0)
+        java.util.Date.metaClass.constructor = { -> new Date(may7at159.timeInMillis) }
+
+        def events = eventService.todaysEvents()
+
+        assertEquals 1, events.size()
+        assertEquals '1:59 you should still see yesterdays event', 'Yesterdays Event', events[0].eventTitle 
+
+    }
     // convenience method for creating test Events
     def createDummyEvent(eventTitle, eventDate) {
         return new Event(
