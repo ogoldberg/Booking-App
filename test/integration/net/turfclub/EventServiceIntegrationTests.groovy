@@ -82,6 +82,42 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
         assertEquals '2:00 am should see Todays Event', 'Todays Event', events[0].eventTitle 
 
     }
+
+    void testMultipleTodaysDates() {
+        // Create two events on May 5
+        def event1 = createDummyEvent('May 5 Event One Dude', 
+            Date.parse("yyyy-MM-dd HH:mm", "2010-05-05 21:00"))
+
+        def event2 = createDummyEvent('Anohterhd May 5 Efvent Date', 
+            Date.parse("yyyy-MM-dd HH:mm", "2010-05-05 15:00"))
+
+        // Create event on May 6
+        createDummyEvent('May 6', 
+            Date.parse("yyyy-MM-dd HH:mm", "2010-05-06 21:00"))
+
+        // Pretend like we're logging in at 11 a.m. on May 5
+        def may5at11am = new GregorianCalendar(2010, Calendar.MAY, 5, 11, 0, 0)
+        java.util.Date.metaClass.constructor = { -> 
+            new Date(may5at11am.timeInMillis) 
+        }
+
+        def todaysEvents = eventService.todaysEvents()
+
+        assertEquals 2, todaysEvents.size()
+
+        def firstEvent = todaysEvents.find {
+            it.id = event1.id
+        }
+
+        assertNotNull firstEvent
+
+        def secondEvent = todaysEvents.find {
+            it.id = event2.id
+        }
+
+        assertNotNull secondEvent
+    }
+
     // convenience method for creating test Events
     def createDummyEvent(eventTitle, eventDate) {
         return new Event(
