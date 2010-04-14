@@ -16,9 +16,13 @@ class EventService {
             today = today - 1
         }
 
-        def todaysEvents = Event.findAllByEventDateBetween(today, (today + 1)).sort {
+        // remove hour/min from today, so if we search for
+        // todays events, we're not limited to events that are after today.hour
+        def todayAt12am = Date.parse('yyyy-MM-dd', today.format('yyyy-MM-dd'))
+        def todaysEvents = Event.findAllByEventDateBetween(todayAt12am, (todayAt12am + 1)).sort {
             it.eventDate
         }
+
         return todaysEvents
 
     }

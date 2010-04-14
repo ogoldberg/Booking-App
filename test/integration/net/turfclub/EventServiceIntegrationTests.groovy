@@ -157,6 +157,30 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
 
     }
 
+    // When searching for dates, you need to make sure that 
+    // hour / minute are considered.  If you log in at 10 p.m. on May 5
+    // then the service should find all dates that are on May 5, even
+    // if they started at 9:00 p.m.
+    void testEventInPastButOnSameDate() {
+
+        createDummyEvent("Event thats in 6 hours", 
+                Date.parse("yyyy-MM-dd HH:mm", "2010-05-05 21:00"))
+        createDummyEvent("Event thats in 30 hours", 
+                Date.parse("yyyy-MM-dd HH:mm", "2010-05-06 21:00"))
+
+        // Pretend like we're logging in at 10 p.m. on May 05
+        // We want to see Event thats in 6 hours
+        def may5at10pm = new GregorianCalendar(2010, Calendar.MAY, 5, 22, 0, 0)
+        java.util.Date.metaClass.constructor = { -> new Date(may5at10pm.timeInMillis) }
+
+        def todaysEvents = eventService.todaysEvents()
+
+        assertEquals 1, todaysEvents.size()
+
+        assertEquals 'first event is g00t', 'Event thats in 6 hours', todaysEvents[0].eventTitle
+
+    }
+
     // convenience method for creating test Events
     def createDummyEvent(eventTitle, eventDate) {
         return new Event(
