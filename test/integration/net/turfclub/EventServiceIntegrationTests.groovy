@@ -106,16 +106,21 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
         assertEquals 2, todaysEvents.size()
 
         def firstEvent = todaysEvents.find {
-            it.id = event1.id
+            it.id == event1.id
         }
 
         assertNotNull firstEvent
 
         def secondEvent = todaysEvents.find {
-            it.id = event2.id
+            it.id == event2.id
         }
 
         assertNotNull secondEvent
+        assertEquals secondEvent.id, event2.id
+        assertEquals "Second event title is correct", 'Anohterhd May 5 Efvent Date',
+            secondEvent.eventTitle
+        assertEquals 'Second event time is correct', '2010-05-05 15:00',
+            secondEvent.eventDate.format('yyyy-MM-dd HH:mm')
     }
 
     // convenience method for creating test Events
