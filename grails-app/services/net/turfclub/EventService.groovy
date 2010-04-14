@@ -16,7 +16,9 @@ class EventService {
             today = today - 1
         }
 
-        def todaysEvents = Event.findAllByEventDateBetween(today, (today + 1))
+        def todaysEvents = Event.findAllByEventDateBetween(today, (today + 1)).sort {
+            it.eventDate
+        }
         return todaysEvents
 
     }

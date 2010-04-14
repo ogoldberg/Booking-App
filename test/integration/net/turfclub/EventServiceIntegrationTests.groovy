@@ -123,6 +123,40 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
             secondEvent.eventDate.format('yyyy-MM-dd HH:mm')
     }
 
+    void testSortOrderOfMultipleDates() {
+        // Create 5 events each with different event times
+        createDummyEvent("Last Meow", 
+                Date.parse("yyyy-MM-dd HH:mm", "2010-05-05 22:00"))
+        createDummyEvent("Second Event", 
+                Date.parse("yyyy-MM-dd HH:mm", "2010-05-05 03:00"))
+        createDummyEvent("FOURTH WOOF", 
+                Date.parse("yyyy-MM-dd HH:mm", "2010-05-05 04:47"))
+        createDummyEvent("REALLY THIRD", 
+                Date.parse("yyyy-MM-dd HH:mm", "2010-05-05 04:46"))
+        createDummyEvent("First Event", 
+                Date.parse("yyyy-MM-dd HH:mm", "2010-05-05 02:00"))
+
+        // Throw in some other junk events, just for fun.
+        createDummyEvent('May 6', Date.parse("yyyy-MM-dd HH:mm", "2010-05-06 21:00"))
+        createDummyEvent('May 7', Date.parse("yyyy-MM-dd HH:mm", "2010-05-07 21:10"))
+        createDummyEvent('May 4', Date.parse("yyyy-MM-dd HH:mm", "2010-05-04 21:12"))
+
+        // Pretend like we're logging in at 2:00 a.m. on May 05
+        def may7at2am = new GregorianCalendar(2010, Calendar.MAY, 5, 2, 0, 0)
+        java.util.Date.metaClass.constructor = { -> new Date(may7at2am.timeInMillis) }
+
+        def todaysEvents = eventService.todaysEvents()
+
+        assertEquals 5, todaysEvents.size()
+
+        assertEquals 'first event is g00t', 'First Event', todaysEvents[0].eventTitle
+        assertEquals 'second event is g00t', 'Second Event', todaysEvents[1].eventTitle
+        assertEquals 'third event is g00t', 'REALLY THIRD', todaysEvents[2].eventTitle
+        assertEquals 'fourth event is g00t', 'FOURTH WOOF', todaysEvents[3].eventTitle
+        assertEquals 'fifth event is g00t', 'Last Meow', todaysEvents[4].eventTitle
+
+    }
+
     // convenience method for creating test Events
     def createDummyEvent(eventTitle, eventDate) {
         return new Event(
