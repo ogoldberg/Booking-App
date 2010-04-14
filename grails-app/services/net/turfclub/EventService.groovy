@@ -11,7 +11,7 @@ class EventService {
         def cal = Calendar.instance
         cal.setTime(today)
         
-        // If it's earlier than 2 a.m., then back up one day
+        // If it's earlier than 2 a.m. right now, then back up one day
         if (cal.get(Calendar.HOUR_OF_DAY) < 2) {
             today = today - 1
         }
