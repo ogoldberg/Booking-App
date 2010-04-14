@@ -1,6 +1,7 @@
 package net.turfclub
 
 import grails.test.*
+import java.util.Date
 
 class EventServiceIntegrationTests extends GrailsUnitTestCase {
     def eventService
@@ -8,13 +9,6 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
 
     protected void setUp() {
         super.setUp()
-
-        def e2 = new Event(
-            booker: ShiroUser.findByUsername("admin"),
-            eventTitle:'Todays Event',
-            eventDate: new Date(),
-            cover: 7
-        ).save()
     }
 
     protected void tearDown() {
@@ -22,38 +16,23 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
     }
 
     void testTodaysEvents() {
-        def events = eventService.todaysEvents()
-        assertNotNull events
-        assertEquals 1, events.size()
-        assertEquals 'Find todays event', 'Todays Event', events[0].eventTitle 
 
-    }
+        // Create event on May 6
+        createDummyEvent('Should not see', 
+            Date.parse("yyyy-MM-dd HH:mm", "2010-05-06 21:00"))
 
-    // Show events that are ongoing, but started the day before.
-    void testEventYesterday() {
-        def yesterday = new Date() - 1
+        // Create event on May 7
+        createDummyEvent('Todays Event', 
+            Date.parse("yyyy-MM-dd HH:mm", "2010-05-07 21:00"))
 
-        def e3 = new Event(
-            booker: ShiroUser.findByUsername("admin"),
-            eventTitle:'Yesterdays Event',
-            eventDate: miscService.parseDate(
-                yesterday.format('MM/dd/yyyy'),
-                '9:00',
-                'PM'),
-            cover: 7
-        ).save()
-
-        assertNotNull e3
-        assertTrue e3.eventDate.format('MM/dd/yyyy') == '04/12/2010'        
+        // Pretend like we're logging in at 3:00 p.m. on May 07
+        def today = new GregorianCalendar(2010, Calendar.MAY, 7, 15, 0, 0)
+        java.util.Date.metaClass.constructor = { -> new Date(today.timeInMillis) }
 
         def events = eventService.todaysEvents()
-        assertNotNull events
-        assertEquals 1, events.size()
-        assertTrue events.find {
-            it.eventTitle == 'Todays Event'
-        }
 
-        assertEquals 'Find todays event', 'Todays Event', events[0].eventTitle 
+        assertEquals 1, events.size()
+        assertEquals 'Todays event should be on todays date', 'Todays Event', events[0].eventTitle 
 
     }
 
