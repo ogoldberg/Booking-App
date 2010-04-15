@@ -7,12 +7,46 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
     def eventService
     def miscService
 
+    def reliableBand
+    def sleazeBand
+
+    def dummyStage
+
     protected void setUp() {
         super.setUp()
+
+        reliableBand = new Band(bandName:'Reliable Band').save()
+        sleazeBand = new Band(bandName:'Sleaze Band').save()
+
+        dummyStage = new Stage(stage:'This stage').save()
+
     }
 
     protected void tearDown() {
         super.tearDown()
+    }
+
+    // We should only see events that have a confirmed band
+    void testTodaysEventsAreConfirmed() {
+        // Create event on May 6
+        createDummyEvent('Should not see', 
+            Date.parse("yyyy-MM-dd HH:mm", "2010-05-06 21:00"))
+
+        // Create event on May 6
+        def confEvent= createDummyEvent('This Event has a Confirmed Booking', 
+            Date.parse("yyyy-MM-dd HH:mm", "2010-05-06 21:00"))
+
+        createDummyBooking(confEvent, reliableBand, true)
+
+        // Pretend like we're logging in at 3:00 p.m. on May 06
+        def may6 = new GregorianCalendar(2010, Calendar.MAY, 6, 15, 0, 0)
+        java.util.Date.metaClass.constructor = { -> new Date(may6.timeInMillis) }
+
+        def events = eventService.todaysEvents()
+
+        assertEquals 1, events.size()
+        assertEquals 'We only see events w/confirmed bookings', 'This Event has a Confirmed Booking', events[0].eventTitle 
+        
     }
 
     void testTodaysEvents() {
@@ -181,6 +215,7 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
 
     }
 
+    
     // convenience method for creating test Events
     def createDummyEvent(eventTitle, eventDate) {
         return new Event(
@@ -190,4 +225,12 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
             cover: 7
         ).save()
     }
+
+    def createDummyBooking(event, band, confirmed) {
+
+        def b = new Booking(appearanceTime:event.eventDate, event:event, band:band, confirmed:confirmed, stage:dummyStage)
+        event.addToBookings(b)
+    }
+
+
 }
