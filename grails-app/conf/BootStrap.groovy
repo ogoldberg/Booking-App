@@ -75,7 +75,15 @@ class BootStrap {
         }
         e1.save()
 
+        e1.addToBookings(new Booking(
+           appearanceTime:e1.eventDate, 
+           band:Band.list(max:1)[0],
+           stage:Stage.list(max:1)[0]
+        ))
+        
+
         def e2 = new Event(
+            eventTitle:'Event with conf. booking',
             booker: ShiroUser.findByUsername("admin"),
             eventDate: '5/30/2010',
             cover: 12
@@ -85,6 +93,12 @@ class BootStrap {
             println e2.errors.allErrors
         }
         e2.save()
+        e2.addToBookings(new Booking(
+           confirmed : true,
+           appearanceTime:e2.eventDate, 
+           band:Band.findByBandName('Confirmed Band'),
+           stage:Stage.list(max:1)[0]
+        ))
     }
 
     def createDummySponsors() {
