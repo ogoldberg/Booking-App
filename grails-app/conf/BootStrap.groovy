@@ -50,7 +50,7 @@ class BootStrap {
             println b1.errors.allErrors
         }
         b1.save()
-        def b2 = new Band(bandName: 'Jazz Implosion',
+        def b2 = new Band(bandName: 'Confirmed Band',
             homePage: 'http://jazzimplosion.com',
             email: 'info@jazzimplosion.com'
         ).save()
