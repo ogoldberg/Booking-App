@@ -1,35 +1,42 @@
 import net.turfclub.*
 import org.apache.shiro.crypto.hash.Sha1Hash
+
 class BootStrap {
 
     def init = { servletContext ->
-        def user = new ShiroUser(username: "admin", passwordHash: new Sha1Hash("admin0").toHex(),
-				password : 'admin0',
-				passwordConfirm : 'admin0',
-        )
-        user.addToPermissions("*:*")
-        user.save()
+        if (grails.util.GrailsUtil.environment != 'production') {
+            createDummyData()
+        }
+    }
 
-        def bob = new ShiroUser(username: "bob", 
-        
-				password : 'admin0',
-				passwordConfirm : 'admin0',
-                passwordHash: new Sha1Hash("admin0").toHex())
-        bob.save()
+    def destroy = {
+    }
 
-        if (grails.util.GrailsUtil.environment == 'development') {
+    def createDummyData() {
             if (!Event.get(1)) {
                 // TODO if we haven't loaded the data yet
-
+                createDummyUsers()
                 createDummyBands()
-                createDummyEvents()
-                createDummySponsors()
                 createDummyStages()
+                createDummySponsors()
+                createDummyEvents()
             }
-        }
-
     }
-    def destroy = {
+
+    def createDummyUsers() {
+         def user = new ShiroUser(username: "admin", passwordHash: new Sha1Hash("admin0").toHex(),
+                        password : 'admin0',
+                        passwordConfirm : 'admin0',
+                )
+                user.addToPermissions("*:*")
+                user.save()
+
+                def bob = new ShiroUser(username: "bob", 
+                
+                        password : 'admin0',
+                        passwordConfirm : 'admin0',
+                        passwordHash: new Sha1Hash("admin0").toHex())
+                bob.save()
     }
 
     def createDummyBands() {
