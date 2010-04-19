@@ -1,0 +1,80 @@
+import net.turfclub.*
+/*
+def b = new BootStrap()
+  
+b.createDummyData()
+*/
+
+
+def ev = Event.findByEventDate(Date.parse('yyyy-MM-dd', '2010-04-20'))
+
+def bs = Booking.list()
+bs.each {
+    println "conf? " + it.confirmed + it.band.bandName
+}
+
+
+
+// events that have a confirmed booking
+def confEvents = []
+Event.list().each { thisEvent ->
+    println "examining " + thisEvent.eventDate
+    // go through events, and remove events 
+    // that do not have confirmed bookings
+    if (thisEvent.bookings.find { booking ->
+        booking.confirmed == true
+       }) {
+    println "Found confirmed"
+       confEvents.add(thisEvent)
+    }
+       
+}
+
+/* example of data:
+
+def data = [
+
+[  
+  event : foo event,
+  headliner : foo booking,
+  bands : [ bar booking, baz booking ]
+],
+
+[  
+  event : nate event,
+  headliner : rusty booking,
+  bands : [ the plugs booking, baz booking ]
+],
+
+
+]
+
+*/
+
+// find bookings that are confirmed
+def data = []
+
+confEvents.each { confEvent ->
+  def individualEventMap = [ event : confEvent, bands : [] ]
+  assert individualEventMap.bands.size() == 0
+  
+  def confBookings = confEvent.bookings.findAll {
+      it.confirmed == true
+  }
+   
+  // loop through conf bookings
+  // if booking.headliner == true, then set headliner
+  // else add booking to the bands list
+  assert confBookings.size() == 1
+  confBookings.each { confBooking ->
+      if (confBooking.headliner) {
+          individualEventMap.headliner = confBooking
+      }
+      else {
+          individualEventMap.bands.add confBooking
+      }
+  }
+  assert individualEventMap.bands[0].size() == 1
+ 
+  
+}
