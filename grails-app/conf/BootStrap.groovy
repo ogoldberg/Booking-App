@@ -5,6 +5,7 @@ class BootStrap {
 
     def init = { servletContext ->
         if (grails.util.GrailsUtil.environment != 'production') {
+        
             createDummyData()
         }
     }
@@ -13,7 +14,7 @@ class BootStrap {
     }
 
     def createDummyData() {
-            if (!Event.get(1)) {
+            
                 // TODO if we haven't loaded the data yet
                 createDummyUsers()
                 createDummyBands()
@@ -21,7 +22,7 @@ class BootStrap {
                 createDummySponsors()
                 createDummyEvents()
             }
-    }
+    
 
     def createDummyUsers() {
          def user = new ShiroUser(username: "admin", passwordHash: new Sha1Hash("admin0").toHex(),
@@ -50,11 +51,15 @@ class BootStrap {
             println b1.errors.allErrors
         }
         b1.save()
-        def b2 = new Band(bandName: 'Confirmed Band',
+        new Band(bandName: 'Confirmed Band',
             homePage: 'http://jazzimplosion.com',
             email: 'info@jazzimplosion.com'
         ).save()
-        def b3 = new Band(bandName: 'Synchocyclotron',
+        new Band(bandName: 'Synchocyclotron',
+            homePage: 'http://Synchocyclotron.com',
+            email: 'info@Synchocyclotron.com'
+        ).save()
+        new Band(bandName: 'Headliner Band',
             homePage: 'http://Synchocyclotron.com',
             email: 'info@Synchocyclotron.com'
         ).save()
@@ -66,7 +71,7 @@ class BootStrap {
     def createDummyEvents() {
         def e1 = new Event(
             booker: ShiroUser.findByUsername("admin"),
-            eventDate: '4/20/2010',
+            eventDate: '4/25/2010',
             cover: 7
         )
         if (!e1.validate()) {
@@ -98,7 +103,16 @@ class BootStrap {
            appearanceTime:e2.eventDate, 
            band:Band.findByBandName('Confirmed Band'),
            stage:Stage.list(max:1)[0]
-        ))
+        )
+        )
+        e2.addToBookings(new Booking(
+           headliner : true,
+           confirmed : true,
+           appearanceTime:e2.eventDate, 
+           band:Band.findByBandName('Headliner Band'),
+           stage:Stage.list(max:1)[0]
+          )
+          )
     }
 
     def createDummySponsors() {

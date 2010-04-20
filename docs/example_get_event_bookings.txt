@@ -1,9 +1,9 @@
 import net.turfclub.*
-/*
+
 def b = new BootStrap()
   
 b.createDummyData()
-*/
+
 
 
 def ev = Event.findByEventDate(Date.parse('yyyy-MM-dd', '2010-04-20'))
@@ -65,7 +65,7 @@ confEvents.each { confEvent ->
   // loop through conf bookings
   // if booking.headliner == true, then set headliner
   // else add booking to the bands list
-  assert confBookings.size() == 1
+  assert confBookings.size() == 2
   confBookings.each { confBooking ->
       if (confBooking.headliner) {
           individualEventMap.headliner = confBooking
@@ -74,7 +74,7 @@ confEvents.each { confEvent ->
           individualEventMap.bands.add confBooking
       }
   }
-  assert individualEventMap.bands[0].size() == 1
- 
-  
+  assert individualEventMap.bands.size() == 1
+  assert individualEventMap.headliner
+  assert individualEventMap.headliner.band.bandName == 'Headliner Band'  
 }
