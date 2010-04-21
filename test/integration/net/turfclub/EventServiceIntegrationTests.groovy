@@ -88,10 +88,10 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
     void testYesterdaysEvent() {
 
         // Create event on May 6
-        createDummyEvent('Yesterdays Event', "2010-05-06 21:00")
+        createDummyEventAndBooking('Yesterdays Event', "2010-05-06 21:00")
 
         // Create event on May 7
-        createDummyEvent('Todays Event', "2010-05-07 21:00")
+        createDummyEventAndBooking('Todays Event', "2010-05-07 21:00")
 
         // Pretend like we're logging in at 1:59 a.m. on May 07
         // We should still see May 6's event.
@@ -242,7 +242,9 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
     }
 
     // shortcut method that creates a booking to go with a new Dummy Event
-    def createDummyEventAndBooking(eventTitle, eventDate, bookingBand, bookingConfirmed = true) {
+    def createDummyEventAndBooking(eventTitle, eventDate, 
+        bookingBand = reliableBand, 
+        bookingConfirmed = true) {
         def dummyEvent = createDummyEvent(eventTitle, eventDate)
         createDummyBooking(dummyEvent, bookingBand, bookingConfirmed)
 
