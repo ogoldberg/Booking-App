@@ -220,6 +220,20 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
 
     }
 
+    void testBookings() {
+        createDummyEventAndBooking("Event thats in 6 hours", "2010-05-05 21:00")
+        // Pretend like we're logging in at 10 p.m. on May 05
+        def may5at10pm = new GregorianCalendar(2010, Calendar.MAY, 5, 22, 0, 0)
+        java.util.Date.metaClass.constructor = { -> new Date(may5at10pm.timeInMillis) }
+
+        def todaysEventsAndBookings = eventService.todaysEventsAndBookings()
+        assertEquals todaysEventsAndBookings.size(), 1
+        assertEquals "Event thats in 6 hours", todaysEventsAndBookings[0].event.eventTitle
+
+        assertEquals 1, todaysEventsAndBookings[0].bookings.size()
+
+    }
+
     
     // convenience method for creating test Events
     def createDummyEvent(eventTitle, dateString) {

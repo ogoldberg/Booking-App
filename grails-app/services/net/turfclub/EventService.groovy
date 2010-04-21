@@ -4,6 +4,51 @@ class EventService {
 
     boolean transactional = true
 
+    /* Return todaysEvent and Bookings, in this format
+        [
+          event : foo event,
+          headliner : foo booking,
+          bookings : [ bar booking, baz booking ]
+        ],
+
+        [  
+          event : nate event,
+          headliner : rusty booking,
+          bookings : [ the plugs booking, baz booking ]
+        ]
+    */
+
+    def todaysEventsAndBookings() {
+        // get our list of todaysEvents
+        def confEvents = todaysEvents()
+
+        def todaysEventsAndBookings = []
+        confEvents.each { confEvent ->
+            def individualEventMap = [ event : confEvent, bookings : [] ]
+
+            def confBookings = confEvent.bookings.findAll {
+                it.confirmed == true
+            }
+
+            // loop through conf bookings
+            // if booking.headliner == true, then set headliner
+            // else add booking to the bookings list
+            confBookings.each { confBooking ->
+                if (confBooking.headliner) {
+                    individualEventMap.headliner = confBooking
+                }
+                else {
+                    individualEventMap.bookings.add confBooking
+                }
+            }
+
+            todaysEventsAndBookings.add(individualEventMap)
+        }
+
+        return todaysEventsAndBookings
+
+    }
+
     def todaysEvents() {
         def today = new Date()
         // Unfortunately, we have to use the lame Calendar to figure
