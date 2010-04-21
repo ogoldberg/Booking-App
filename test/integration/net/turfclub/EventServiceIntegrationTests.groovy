@@ -60,15 +60,18 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
         
     }
 
+    // Todays events should be on the correct day
     void testTodaysEvents() {
 
         // Create event on May 6
-        createDummyEvent('Should not see', 
-            Date.parse("yyyy-MM-dd HH:mm", "2010-05-06 21:00"))
+        createDummyEventAndBooking('Should not see', 
+            Date.parse("yyyy-MM-dd HH:mm", "2010-05-06 21:00"),
+            reliableBand, true)
 
         // Create event on May 7
-        createDummyEvent('Todays Event', 
-            Date.parse("yyyy-MM-dd HH:mm", "2010-05-07 21:00"))
+        createDummyEventAndBooking('Todays Event', 
+            Date.parse("yyyy-MM-dd HH:mm", "2010-05-07 21:00"),
+            reliableBand, true)
 
         // Pretend like we're logging in at 3:00 p.m. on May 07
         def may7 = new GregorianCalendar(2010, Calendar.MAY, 7, 15, 0, 0)
@@ -238,10 +241,19 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
     }
 
     def createDummyBooking(event, band, confirmed) {
-
-        def b = new Booking(appearanceTime:event.eventDate, event:event, band:band, confirmed:confirmed, stage:dummyStage)
+        def b = new Booking(appearanceTime:event.eventDate, 
+                           event:event, 
+                           band:band, 
+                           confirmed:confirmed, 
+                           stage:dummyStage)
         event.addToBookings(b)
     }
 
+    // shortcut method that creates a booking to go with a new Dummy Event
+    def createDummyEventAndBooking(eventTitle, eventDate, bookingBand, bookingConfirmed = true) {
+        def dummyEvent = createDummyEvent(eventTitle, eventDate)
+        createDummyBooking(dummyEvent, bookingBand, bookingConfirmed)
 
+        return dummyEvent
+    }
 }

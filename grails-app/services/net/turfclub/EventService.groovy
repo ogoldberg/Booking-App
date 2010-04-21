@@ -23,7 +23,14 @@ class EventService {
             it.eventDate
         }
 
-        return todaysEvents
+        def confEvents = []
+        todaysEvents.each { 
+            if(it.bookings.find { booking -> booking.confirmed == true }) {
+                confEvents.add(it)
+            }
+        }
+
+        return confEvents
 
     }
 }
