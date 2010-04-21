@@ -4,40 +4,44 @@ import org.apache.shiro.crypto.hash.Sha1Hash
 class BootStrap {
 
     def init = { servletContext ->
-        if (grails.util.GrailsUtil.environment != 'production') {
-        
+        if (ShiroUser.count() == 0) {
+            createAdminUser()
+        }
+
+        if (grails.util.GrailsUtil.environment == 'development') {
             createDummyData()
         }
+
     }
 
     def destroy = {
     }
 
     def createDummyData() {
-            
-                // TODO if we haven't loaded the data yet
-                createDummyUsers()
-                createDummyBands()
-                createDummyStages()
-                createDummySponsors()
-                createDummyEvents()
-            }
-    
+        createDummyUsers()
+        createDummyBands()
+        createDummyStages()
+        createDummySponsors()
+        createDummyEvents()
+    }
+
+    def createAdminUser() {
+        def user = new ShiroUser(username: "admin", passwordHash: new Sha1Hash("admin0").toHex(),
+        password : 'admin0',
+        passwordConfirm : 'admin0',
+        )
+        user.addToPermissions("*:*")
+        user.save()
+    }
 
     def createDummyUsers() {
-         def user = new ShiroUser(username: "admin", passwordHash: new Sha1Hash("admin0").toHex(),
-                        password : 'admin0',
-                        passwordConfirm : 'admin0',
-                )
-                user.addToPermissions("*:*")
-                user.save()
 
-                def bob = new ShiroUser(username: "bob", 
-                
-                        password : 'admin0',
-                        passwordConfirm : 'admin0',
-                        passwordHash: new Sha1Hash("admin0").toHex())
-                bob.save()
+        def bob = new ShiroUser(username: "bob", 
+
+        password : 'admin0',
+        passwordConfirm : 'admin0',
+        passwordHash: new Sha1Hash("admin0").toHex())
+        bob.save()
     }
 
     def createDummyBands() {
