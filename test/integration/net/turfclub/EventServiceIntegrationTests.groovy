@@ -234,7 +234,30 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
 
     }
 
-    
+    void testHeadliner() {
+
+        // reliable band is just opening band.
+        def event = createDummyEventAndBooking("Event with headliner", 
+           "2010-05-05 21:00", 
+           reliableBand)
+
+        // sleazeband is headliner
+        createDummyBooking(event, sleazeBand, true, true)
+
+        // Login on appropriate day
+        def may5at10pm = new GregorianCalendar(2010, Calendar.MAY, 5, 22, 0, 0)
+        java.util.Date.metaClass.constructor = { -> new Date(may5at10pm.timeInMillis) }
+
+        def todaysEventsAndBookings = eventService.todaysEventsAndBookings()
+        assertEquals "Event with headliner", todaysEventsAndBookings[0].event.eventTitle
+
+        assertEquals 1, todaysEventsAndBookings[0].bookings.size()
+        assertNotNull todaysEventsAndBookings[0].headliner
+        assertEquals 'Sleaze Band', todaysEventsAndBookings[0].headliner.band.bandName
+
+    }
+
+
     // convenience method for creating test Events
     def createDummyEvent(eventTitle, dateString) {
         return new Event(
@@ -245,10 +268,11 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
         ).save()
     }
 
-    def createDummyBooking(event, band, confirmed) {
+    def createDummyBooking(event, band, confirmed, headliner = false) {
         def b = new Booking(appearanceTime:event.eventDate, 
                            event:event, 
                            band:band, 
+                           headliner:headliner,
                            confirmed:confirmed, 
                            stage:dummyStage)
         event.addToBookings(b)
