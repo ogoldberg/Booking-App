@@ -109,11 +109,11 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
     void test2am() {
 
         // Create event on May 6
-        createDummyEvent('Yesterdays Event', 
+        createDummyEventAndBooking('Yesterdays Event', 
             "2010-05-06 21:00")
 
         // Create event on May 7
-        createDummyEvent('Todays Event', 
+        createDummyEventAndBooking('Todays Event', 
             "2010-05-07 21:00")
 
         // Pretend like we're logging in at 2:00 a.m. on May 07
@@ -130,15 +130,14 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
 
     void testMultipleTodaysDates() {
         // Create two events on May 5
-        def event1 = createDummyEvent('May 5 Event One Dude', 
+        def event1 = createDummyEventAndBooking('May 5 Event One Dude', 
             "2010-05-05 21:00")
 
-        def event2 = createDummyEvent('Anohterhd May 5 Efvent Date', 
+        def event2 = createDummyEventAndBooking('Anohterhd May 5 Efvent Date', 
             "2010-05-05 15:00")
 
         // Create event on May 6
-        createDummyEvent('May 6', 
-            "2010-05-06 21:00")
+        createDummyEventAndBooking('May 6', "2010-05-06 21:00")
 
         // Pretend like we're logging in at 11 a.m. on May 5
         def may5at11am = new GregorianCalendar(2010, Calendar.MAY, 5, 11, 0, 0)
@@ -170,16 +169,16 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
 
     void testSortOrderOfMultipleDates() {
         // Create 5 events each with different event times
-        createDummyEvent("Last Meow", "2010-05-05 22:00")
-        createDummyEvent("Second Event", "2010-05-05 03:00")
-        createDummyEvent("FOURTH WOOF", "2010-05-05 04:47")
-        createDummyEvent("REALLY THIRD", "2010-05-05 04:46")
-        createDummyEvent("First Event", "2010-05-05 02:00")
+        createDummyEventAndBooking("Last Meow", "2010-05-05 22:00")
+        createDummyEventAndBooking("Second Event", "2010-05-05 03:00")
+        createDummyEventAndBooking("FOURTH WOOF", "2010-05-05 04:47")
+        createDummyEventAndBooking("REALLY THIRD", "2010-05-05 04:46")
+        createDummyEventAndBooking("First Event", "2010-05-05 02:00")
 
         // Throw in some other junk events, just for fun.
-        createDummyEvent('May 6', "2010-05-06 21:00")
-        createDummyEvent('May 7', "2010-05-07 21:10")
-        createDummyEvent('May 4', "2010-05-04 21:12")
+        createDummyEventAndBooking('May 6', "2010-05-06 21:00")
+        createDummyEventAndBooking('May 7', "2010-05-07 21:10")
+        createDummyEventAndBooking('May 4', "2010-05-04 21:12")
 
         // Pretend like we're logging in at 2:00 a.m. on May 05
         def may5at2am = new GregorianCalendar(2010, Calendar.MAY, 5, 2, 0, 0)
@@ -203,9 +202,9 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
     // if they started at 9:00 p.m.
     void testEventInPastButOnSameDate() {
 
-        createDummyEvent("Event thats in 6 hours", 
+        createDummyEventAndBooking("Event thats in 6 hours", 
                 "2010-05-05 21:00")
-        createDummyEvent("Event thats in 30 hours", 
+        createDummyEventAndBooking("Event thats in 30 hours", 
                 "2010-05-06 21:00")
 
         // Pretend like we're logging in at 10 p.m. on May 05
