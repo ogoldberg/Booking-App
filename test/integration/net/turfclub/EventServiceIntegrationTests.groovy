@@ -26,26 +26,37 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
         super.tearDown()
     }
 
-    // We should only see events that have a confirmed band
-    void testTodaysEventsAreConfirmed() {
-        // Create event on May 6
-        createDummyEvent('Should not see', 
+    // We should only see events that have at least one confirmed booking
+    void testTodaysEventsHaveConfirmedBookings() {
+        // Create event on May 6, with non-confirmed booking
+        def unconfEvent = createDummyEvent('Should not see', 
             Date.parse("yyyy-MM-dd HH:mm", "2010-05-06 21:00"))
 
+        // Add a NON-confirmed booking to the confEvent
+        createDummyBooking(unconfEvent, sleazeBand, false)
+
         // Create event on May 6
-        def confEvent= createDummyEvent('This Event has a Confirmed Booking', 
+        def confEvent = createDummyEvent('This Event has a Confirmed Booking', 
             Date.parse("yyyy-MM-dd HH:mm", "2010-05-06 21:00"))
 
+        // Add a confirmed booking to the confEvent
         createDummyBooking(confEvent, reliableBand, true)
 
-        // Pretend like we're logging in at 3:00 p.m. on May 06
+        // Spot-check our test data
+        assertEquals 2, Event.count()
+
+        // Pretend like we're logging in at 3:00 p.m. on May 6
         def may6 = new GregorianCalendar(2010, Calendar.MAY, 6, 15, 0, 0)
         java.util.Date.metaClass.constructor = { -> new Date(may6.timeInMillis) }
 
         def events = eventService.todaysEvents()
 
+        // We should only see one event, and that event should be 
+        // 'This Event has a Confirmed Booking'
         assertEquals 1, events.size()
-        assertEquals 'We only see events w/confirmed bookings', 'This Event has a Confirmed Booking', events[0].eventTitle 
+        assertEquals 'We only want events w/confirmed bookings', 
+                     'This Event has a Confirmed Booking', 
+                     events[0].eventTitle 
         
     }
 
