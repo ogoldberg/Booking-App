@@ -34,11 +34,11 @@ class EventController {
     def todaysEvent = {
 
         def todaysHtml = ''
-        def todaysEvents = eventService.todaysEvents()
+        def todaysEventsAndBookings = eventService.todaysEventsAndBookings()
 
-        if (todaysEvents) {
+        if (todaysEventsAndBookings?.size() > 0) {
             todaysHtml = g.render(template:'/event/todaysEvent', 
-                            model : [ events : todaysEvents ])
+                            model : [ todaysEventsAndBookings : todaysEventsAndBookings ])
         }
         else {
             todaysHtml = '<b>Come have a drink</b>'
