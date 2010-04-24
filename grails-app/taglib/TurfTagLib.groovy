@@ -13,6 +13,16 @@ static namespace = "turfclub"
         }
     }
 
+    def formatFeedDate = { attrs ->
+        def d = attrs['date']
+        try {
+            def output = d ? d.format('EE MMM d') : ''
+            out << output
+        } catch (Exception e) {
+            out << ''
+        }
+    }
+
      def eventTimeSelectors = { attrs ->
         def eventHours = []
         (1 .. 12).each {
