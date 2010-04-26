@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <g:set var="entityName" value="${message(code: 'event.label', default: 'Event')}" />
   <title><g:message code="default.show.label" args="[entityName]" /></title>
- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
   <link rel="stylesheet" href="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.css" type="text/css" />
   <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.js"></script>
   <script>
@@ -30,6 +30,13 @@ action:"finalizeBooking")}',
               {'finalized' : $(this).attr('checked'), 'id' : $(this).attr("eventId") });
             });
       });
+
+       $('.featuredSwitcher').click(function() {
+       $.post('${createLink(controller:"event",
+action:"featureBooking")}',
+              {'featured' : $(this).attr('checked'), 'id' : $(this).attr("eventId") });
+            });
+      });
   </script>
   <meta name="layout" content="main" />
 </head>
@@ -49,14 +56,14 @@ action:"finalizeBooking")}',
         <tbody>
 
 
-        <tr class="prop">
-           <td valign="top" class="name"><g:message code="event.booker.label" default="Booker" /></td>
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="event.booker.label" default="Booker" /></td>
 
         <td valign="top" class="value">${fieldValue(bean: eventInstance, field: "booker")}</td>
 
         </tr>
 
-         <tr class="prop">
+        <tr class="prop">
           <td valign="top" class="name">
             <label for="bookings"><g:message code="event.bookings.label" default="Bookings" /></label>
           </td>
@@ -75,7 +82,7 @@ action:"finalizeBooking")}',
           </td>
         </tr>
 
-         <tr class="prop">
+        <tr class="prop">
           <td valign="top" class="name"><g:message code="event.doorTime.label" default="Door Time" /></td>
 
         <td valign="top" class="value"><turfclub:formatTime date="${eventInstance.eventDate}" /></td>
@@ -105,9 +112,23 @@ action:"finalizeBooking")}',
         </tr>
 
         <tr class="prop">
+          <td valign="top" class="name"><g:message code="event.stage.label" default="Stage" /></td>
+
+        <td valign="top" class="value"><g:link controller="stage" action="show" id="${eventInstance?.stage?.id}">${eventInstance?.stage?.encodeAsHTML()}</g:link></td>
+
+        </tr>
+
+        <tr class="prop">
           <td valign="top" class="name"><g:message code="event.eventTitle.label" default="Event Title" /></td>
 
         <td valign="top" class="value">${fieldValue(bean: eventInstance, field: "eventTitle")}</td>
+
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="event.featured.label" default="Featured" /></td>
+
+        <td> <g:checkBox class="featuredSwitcher" eventId="${eventInstance.id}" name="featured" value="${eventInstance.featured}" /></td>
 
         </tr>
 
@@ -118,10 +139,10 @@ action:"finalizeBooking")}',
 
         </tr>
 
-         <tr class="prop">
-            <td valign="top" class="name"><g:message code="event.finalized.label" default="Finalized" /></td>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="event.finalized.label" default="Finalized" /></td>
 
-            <td> <g:checkBox class="finalizedSwitcher" eventId="${eventInstance.id}" name="finalized" value="${eventInstance.finalized}" /></td>
+        <td> <g:checkBox class="finalizedSwitcher" eventId="${eventInstance.id}" name="finalized" value="${eventInstance.finalized}" /></td>
 
         </tr>
 

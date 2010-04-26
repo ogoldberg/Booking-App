@@ -71,6 +71,24 @@
           </tr>
 
           <tr class="prop">
+              <td valign="top" class="name">
+                <label for="featured"><g:message code="event.featured.label" default="Featured Event" /></label>
+              </td>
+              <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'featured', 'errors')}">
+          <g:checkBox name="featured" value="${eventInstance?.featured}" />
+          </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="stage"><g:message code="event.stage.label" default="Stage" /></label>
+            </td>
+            <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'stage', 'errors')}">
+          <g:select name="stage.id" from="${net.turfclub.Stage.list()}" optionKey="id" value="${eventInstance?.stage?.id}"  />
+          </td>
+          </tr>
+
+          <tr class="prop">
             <td valign="top" class="name">
               <label for="eventTitle"><g:message code="event.eventTitle.label" default="Event Title" /></label>
             </td>

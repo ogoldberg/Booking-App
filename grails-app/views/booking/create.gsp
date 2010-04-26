@@ -59,14 +59,7 @@
             <td><input id="bandName" name="bandName"  />
             </td>
           </tr>
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="stage"><g:message code="booking.stage.label" default="Stage" /></label>
-            </td>
-            <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'stage', 'errors')}">
-          <g:select name="stage.id" from="${net.turfclub.Stage.list()}" optionKey="id" value="${bookingInstance?.stage?.id}"  />
-          </td>
-          </tr>
+         
 
           <tr class="prop">
             <td valign="top" class="name">

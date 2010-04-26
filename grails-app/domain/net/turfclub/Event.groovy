@@ -9,6 +9,7 @@ class Event implements Commentable {
     double cover
     String description
     Boolean featured = false
+    Stage stage
       
 
     

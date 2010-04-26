@@ -7,7 +7,7 @@ class Booking implements Commentable {
     Date appearanceTime
     Boolean confirmed = false
     Boolean headliner = false
-    Stage stage
+    
     //ShiroUser booker
 
      String toString() {
@@ -16,7 +16,6 @@ class Booking implements Commentable {
     static constraints = {
         event(nullable:false)
         band(nullable:false)
-        stage(nullable:false)
         appearanceTime()
         confirmed()
         headliner()

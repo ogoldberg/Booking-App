@@ -76,7 +76,8 @@ class BootStrap {
         def e1 = new Event(
             booker: ShiroUser.findByUsername("admin"),
             eventDate: '4/25/2010',
-            cover: 7
+            cover: 7,
+            stage:Stage.list(max:1)[0]
         )
         if (!e1.validate()) {
             println "Event didn't validate!"
@@ -87,7 +88,7 @@ class BootStrap {
         e1.addToBookings(new Booking(
            appearanceTime:e1.eventDate, 
            band:Band.list(max:1)[0],
-           stage:Stage.list(max:1)[0]
+           
         ))
         
 
@@ -95,7 +96,8 @@ class BootStrap {
             eventTitle:'Event with conf. booking',
             booker: ShiroUser.findByUsername("admin"),
             eventDate: '5/30/2010',
-            cover: 12
+            cover: 12,
+            stage:Stage.list(max:1)[0]
         )
         if (!e2.validate()) {
             println "Event didn't validate!"
@@ -106,7 +108,7 @@ class BootStrap {
            confirmed : true,
            appearanceTime:e2.eventDate, 
            band:Band.findByBandName('Confirmed Band'),
-           stage:Stage.list(max:1)[0]
+          
         )
         )
         e2.addToBookings(new Booking(
@@ -114,7 +116,7 @@ class BootStrap {
            confirmed : true,
            appearanceTime:e2.eventDate, 
            band:Band.findByBandName('Headliner Band'),
-           stage:Stage.list(max:1)[0]
+           
           )
           )
     }
