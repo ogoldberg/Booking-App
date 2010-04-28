@@ -13,7 +13,6 @@
           <th>Appearance Time</th>
           <th>Confirmed</th>
           <th>Headliner</th>
-          <th>Stage</th>
           <th></th>
 
         </tr>
@@ -33,9 +32,6 @@
       </td>
       <td valign="top" >
       <g:checkBox name="headliner" />
-      </td>
-      <td>
-      <g:select name="stage.id" from="${net.turfclub.Stage.list()}" optionKey="id" />
       </td>
       <td>
       <g:submitButton style="float:right" class="save" name="saveButton" value="Save" />
