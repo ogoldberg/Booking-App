@@ -15,9 +15,7 @@
 
         <div class="sponsor">Sponsor presents:</div><span class="eventtitle">${thingy.event.eventTitle}</span>
         <!--<div class="date"><turfclub:formatFeedDate date="${thingy.event.eventDate}" /></div>-->
-<!--      <div class="headliner"><g:each var="booking" in="${thingy.confbookings}">
-${confbooking.headliner.bandName}
-        </g:each></div> -->
+      
         <div class="band"><g:each var="booking" in="${thingy.bookings}">
 ${booking.band.bandName},
           </g:each></div>
