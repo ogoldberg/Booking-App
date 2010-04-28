@@ -20,7 +20,7 @@ class EventController {
     def eventfeed = {
 
         def events = Event.list().collect { event ->
-             [
+            [
                 title: event.booker.toString() + ' ' + event.bookings.toString(),
                 start: (event.eventDate.time / 1000).toLong(),
                 url : createLink(controller:'event', action:'show', id:event.id),
@@ -38,7 +38,7 @@ class EventController {
 
         if (todaysEventsAndBookings?.size() > 0) {
             todaysHtml = g.render(template:'/event/todaysEvent', 
-                            model : [ todaysEventsAndBookings : todaysEventsAndBookings ])
+                model : [ todaysEventsAndBookings : todaysEventsAndBookings ])
         }
         else {
             todaysHtml = '<b>Come have a drink</b>'
@@ -47,6 +47,30 @@ class EventController {
         def data = [ 
             'result' : [ 
                 'todaysEvent' : todaysHtml 
+            ]
+        ]
+
+        def output =  "${params.callback}(${data as JSON})"
+        render output
+
+    }
+
+    def featuredEvent = {
+
+        def featuredHtml = ''
+        def featuredEventsAndBookings = eventService.featuredEventsAndBookings()
+
+        if (featuredEventsAndBookings?.size() > 0) {
+            featuredHtml = g.render(template:'/event/featuredEvent',
+                model : [ featuredEventsAndBookings : featuredEventsAndBookings ])
+        }
+        else {
+            featuredHtml = ''
+        }
+
+        def data = [
+            'result' : [
+                'featuredEvent' : featuredHtml
             ]
         ]
 
@@ -84,9 +108,9 @@ class EventController {
         println "Params are: " + params
         def eventInstance = new Event(params)
         eventInstance.eventDate = 
-                miscService.parseDate(params.remove('eventDate_value'),
-                params.remove('eventTime'),
-                params.remove('eventAmPm'))
+        miscService.parseDate(params.remove('eventDate_value'),
+            params.remove('eventTime'),
+            params.remove('eventAmPm'))
         if (eventInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'event.label', default: 'Event'), eventInstance.id])}"
             redirect(action: "show", id: eventInstance.id)
@@ -136,7 +160,7 @@ class EventController {
             // set eventdate explicitly, after setting properties = params.
             // because we know BEST!
             eventInstance.eventDate = 
-                miscService.parseDate(
+            miscService.parseDate(
                 params.remove('eventDate_value'),
                 params.remove('eventTime'),
                 params.remove('eventAmPm'))
@@ -175,16 +199,24 @@ class EventController {
     
     def confirmBooking = {
         println "params are:" + params
-       def bookingInstance = Booking.get(params.id)
-       bookingInstance?.confirmed = (params.confirmed == 'true')
+        def bookingInstance = Booking.get(params.id)
+        bookingInstance?.confirmed = (params.confirmed == 'true')
         
         render ''
     }
 
     def finalizeBooking = {
         println "params are:" + params
-       def eventInstance = Event.get(params.id)
-       eventInstance?.finalized = (params.finalized == 'true')
+        def eventInstance = Event.get(params.id)
+        eventInstance?.finalized = (params.finalized == 'true')
+
+        render ''
+    }
+
+    def featureBooking = {
+        println "params are:" + params
+        def eventInstance = Event.get(params.id)
+        eventInstance?.featured = (params.featured == 'true')
 
         render ''
     }
