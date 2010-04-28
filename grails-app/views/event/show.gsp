@@ -35,9 +35,7 @@ action:"finalizeBooking")}',
        $.post('${createLink(controller:"event",
 action:"featureBooking")}',
               {'featured' : $(this).attr('checked'), 'id' : $(this).attr("eventId") });
-            });
-      });
-  </script>
+            });</script>
   <meta name="layout" content="main" />
 </head>
 <body>
