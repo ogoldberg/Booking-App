@@ -252,8 +252,8 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
         assertEquals "Event with headliner", todaysEventsAndBookings[0].event.eventTitle
 
         assertEquals 1, todaysEventsAndBookings[0].bookings.size()
-        assertNotNull todaysEventsAndBookings[0].headliner
-        assertEquals 'Sleaze Band', todaysEventsAndBookings[0].headliner.band.bandName
+        assertNotNull todaysEventsAndBookings[0].headliners
+        assertEquals 'Sleaze Band', todaysEventsAndBookings[0].headliners[0].band.bandName
 
     }
 

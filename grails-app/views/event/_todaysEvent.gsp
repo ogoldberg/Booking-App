@@ -9,26 +9,41 @@
 -->
 <div class="tonight">
   <div class="content">
-<div class="title">TONIGHT</div>
+    <div class="title">TONIGHT</div>
     <div class="todaysEvent">
-        <g:each var="thingy" in="${todaysEventsAndBookings}">
-          
-          <div class="sponsor">Sponsor presents:</div><span class="eventtitle">${thingy.event.eventTitle}</span>
-          <!--<div class="date"><turfclub:formatFeedDate date="${thingy.event.eventDate}" /></div>-->
-  <!--      <div class="headliner"><g:each var="booking" in="${thingy.confbookings}">
-            ${confbooking.headliner.bandName}
-          </g:each></div> -->
-        <div class="band"><g:each var="booking" in="${thingy.bookings}">
-            ${booking.band.bandName},
+      <g:each var="thisEvent" in="${todaysEventsAndBookings}">
+        <g:set var="stages" 
+        value="${thisEvent.bookings.collect { booking -> booking.stage }.unique().join(', ')}" />
 
-            
-          </g:each></div>
-        <div class="doors">Doors |  $${thingy.event.cover}0 | </div>
-        <div class="description">${thingy.event.description}</div>
+         <div class="sponsor">
+              ${thisEvent.event.sponsorships.join(", ")} 
+        </div>
+
+        <span class="eventtitle">
+            ${thisEvent.event.eventTitle}
+        </span>
+       
+        <!--<div class="date"><turfclub:formatFeedDate date="${thisEvent.event.eventDate}" /></div> -->
+       
+        <g:each var="h" in="${thisEvent.headliners}">
+        <div class="headliner">
+            <turfclub:bandHomePage band="${h.band}" />
+        </div>
         </g:each>
-   
-         </div>
+
+        <span class=”band”>
+            <turfclub:bandListHomePage bookingList="${thisEvent.bookings}" />
+        </span>
+
+        <div class="doors">
+            Doors |  $${thisEvent.event.cover}0 | ${stages} 
+        </div>
+
+        <div class="description">
+            ${thisEvent.event.description}
+        </div>
+          </g:each>        
+    </div>
     <br />
   </div>
 </div>
-<br />

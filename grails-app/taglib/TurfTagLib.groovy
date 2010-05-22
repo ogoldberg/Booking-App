@@ -49,4 +49,22 @@ static namespace = "turfclub"
 
     }
 
+    def bandHomePage = {attrs ->
+        def band = attrs['band']
+        if (band.homePage) {
+            out << "<a href=\"${band.homePage}\">${band.bandName}</a>"
+        }
+        else {
+        out << band.bandName
+        }
+    }
+
+    def bandListHomePage = { attrs ->
+        def bookingList = attrs['bookingList']
+        def output = bookingList.collect { booking ->
+            bandHomePage(band:booking.band)
+        }.join(', ')
+        out << output
+    }
+
 }
