@@ -57,13 +57,6 @@
                             
                         </tr>
                     
-                        <tr class="prop">
-                            <td valign="top" class="name"><g:message code="sponsorship.notes.label" default="Notes" /></td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean: sponsorshipInstance, field: "notes")}</td>
-                            
-                        </tr>
-                    
                     </tbody>
                 </table>
             </div>

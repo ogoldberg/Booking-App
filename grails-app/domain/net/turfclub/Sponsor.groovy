@@ -10,7 +10,7 @@ class Sponsor implements Commentable {
     String email
     
     String toString(){
-        return name
+        this.name
     }
     static hasMany=[sponsorships:Sponsorship]
 

@@ -30,7 +30,6 @@
                         
                             <g:sortableColumn property="description" title="${message(code: 'sponsorship.description.label', default: 'Description')}" />
                         
-                            <g:sortableColumn property="notes" title="${message(code: 'sponsorship.notes.label', default: 'Notes')}" />
                         
                         </tr>
                     </thead>
@@ -46,7 +45,6 @@
                         
                             <td>${fieldValue(bean: sponsorshipInstance, field: "description")}</td>
                         
-                            <td>${fieldValue(bean: sponsorshipInstance, field: "notes")}</td>
                         
                         </tr>
                     </g:each>
