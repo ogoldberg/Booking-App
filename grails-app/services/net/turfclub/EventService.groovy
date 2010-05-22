@@ -24,7 +24,7 @@ class EventService {
 
         def todaysEventsAndBookings = []
         confEvents.each { confEvent ->
-            def individualEventMap = [ event : confEvent, bookings : [] ]
+            def individualEventMap = [ event : confEvent, headliners : [], bookings : [] ]
 
             def confBookings = confEvent.bookings.findAll {
                 it.confirmed == true
@@ -33,9 +33,9 @@ class EventService {
             // loop through conf bookings
             // if booking.headliner == true, then set headliner
             // else add booking to the bookings list
-            confBookings.each { confBooking ->
+            confBookings.sort{it.appearanceTime}.each { confBooking ->
                 if (confBooking.headliner) {
-                    individualEventMap.headliner = confBooking
+                     individualEventMap.headliners.add confBooking
                 }
                 else {
                     individualEventMap.bookings.add confBooking
