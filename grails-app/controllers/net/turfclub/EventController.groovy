@@ -13,7 +13,10 @@ class EventController {
 
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [eventInstanceList: Event.findAllByEventDateGreaterThanEquals(new Date() - 1),
+        def eventInstanceList = 
+            Event.findAllByEventDateGreaterThanEquals(new Date() - 1,
+            [max:params.max, offset:params.offset])
+        [eventInstanceList: eventInstanceList,
             eventInstanceTotal: Event.count()]
     }
 
@@ -35,13 +38,15 @@ class EventController {
 
         def todaysHtml = ''
         def todaysEventsAndBookings = eventService.todaysEventsAndBookings()
+        println todaysEventsAndBookings
 
         if (todaysEventsAndBookings?.size() > 0) {
+
             todaysHtml = g.render(template:'/event/todaysEvent', 
                             model : [ todaysEventsAndBookings : todaysEventsAndBookings ])
         }
         else {
-            todaysHtml = '<b>Come have a drink</b>'
+            todaysHtml = '<div class="tonight"><div class="content"><div class="title">TONIGHT</div><div class="headliner">Come have a drink</div></div>'
         }
         
         def data = [ 
@@ -81,7 +86,6 @@ class EventController {
     // eventTime:9:00, 
     // eventAmPm:PM
     def save = {
-        println "Params are: " + params
         def eventInstance = new Event(params)
         eventInstance.eventDate = 
                 miscService.parseDate(params.remove('eventDate_value'),
