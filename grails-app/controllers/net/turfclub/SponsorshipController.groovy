@@ -19,7 +19,14 @@ class SponsorshipController {
     }
 
     def save = {
+        def sponsorName = params.remove("sponsor")
+        def sponsor = Sponsor.findByName(sponsorName)
+        if (!sponsor) {
+            sponsor = new Sponsor(name: sponsorName).save()
+        }
         def sponsorshipInstance = new Sponsorship(params)
+        sponsorshipInstance.sponsor = sponsor
+        println params
         if (sponsorshipInstance.save(flush: true)) {
             flash.message = "${sponsorshipInstance.sponsor} sponsorship added to event"
             redirect(action: "show", controller: "event", id: sponsorshipInstance.event.id)
@@ -62,7 +69,14 @@ class SponsorshipController {
                     render(view: "edit", model: [sponsorshipInstance: sponsorshipInstance])
                     return
                 }
+            } 
+            def sponsorName = params.remove("sponsor")
+            def sponsor = Sponsor.findByName(sponsorName)
+            if (!sponsor) {
+                sponsor = new Sponsor(name: sponsorName).save()
             }
+            sponsorshipInstance.sponsor = sponsor
+
             sponsorshipInstance.properties = params
             if (!sponsorshipInstance.hasErrors() && sponsorshipInstance.save(flush: true)) {
                 flash.message = "${message(code: 'default.updated.message', args: [message(code: 'sponsorship.label', default: 'Sponsorship'), sponsorshipInstance.id])}"
