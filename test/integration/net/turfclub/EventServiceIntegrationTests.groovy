@@ -304,9 +304,10 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
         createDummyBooking(confEvent, reliableBand, true)
 
          // Create event on May 6
-        def confEvent2 = createDummyEvent('Another Event has a Confirmed Booking', 
+        def confEvent2 = createDummyEvent('Conf Featured Event', 
             "2011-06-06 21:00")
-
+        confEvent2.featured = true
+        confEvent2.save()
         // Add a confirmed booking to the confEvent
         createDummyBooking(confEvent2, reliableBand, true)
 
@@ -326,8 +327,15 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
                      events[0].eventTitle 
 
         assertEquals 'We only want events w/confirmed bookings', 
-                     'Another Event has a Confirmed Booking', 
+                     'Conf Featured Event', 
                      events[1].eventTitle 
+        
+        def featuredEvents = eventService.featuredEvents()
+    
+        assertEquals 'We only want events w/featured bookings', 
+                     'Conf Featured Event', 
+                     featuredEvents[0].eventTitle 
+    
         
     }
 

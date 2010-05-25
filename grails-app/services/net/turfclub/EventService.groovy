@@ -139,4 +139,46 @@ class EventService {
         return confEvents
 
     }
+
+ def featuredEvents() {
+    def futureEvents = futureEvents() 
+    def featuredEvents = futureEvents.findAll {
+        it.featured == true
+    }
+
+    return featuredEvents
+ }
+
+  def eventDataFeed(events) {
+
+        def eventDataFeed = []
+        events.each { confEvent ->
+            println "ConfEvent" + confEvent
+            def individualEventMap = [ event : confEvent, headliners : [], bookings : [] ]
+
+            def confBookings = confEvent.bookings.findAll {
+                it.confirmed == true
+            }
+
+            // loop through conf bookings
+            // if booking.headliner == true, then set headliner
+            // else add booking to the bookings list
+            confBookings.sort{it.appearanceTime}.each { confBooking ->
+                if (confBooking.headliner) {
+                     individualEventMap.headliners.add confBooking
+                }
+                else {
+                    individualEventMap.bookings.add confBooking
+                }
+            }
+            eventDataFeed.add(individualEventMap)
+        }
+        return eventDataFeed
+
+    }
+
+  def featuredEventsAndBookings() {
+      def featuredEvents = featuredEvents()
+      return eventDataFeed(featuredEvents)
+  }
 }
