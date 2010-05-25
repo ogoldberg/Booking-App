@@ -136,10 +136,7 @@ action:"finalizeBooking")}',
       </g:form>
     </div>
   </div>
-  <!--  <div class="dialog1">
- <g:render template='bookingList' model="[eventInstance:eventInstance]" />
-    </div>-->
-  <div class="dialog">
+  <div class="dialog1">
     <g:render template='createBooking' model="[eventInstance:eventInstance]" />
     <br />
     <ul type="none">

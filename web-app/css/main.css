@@ -137,6 +137,8 @@ table {
     border: 1px solid #ccc;
     width: 100%
 }
+    
+    
 tr {
     border: 0;
 }
@@ -219,11 +221,13 @@ th.desc a {
 
 .dialog table {
     padding: 5px 0;
+    width: 400px;
 }
 
 .dialog1 table {
-    float: right;
     padding: 5px 0;
+    margin-left: 15px;
+    width: 400px;
 }
 
 .prop {
