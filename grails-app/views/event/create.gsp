@@ -73,6 +73,15 @@
           </td>
           </tr>
 
+           <tr class="prop">
+              <td valign="top" class="name">
+                <label for="featured"><g:message code="event.featured.label" default="Featured" /></label>
+              </td>
+              <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'featured', 'errors')}">
+          <g:checkBox name="featured" value="${eventInstance?.featured}" />
+          </td>
+          </tr>
+
           <tr class="prop">
             <td valign="top" class="name">
               <label for="eventTitle"><g:message code="event.eventTitle.label" default="Event Title (optional)" /></label>

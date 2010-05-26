@@ -60,6 +60,56 @@ class EventController {
 
     }
 
+     def futureEvents = {
+        def futureHtml = ''
+        def futureEventsAndBookings = eventService.futureEventsAndBookings()
+        println futureEventsAndBookings
+
+        if (futureEventsAndBookings?.size() > 0) {
+
+            futureHtml = g.render(template:'/event/futureEvents', 
+                            model : [ futureEventsAndBookings : futureEventsAndBookings ])
+        }
+        else {
+            futureHtml = '<div class="future"><div class="content"><div class="title">Future Shows</div><div class="headliner">Come have a drink</div></div>'
+        }
+        
+        def data = [ 
+            'result' : [ 
+                'futureEvents' : futureHtml 
+            ]
+        ]
+
+        def output =  "${params.callback}(${data as JSON})"
+        render output
+
+    }
+
+     def featuredEvents = {
+        def featuredHtml = ''
+        def featuredEventsAndBookings = eventService.featuredEventsAndBookings()
+        println featuredEventsAndBookings
+
+        if (featuredEventsAndBookings?.size() > 0) {
+
+            featuredHtml = g.render(template:'/event/featuredEvents', 
+                            model : [ featuredEventsAndBookings : featuredEventsAndBookings ])
+        }
+        else {
+            featuredHtml = '<div class="featured"><div class="content"><div class="title">Featured Shows</div></div>'
+        }
+        
+        def data = [ 
+            'result' : [ 
+                'featuredEvents' : featuredHtml 
+            ]
+        ]
+
+        def output =  "${params.callback}(${data as JSON})"
+        render output
+
+    }
+
     def createHtmlForEvent(eventData) {
         def output = '<div>' + eventData.event.title
     }
@@ -107,7 +157,7 @@ class EventController {
             redirect(action: "list")
         }
         else {
-            [eventInstance: eventInstance]
+          [eventInstance: eventInstance]
         }
     }
 
@@ -189,6 +239,14 @@ class EventController {
         println "params are:" + params
        def eventInstance = Event.get(params.id)
        eventInstance?.finalized = (params.finalized == 'true')
+
+        render ''
+    }
+
+      def featuredBooking = {
+        println "params are:" + params
+       def eventInstance = Event.get(params.id)
+       eventInstance?.featured = (params.featured == 'true')
 
         render ''
     }

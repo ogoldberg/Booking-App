@@ -317,8 +317,7 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
         def may6 = new GregorianCalendar(2010, Calendar.MAY, 6, 15, 0, 0)
         java.util.Date.metaClass.constructor = { -> new Date(may6.timeInMillis) }
 
-        def events = eventService.futureEvents()
-
+        def events = eventService.futureEvents() 
         // We should only see one event, and that event should be 
         // 'This Event has a Confirmed Booking'
         assertEquals 2, events.size()

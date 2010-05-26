@@ -28,8 +28,16 @@ action:"confirmBooking")}',
        $.post('${createLink(controller:"event",
 action:"finalizeBooking")}',
               {'finalized' : $(this).attr('checked'), 'id' : $(this).attr("eventId") });
+              });
+
+ $('.featuredSwitcher').click(function() {
+       $.post('${createLink(controller:"event",
+action:"featuredBooking")}',
+              {'featured' : $(this).attr('checked'), 'id' : $(this).attr("eventId") });
             });
       });
+
+      
   </script>
   <meta name="layout" content="main" />
 </head>
@@ -103,7 +111,12 @@ action:"finalizeBooking")}',
 
         </td>
         </tr>
+         <tr class="prop">
+            <td valign="top" class="name"><g:message code="event.featured.label" default="Featured" /></td>
 
+            <td> <g:checkBox class="featuredSwitcher" eventId="${eventInstance.id}" name="featured" value="${eventInstance.featured}" /></td>
+
+        </tr>
         <tr class="prop">
           <td valign="top" class="name"><g:message code="event.eventTitle.label" default="Event Title" /></td>
 

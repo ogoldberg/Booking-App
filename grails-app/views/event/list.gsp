@@ -32,6 +32,8 @@
 
         <g:sortableColumn property="cover" title="${message(code: 'event.cover.label', default: 'Cover')}" />
 
+        <g:sortableColumn property="featured" title="Featured" />
+
         </tr>
         </thead>
         <tbody>
@@ -49,6 +51,8 @@
           <td>${fieldValue(bean: eventInstance, field: "description")}</td>
 
           <td>${fieldValue(bean: eventInstance, field: "cover")}</td>
+
+          <td><g:formatBoolean boolean="${eventInstance.featured}" /></td>
 
           </tr>
         </g:each>

@@ -17,7 +17,7 @@
     </head>
 
     <body>
-        <div id="todaysEvent">This shouldn't be here. </div> Here's todays event!
+        <div id="futureEvents">This shouldn't be here. </div> Here's future event!
     </body>
 </html>
 

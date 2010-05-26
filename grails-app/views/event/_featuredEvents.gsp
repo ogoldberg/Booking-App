@@ -7,25 +7,31 @@
 ],
 
 -->
-  <div class="panelcontent">
-      <g:each var="thisEvent" in="${futureEventsAndBookings}">
+<div class="featured">
+    <div class="title">FEATURED EVENTS</div>
+    
+    <div class="featuredcontent">
+        <hr />
+      <g:each var="thisEvent" in="${featuredEventsAndBookings}">
         <g:set var="stages" 
         value="${thisEvent.bookings.collect { booking -> booking.stage }.unique().join(', ')}" />
+
  <span class="date"><turfclub:formatFeedDate date="${thisEvent.event.eventDate}" /></span>
- <div class="sponsorAndTitleLine">
- <span class="sponsor">
+         <div class="sponsor">
              <turfclub:sponsorshipListWebsite 
              sponsorshipList="${thisEvent.event.sponsorships}" />
-        </span>
+        </div>
 
         <span class="eventtitle">
             ${thisEvent.event.eventTitle}
         </span>
-        </div>
+       
+        <!--<div class="date"><turfclub:formatFeedDate date="${thisEvent.event.eventDate}" /></div> -->
+       
         <g:each var="h" in="${thisEvent.headliners}">
-        <span class="headliner">
+        <div class="headliner">
             <turfclub:bandHomePage band="${h.band}" />
-        </span>
+        </div>
         </g:each>
 
         <span class=”band”>
@@ -39,7 +45,6 @@
         <div class="description">
             ${thisEvent.event.description}
         </div>
-        <br />
         <hr />
           </g:each>        
     </div>

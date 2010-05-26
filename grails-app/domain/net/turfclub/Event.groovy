@@ -25,6 +25,7 @@ class Event implements Commentable {
     static constraints = {
         booker(nullable:false)
         eventDate(blank:false)
+        featured()
         finalized(nullable:true)
         eventTitle(blank:true, nullable:true)
         description(nullable:true, maxSize:2000)
