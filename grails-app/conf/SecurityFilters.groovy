@@ -10,7 +10,10 @@ class SecurityFilters {
         auth(controller: "*", action: "*") {
             before = {
                 // Ignore direct views (e.g. the default main index page).
-                if (controllerName == "event" && actionName == "todaysEvent") {
+                if (controllerName == "event"
+                        && (actionName == "todaysEvent"
+                            || actionName == "futureEvents"
+                            || actionName == "featuredEvents")) {
                     return true
                 }
 
