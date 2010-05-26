@@ -78,10 +78,13 @@ static namespace = "turfclub"
     }
     def sponsorshipListWebsite = { attrs ->
         def sponsorshipList = attrs['sponsorshipList']
-        def output = sponsorshipList.collect { sponsorship ->
-            sponsorWebsite(sponsor:sponsorship.sponsor)
-        }.join(', ')
-        out << output
+        if (sponsorshipList) {
+            def output = sponsorshipList.collect { sponsorship ->
+                sponsorWebsite(sponsor:sponsorship.sponsor)
+            }.join(', ')
+        
+            out << output 
+        }
     }
 
 }
