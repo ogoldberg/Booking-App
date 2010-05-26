@@ -39,13 +39,13 @@
         </span>
 
         <div class="doors">
-            Doors |  $${thisEvent.event.cover}0 | ${stages} 
+            Doors <turfclub:formatTime date="${thisEvent.event.eventDate}" /> |  $${thisEvent.event.cover} | ${stages} 
         </div>
 
         <div class="description">
             ${thisEvent.event.description}
         </div>
-        <hr />
+       <hr />
           </g:each>        
     </div>
     <br />

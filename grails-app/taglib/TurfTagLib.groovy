@@ -41,7 +41,7 @@ static namespace = "turfclub"
     def formatTime = {attrs ->
         def d = attrs['date']
         try {
-            def output = d ? d.format('h:mm') : ''
+            def output = d ? d.format('h:mm a') : ''
             out << output
            } catch (Exception e) {
                out << ''
