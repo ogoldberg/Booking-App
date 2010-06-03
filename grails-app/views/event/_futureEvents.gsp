@@ -13,14 +13,14 @@
         value="${thisEvent.bookings.collect { booking -> booking.stage }.unique().join(', ')}" />
  <span class="date"><turfclub:formatFeedDate date="${thisEvent.event.eventDate}" /></span>
  <div class="sponsorAndTitleLine">
- <span class="sponsor">
+ <div class="sponsor">
              <turfclub:sponsorshipListWebsite 
              sponsorshipList="${thisEvent.event.sponsorships}" />
-        </span>
+        </div>
 
-        <span class="eventtitle">
+        <div class="eventtitle">
             ${thisEvent.event.eventTitle}
-        </span>
+        </div>
         </div>
         <g:each var="h" in="${thisEvent.headliners}">
         <span class="headliner">
