@@ -83,16 +83,6 @@
                                     <g:textField name="email" value="${sponsorInstance?.email}" />
                                 </td>
                             </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="notes"><g:message code="sponsor.notes.label" default="Notes" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: sponsorInstance, field: 'notes', 'errors')}">
-                                    <g:textArea name="notes" cols="40" rows="5" value="${sponsorInstance?.notes}" />
-                                </td>
-                            </tr>
-                        
                             <tr class="prop">
                                 <td valign="top" class="name">
                                   <label for="sponsorships"><g:message code="sponsor.sponsorships.label" default="Sponsorships" /></label>

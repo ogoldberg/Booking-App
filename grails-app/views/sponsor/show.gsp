@@ -70,14 +70,6 @@
                             <td valign="top" class="value">${fieldValue(bean: sponsorInstance, field: "email")}</td>
                             
                         </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name"><g:message code="sponsor.notes.label" default="Notes" /></td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean: sponsorInstance, field: "notes")}</td>
-                            
-                        </tr>
-                    
                         <tr class="prop">
                                 <td valign="top" class="name">
                                   <label for="sponsorships"><g:message code="sponsor.sponsorships.label" default="Sponsorships" /></label>
