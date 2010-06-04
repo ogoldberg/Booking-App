@@ -38,7 +38,7 @@
         </div>
 
         <div class="doors">
-            <turfclub:formatTime date="${thisEvent.event.eventDate}" /> |  $${thisEvent.event.cover} | ${stages} 
+            <turfclub:formatTime date="${thisEvent.event.eventDate}" /> |  $${thisEvent.event.cover}0 | ${stages} 
         </div>
 
         <div class="description">

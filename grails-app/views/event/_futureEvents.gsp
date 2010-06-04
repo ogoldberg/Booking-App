@@ -33,7 +33,8 @@
         </span>
 
         <div class="doors">
-            Doors <turfclub:formatTime date="${thisEvent.event.eventDate}" /> |  $${thisEvent.event.cover} | ${stages} 
+            Doors <turfclub:formatTime date="${thisEvent.event.eventDate}" /> |  $${thisEvent.event.cover}0 | ${stages} 
+            
         </div>
 
         <div class="description">
