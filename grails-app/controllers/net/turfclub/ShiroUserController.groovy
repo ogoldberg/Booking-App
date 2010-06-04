@@ -33,7 +33,6 @@ class ShiroUserController {
             
             flash.message = "ShiroUser ${shiroUserInstance.id} created"
             redirect(action:show, params:[username:shiroUserInstance.username])
-           
         }
         else {
             render(view:'create',model:[shiroUserInstance:shiroUserInstance])
