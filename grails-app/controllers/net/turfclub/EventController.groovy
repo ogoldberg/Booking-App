@@ -25,7 +25,7 @@ class EventController {
         def events = Event.list().collect { event ->
              [
                 title: event.booker.toString() + ' ' 
-                + event.eventTitle.toString() + ' '     + event.bookings.toString(),
+                + event.eventTitle?.toString() + ' '     + event.bookings.toString(),
                 start: (event.eventDate.time / 1000).toLong(),
                 url : createLink(controller:'event', action:'show', id:event.id),
                 className: event.finalized ? ["finalized"] : ""

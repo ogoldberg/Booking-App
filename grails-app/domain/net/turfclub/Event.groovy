@@ -5,7 +5,7 @@ class Event implements Commentable {
     ShiroUser booker
     Date eventDate
     Boolean finalized
-    String eventTitle
+    String eventTitle = " "
     double cover
     String description
     Boolean featured = false
