@@ -10,6 +10,7 @@ class Booking implements Commentable {
     Stage stage
     //ShiroUser booker
 
+    static belongsTo = [band:Band, event:Event]
      String toString() {
        this.band
     }
