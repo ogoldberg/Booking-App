@@ -50,7 +50,46 @@ class BookingController {
         }
     }
 
-    def show = {
+   
+    def update = {
+        def bookingInstance = Booking.get(params.id)
+        if (bookingInstance) {
+            if (params.version) {
+                def version = params.version.toLong()
+                if (bookingInstance.version > version) {
+                    
+                    bookingInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'booking.label', default: 'Booking')] as Object[], "Another user has updated this Booking while you were editing")
+                    render(view: "edit", model: [bookingInstance: bookingInstance])
+                    return
+                }
+            }
+            def band = Band.findByBandName(params.bandName)
+        //if band does not exist, save a new band
+        if (!band) {
+            band = new Band(bandName: params.bandName).save()
+        }
+        //associate band with booking
+    
+        bookingInstance.band = band
+            bookingInstance.appearanceTime = miscService.parseDate(bookingInstance.event.eventDate.format('MM/dd/yyyy'),
+                params.remove('bookingTime'),
+                params.remove('bookingAmPm'))
+            bookingInstance.properties = params
+            if (!bookingInstance.hasErrors() && bookingInstance.save(flush: true)) {
+                flash.message = "${message(code: 'default.updated.message', args: [message(code: 'booking.label', default: 'Booking'), bookingInstance.id])}"
+                redirect(action: "show", id: bookingInstance.id)
+            }
+            else {
+                render(view: "edit", model: [bookingInstance: bookingInstance])
+            }
+        }
+        else {
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'booking.label', default: 'Booking'), params.id])}"
+            redirect(action: "list")
+        }
+    }
+
+     def show = {
         def bookingInstance = Booking.get(params.id)
         if (!bookingInstance) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'booking.label', default: 'Booking'), params.id])}"
@@ -72,35 +111,6 @@ class BookingController {
         }
     }
 
-    def update = {
-        def bookingInstance = Booking.get(params.id)
-        if (bookingInstance) {
-            if (params.version) {
-                def version = params.version.toLong()
-                if (bookingInstance.version > version) {
-                    
-                    bookingInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'booking.label', default: 'Booking')] as Object[], "Another user has updated this Booking while you were editing")
-                    render(view: "edit", model: [bookingInstance: bookingInstance])
-                    return
-                }
-            }
-            bookingInstance.appearanceTime = miscService.parseDate(bookingInstance.event.eventDate.format('MM/dd/yyyy'),
-                params.remove('bookingTime'),
-                params.remove('bookingAmPm'))
-            bookingInstance.properties = params
-            if (!bookingInstance.hasErrors() && bookingInstance.save(flush: true)) {
-                flash.message = "${message(code: 'default.updated.message', args: [message(code: 'booking.label', default: 'Booking'), bookingInstance.id])}"
-                redirect(action: "show", id: bookingInstance.id)
-            }
-            else {
-                render(view: "edit", model: [bookingInstance: bookingInstance])
-            }
-        }
-        else {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'booking.label', default: 'Booking'), params.id])}"
-            redirect(action: "list")
-        }
-    }
 
     def delete = {
         def bookingInstance = Booking.get(params.id)
