@@ -11,7 +11,7 @@
   <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.js"></script>
   <script>
   $(document).ready(function(){
-    var data = "http://localhost:8080/turf/band/bandNames";
+    var data = "/turf/band/bandNames";
     $("#bandName").autocomplete(data, { autoFill:true, minChars:1});
 
     $("foo").click(function(){
@@ -68,7 +68,7 @@
             <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'band', 'errors')}">
               <label for="band"><g:message code="booking.band.label" default="Band" /></label>
             </td>
-            <td><input id="bandName" name="bandName"  />
+            <td><input id="bandName" name="bandName" value="${bookingInstance?.band.bandName}" />
             </td>
           </tr>
 
