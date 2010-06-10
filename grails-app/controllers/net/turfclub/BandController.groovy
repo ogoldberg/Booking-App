@@ -13,7 +13,7 @@ class BandController {
 
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [bandInstanceList: Band.list(params), bandInstanceTotal: Band.count()]
+        [bandInstanceList: Band.listOrderByBandName(params), bandInstanceTotal: Band.count()]
     }
 
     def bandNames = {
