@@ -20,13 +20,12 @@ class SecurityFunctionalTests extends functionaltestplugin.FunctionalTestCase {
     }
 
     // Only admins are allowed to create users
-    void testCreateUsers() {
+    // This test should fail until you allow ONLY administrators
+    // access to shiroUser/create, etc.
+    void testUserCantCreateUsers() {
         loginBob()
-        redirectEnabled = false
         get('/shiroUser/create')
-        assertRedirectUrlContains('/unauthorized')
-        followRedirect()
-        assertContentContains("You do not have")
+        assertContentContains("You do not have permission to access this page")
     }
 
     // This test doesn't work.
