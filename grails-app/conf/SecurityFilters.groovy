@@ -9,9 +9,9 @@ class SecurityFilters {
         auth(controller: "*", action: "*") {
             before = {
                 // except for the "help" controller and the "error" controller
-                if (controllerName == "help" || controllerName == "error") {
-                    return true
-                }
+                // if (controllerName == "help" || controllerName == "error") {
+                    // return true
+                // }
                 // This just means that the user must be authenticated. He does 
                 // not need any particular role or permission. 
                 accessControl { true } 
