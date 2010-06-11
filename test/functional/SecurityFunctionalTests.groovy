@@ -45,4 +45,13 @@ class SecurityFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         assertContentContains("Cover")
 
     }
+    
+    void testAdminCanCreateEvent() {
+        loginAdmin()
+        get('/event/create')
+        assertContentContains("Create Event")
+        assertContentContains("Booker")
+        assertContentContains("Cover")
+
+    }
 }
