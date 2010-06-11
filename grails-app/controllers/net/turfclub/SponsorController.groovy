@@ -12,7 +12,7 @@ class SponsorController {
 
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [sponsorInstanceList: Sponsor.list(params), sponsorInstanceTotal: Sponsor.count()]
+        [sponsorInstanceList: Sponsor.listOrderByName(params), sponsorInstanceTotal: Sponsor.count()]
     }
 
     def create = {
