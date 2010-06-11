@@ -2,6 +2,7 @@ package net.turfclub
 import org.grails.comments.*
 
 class Band implements Commentable {
+    static searchable = true
     String bandName
     String email
     String homePage
