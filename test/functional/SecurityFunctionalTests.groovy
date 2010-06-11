@@ -28,4 +28,21 @@ class SecurityFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         followRedirect()
         assertContentContains("You do not have")
     }
+
+    // This test doesn't work.
+    void testSuccessfulLogin() {
+        loginBob()
+        assertContentContains("Calendar")
+        assertContentContains("Band")
+
+    }
+    // This test doesn't work either
+    void testUserCanCreateEvent() {
+        loginBob()
+        get('/event/create')
+        assertContentContains("Create Event")
+        assertContentContains("Booker")
+        assertContentContains("Cover")
+
+    }
 }
