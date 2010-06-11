@@ -8,7 +8,7 @@ class BootStrap {
             createAdminUser()
         }
 
-        if (grails.util.GrailsUtil.environment == 'development') {
+        if (grails.util.GrailsUtil.environment =~ /(development|test)/) {
             createDummyData()
         }
 
@@ -37,7 +37,6 @@ class BootStrap {
     def createDummyUsers() {
 
         def bob = new ShiroUser(username: "bob", 
-
         password : 'admin0',
         passwordConfirm : 'admin0',
         passwordHash: new Sha1Hash("admin0").toHex())
