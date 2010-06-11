@@ -8,6 +8,13 @@ class SecurityFilters {
         // Ensure that all controllers and actions require an authenticated user,
         auth(controller: "*", action: "*") {
             before = {
+                // Ignore direct views (e.g. the default main index page).
+                if (controllerName == "event"
+                        && (actionName == "todaysEvent"
+                            || actionName == "futureEvents"
+                            || actionName == "featuredEvents")) {
+                    return true
+                }
                 // except for the "help" controller and the "error" controller
                 // if (controllerName == "help" || controllerName == "error") {
                     // return true
@@ -18,20 +25,13 @@ class SecurityFilters {
             } 
         } 
                 
-        auth(controller: "*", action: "*") {
+        adminOnlyForUserManagement(controller:"shiroUser", action:"edit|create|delete") {
             before = {
-                // Ignore direct views (e.g. the default main index page).
-                if (controllerName == "event"
-                        && (actionName == "todaysEvent"
-                            || actionName == "futureEvents"
-                            || actionName == "featuredEvents")) {
-                    return true
+                accessControl {
+                     // Only admins
+                     role("Administrator")
                 }
-
-                // Access control by convention.
-                accessControl()
             }
         }
-        
     }
 }
