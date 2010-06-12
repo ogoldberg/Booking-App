@@ -5,6 +5,7 @@ class BootStrap {
 
     def init = { servletContext ->
         if (ShiroUser.count() == 0) {
+            loadUserRoles()
             createAdminUser()
         }
 
@@ -26,21 +27,38 @@ class BootStrap {
     }
 
     def createAdminUser() {
-        def user = new ShiroUser(username: "admin", passwordHash: new Sha1Hash("admin0").toHex(),
+        def adminRole = ShiroRole.findByName("Administrator")
+        def adminUser = new ShiroUser(username: "admin", 
+        passwordHash: new Sha1Hash("admin0").toHex(),
         password : 'admin0',
         passwordConfirm : 'admin0',
         )
-        user.addToPermissions("*:*")
-        user.save()
+        	if (!adminUser.validate()) {
+			println "User didn't validate!"
+			println adminUser.errors.allErrors
+		}
+		else {
+			adminUser.save()
+			new ShiroRole(user: adminUser, role: adminRole).save()
+		}
+        
     }
 
     def createDummyUsers() {
-
-        def bob = new ShiroUser(username: "bob", 
+        def userRole = ShiroRole.findByName("User")
+        def bobUser = new ShiroUser(username: "bob", 
         password : 'admin0',
         passwordConfirm : 'admin0',
         passwordHash: new Sha1Hash("admin0").toHex())
-        bob.save()
+        if (!bobUser.validate()) {
+			println "User didn't validate!"
+			println bobUser.errors.allErrors
+		}
+		else {
+			bobUser.save()
+			new ShiroRole(user: bobUser, role: userRole).save()
+		}
+        
     }
 
     def createDummyBands() {
@@ -152,4 +170,10 @@ class BootStrap {
         s3.save()
 
     }
+
+    def loadUserRoles() {
+		// Initialize User role
+		def userRole = new ShiroRole(name: "User").save() 
+		def adminRole = new ShiroRole(name: "Administrator").save() 
+	}
 } 
