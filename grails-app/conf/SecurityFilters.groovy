@@ -18,14 +18,14 @@ class SecurityFilters {
             } 
         } 
 
-        adminOnlyForUserManagement(controller:"shiroUser", action:"edit|create|delete") {
-            before = {
-                accessControl {
-                     // Only admins
-                     role("Administrator")
-                }
-            }
-        }
+        // adminOnlyForUserManagement(controller:"shiroUser", action:"edit|create|delete") {
+            // before = {
+                // accessControl {
+                     // // Only admins
+                     // role("Administrator")
+                // }
+            // }
+        // }
                 
        
         
