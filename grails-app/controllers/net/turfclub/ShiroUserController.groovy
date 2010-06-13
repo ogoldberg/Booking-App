@@ -16,7 +16,7 @@ class ShiroUserController {
 
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [shiroUserInstanceList: ShiroUser.list(params), shiroUserInstanceTotal: ShiroUser.count()]
+        [shiroUserInstanceList: ShiroUser.listOrderByUsername(params), shiroUserInstanceTotal: ShiroUser.count()]
     }
 
     def create = {
