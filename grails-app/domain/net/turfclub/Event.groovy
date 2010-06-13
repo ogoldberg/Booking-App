@@ -6,7 +6,7 @@ class Event implements Commentable {
     Date eventDate
     Boolean finalized
     String eventTitle = " "
-    double cover
+    Double cover
     String description
     Boolean featured = false
       

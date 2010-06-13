@@ -90,9 +90,10 @@ action:"featuredBooking")}',
 
         </tr>
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="event.cover.label" default="Cover" /></td>
+          <td valign="top" class="name">Cover</td>
 
-        <td valign="top" class="value">${fieldValue(bean: eventInstance, field: "cover")}</td>
+        <td valign="top" class="value"><g:formatNumber number="${eventInstance.cover}" 
+            type="currency" currencyCode="USD" locale="en_US" minFractionDigits="2" maxFractionDigits="2" /></td>
 
         </tr>
 

@@ -66,7 +66,7 @@
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="cover"><g:message code="event.cover.label" default="Cover *" /></label>
+              <label for="cover">Cover $</label>
             </td>
             <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'cover', 'errors')}">
           <g:textField name="cover" value="${eventInstance?.cover}" />
