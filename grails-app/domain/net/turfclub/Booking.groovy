@@ -14,6 +14,10 @@ class Booking implements Commentable {
      String toString() {
        this.band
     }
+
+    static mapping = {
+               bookings sort:'appearanceTime', order:'desc'
+       }
     static constraints = {
         event(nullable:false)
         band(nullable:false)
