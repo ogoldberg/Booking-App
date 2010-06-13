@@ -15,7 +15,7 @@ class Event implements Commentable {
     String toString() {
         return eventDate.format('MMMM d, yyyy')
     }        
-    static hasMany = [ bookings:Booking,
+   static hasMany = [ bookings:Booking,
         sponsorships:Sponsorship ]
 
     static mapping = {
