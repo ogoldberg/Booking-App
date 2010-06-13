@@ -33,7 +33,7 @@ class EventService {
             // loop through conf bookings
             // if booking.headliner == true, then set headliner
             // else add booking to the bookings list
-            confBookings.sort{it.appearanceTime}.each { confBooking ->
+            confBookings.sort{it.appearanceTime}.reverse().each { confBooking ->
                 if (confBooking.headliner) {
                      individualEventMap.headliners.add confBooking
                 }
