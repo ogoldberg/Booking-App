@@ -39,7 +39,7 @@
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="sponsorship.sponsor.label" default="Sponsor" /></td>
                             
-                            <td valign="top" class="value"><g:link controller="sponsor" action="show" id="${sponsorshipInstance?.sponsor?.id}">${sponsorshipInstance?.sponsor?.encodeAsHTML()}</g:link></td>
+                            <td valign="top" class="value"><g:link controller="sponsor" action="edit" id="${sponsorshipInstance?.sponsor?.id}">${sponsorshipInstance?.sponsor?.encodeAsHTML()}</g:link></td>
                             
                         </tr>
                     

@@ -105,7 +105,7 @@ action:"featuredBooking")}',
 
             <ul>
               <g:each in="${eventInstance?.sponsorships?}" var="s">
-                <li><g:link controller="sponsorship" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></li>
+                <li><g:link controller="sponsorship" action="edit" id="${s.id}">${s?.encodeAsHTML()}</g:link></li>
               </g:each>
             </ul>
         <g:link controller="sponsorship" action="create" params="['event.id': eventInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'sponsorship.label', default: 'Sponsorship')])}</g:link>
