@@ -22,12 +22,10 @@
                     <thead>
                         <tr>
                         
-                            <g:sortableColumn property="id" title="${message(code: 'booking.id.label', default: 'Id')}" />
-                        
-                            <th><g:message code="booking.eventDate.label" default="Event Date" /></th>
+                            <g:sortableColumn property="event" title="${message(code: 'booking.event.label', default: 'Event Date ')}" />
                    	    
-                            <th><g:message code="booking.band.label" default="Band" /></th>
-                   	    
+                   	    <g:sortableColumn property="band" title="${message(code: 'booking.band.label', default: 'Band ')}" /> 
+
                             <th><g:message code="booking.stage.label" default="Stage" /></th>
                    	    
                             <g:sortableColumn property="appearanceOrder" title="${message(code: 'booking.appearanceTime.label', default: 'Appearance Time')}" />
@@ -40,9 +38,7 @@
                     <g:each in="${bookingInstanceList}" status="i" var="bookingInstance">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                         
-                            <td><g:link action="show" id="${bookingInstance.id}">${fieldValue(bean: bookingInstance, field: "id")}</g:link></td>
-                        
-                            <td>${fieldValue(bean: bookingInstance, field: "event")}</td>
+                            <td><g:link action="show" id="${bookingInstance.event.id}">${fieldValue(bean: bookingInstance, field: "event")}</g:link></td>
                         
                             <td>${fieldValue(bean: bookingInstance, field: "band")}</td>
                         
