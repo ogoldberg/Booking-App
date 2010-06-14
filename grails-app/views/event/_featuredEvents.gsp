@@ -17,7 +17,10 @@
         value="${thisEvent.bookings.collect { booking -> booking.stage }.unique().join(', ')}" />
 
  <span class="date"><turfclub:formatFeedDate date="${thisEvent.event.eventDate}" /></span>
-        
+        <div class="sponsor">
+             <turfclub:sponsorshipListWebsite 
+             sponsorshipList="${thisEvent.event.sponsorships}" /> 
+        </div> 
 
         <span class="eventtitle">
             ${thisEvent.event.eventTitle}
@@ -39,11 +42,6 @@
             Doors <turfclub:formatTime date="${thisEvent.event.eventDate}" /> |  <g:formatNumber number="${thisEvent.event.cover}" 
             type="currency" currencyCode="USD" locale="en_US" minFractionDigits="2" maxFractionDigits="2" /> | ${stages} 
         </div>
-         <div class="sponsor">
-             <turfclub:sponsorshipListWebsite 
-             sponsorshipList="${thisEvent.event.sponsorships}" />
-        </div>
-
         <div class="description">
             ${thisEvent.event.description}
         </div>
