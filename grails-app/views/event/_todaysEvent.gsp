@@ -34,14 +34,15 @@
         </span>
        
         <g:each var="h" in="${thisEvent.headliners}">
-        <div class="headliner">
+        <span rel="v:url" 
+            property="v:summary"><div class="headliner">
             <turfclub:bandHomePage band="${h.band}" />
         </div>
         </g:each>
 
         <div class=”band”>
             <turfclub:bandListHomePage bookingList="${thisEvent.bookings}" />
-        </div>
+        </div></span>
 
         <div class="doors">
             <turfclub:formatTime date="${thisEvent.event.eventDate}" /> |  <g:formatNumber number="${thisEvent.event.cover}" 

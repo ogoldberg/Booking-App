@@ -28,6 +28,7 @@
             ${thisEvent.event.eventTitle}
         </div>
         </div>
+    <span rel="v:url" property="v:summary">
         <g:each var="h" in="${thisEvent.headliners}">
         <span class="headliner">
             <turfclub:bandHomePage band="${h.band}" />
@@ -37,7 +38,7 @@
         <span class=”band”>
             <turfclub:bandListHomePage bookingList="${thisEvent.bookings}" />
         </span>
-
+    </span>
         <div class="doors">
             Doors <turfclub:formatTime date="${thisEvent.event.eventDate}" /> | <g:formatNumber number="${thisEvent.event.cover}" 
             type="currency" currencyCode="USD" locale="en_US" minFractionDigits="2" maxFractionDigits="2" /> | ${stages} 
