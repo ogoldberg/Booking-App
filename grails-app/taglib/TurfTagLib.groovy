@@ -49,6 +49,7 @@ static namespace = "turfclub"
 
     }
 
+
     def bandHomePage = {attrs ->
         def band = attrs['band']
         if (band.homePage) {
