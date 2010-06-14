@@ -12,7 +12,7 @@ class BookingController {
 
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [bookingInstanceList: Booking.list(params), bookingInstanceTotal: Booking.count()]
+        [bookingInstanceList: Booking.listOrderByAppearanceTime(params).reverse(), bookingInstanceTotal: Booking.count()]
     }
 
     def create = {
