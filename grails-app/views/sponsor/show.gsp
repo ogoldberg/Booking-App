@@ -76,12 +76,15 @@
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: sponsorInstance, field: 'sponsorships', 'errors')}">
 
-<ul>
-<g:each in="${sponsorInstance?.sponsorships?}" var="s">
-    <li><g:link controller="sponsorship" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></li>
-</g:each>
-</ul>
-<g:link controller="sponsorship" action="create" params="['sponsor.id': sponsorInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'sponsorship.label', default: 'Sponsorship')])}</g:link>
+                        <ul>
+                            <g:each in="${sponsorInstance?.sponsorships?}" var="s">
+                            <li><g:link controller="sponsorship" 
+                            action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></li>
+                            </g:each>
+                        </ul>
+                        <g:link controller="sponsorship" action="create" 
+                        params="['sponsor.id': sponsorInstance?.id]">${message(code: 'default.add.label', 
+                        args: [message(code: 'sponsorship.label', default: 'Sponsorship')])}</g:link>
 
                                 </td>
                             </tr>
