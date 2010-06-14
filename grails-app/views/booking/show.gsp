@@ -46,7 +46,7 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="booking.band.label" default="Band" /></td>
 
-        <td valign="top" class="value"><g:link controller="band" action="show" id="${bookingInstance?.band?.id}">${bookingInstance?.band?.encodeAsHTML()}</g:link></td>
+        <td valign="top" class="value"><g:link controller="band" action="edit" id="${bookingInstance?.band?.id}">${bookingInstance?.band?.encodeAsHTML()}</g:link></td>
 
         </tr>
 
