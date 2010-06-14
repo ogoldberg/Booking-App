@@ -52,7 +52,8 @@ static namespace = "turfclub"
     def bandHomePage = {attrs ->
         def band = attrs['band']
         if (band.homePage) {
-            out << "<a href=\"${band.homePage}\">${band.bandName}</a>"
+            out << "<a href=\"${band.homePage}\" rel="v:url" 
+            property="v:summary">${band.bandName}</a>"
         }
         else {
         out << band.bandName

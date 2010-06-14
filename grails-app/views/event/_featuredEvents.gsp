@@ -13,6 +13,14 @@
     <div class="featuredcontent">
         <hr />
       <g:each var="thisEvent" in="${featuredEventsAndBookings}">
+       <div xmlns:v="http://rdf.data-vocabulary.org/#" typeof="v:Event"> 
+        <span property="v:startDate" content="${thisEvent.event.eventDate}"></span>
+         <span rel="v:geo">
+        <span typeof="v:Geo">
+          <span property="v:latitude" content="44.9673" ></span>
+          <span property="v:longitude" content="-93.161716" ></span>
+        </span>
+      </span>
         <g:set var="stages" 
         value="${thisEvent.bookings.collect { booking -> booking.stage }.unique().join(', ')}" />
 
