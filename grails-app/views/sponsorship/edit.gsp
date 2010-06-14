@@ -11,7 +11,7 @@
           <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.js"></script>
           <script>
               $(document).ready(function(){
-              var data = "http://localhost:8080/turf/sponsor/names";
+              var data = "/turf/sponsor/names";
               $("#sponsor").autocomplete(data, { autoFill:true, minChars:1});
 
               $("foo").click(function(){

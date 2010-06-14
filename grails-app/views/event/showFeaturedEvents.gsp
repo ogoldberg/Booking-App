@@ -9,7 +9,7 @@
         <script type="text/javascript">
             $(document).ready(function(){
                     alert("I'm going to get some data")
-                    $.get('http://localhost:8080/turf/event/futureEvents', function(data) {
+                    $.get('/turf/event/futureEvents', function(data) {
                         $('#futureEvents').html(data);
                     });
                 });
