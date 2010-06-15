@@ -34,8 +34,7 @@
         </span>
        
         <g:each var="h" in="${thisEvent.headliners}">
-        <span rel="v:url" 
-            property="v:summary"><div class="headliner">
+        <span rel="v:url" property="v:summary"><div class="headliner">
             <turfclub:bandHomePage band="${h.band}" />
         </div>
         </g:each>

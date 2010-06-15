@@ -181,7 +181,9 @@ class EventController {
                 def version = params.version.toLong()
                 if (eventInstance.version > version) {
                     
-                    eventInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'event.label', default: 'Event')] as Object[], "Another user has updated this Event while you were editing")
+                    eventInstance.errors.rejectValue("version", "default.optimistic.locking.failure", 
+                    [message(code: 'event.label', default: 'Event')] as Object[], 
+                    "Another user has updated this Event while you were editing")
                     render(view: "edit", model: [eventInstance: eventInstance])
                     return
                 }
