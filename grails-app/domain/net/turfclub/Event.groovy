@@ -9,6 +9,7 @@ class Event implements Commentable {
     Double cover
     String description
     Boolean featured = false
+    String imageLink
       
 
     
@@ -25,6 +26,7 @@ class Event implements Commentable {
     static constraints = {
         booker(nullable:false)
         eventDate(blank:false)
+        imageLink(url:true, nullable:true, blank:true)
         featured()
         finalized(nullable:true)
         eventTitle(blank:true, nullable:true)

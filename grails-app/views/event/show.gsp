@@ -126,6 +126,13 @@ action:"featuredBooking")}',
         </tr>
 
         <tr class="prop">
+          <td valign="top" class="name"><g:message code="event.imageLinke.label" default="Image Link" /></td>
+
+        <td valign="top" class="value">${fieldValue(bean: eventInstance, field: "imageLink")}</td>
+
+        </tr>
+
+        <tr class="prop">
           <td valign="top" class="name"><g:message code="event.description.label" default="Description" /></td>
 
         <td valign="top" class="value">${fieldValue(bean: eventInstance, field: "description")}</td>

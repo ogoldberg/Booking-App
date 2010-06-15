@@ -69,7 +69,14 @@
                     value="${eventInstance?.booker?.id}"  />
           </td>
           </tr>
-
+             <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="imageLink"><g:message code="event.imageLink.label" default="Image Link" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'imageLink', 'errors')}">
+                                    <g:textField name="imageLink" value="${eventInstance?.imageLink}" />
+                                </td>
+                            </tr>
           <tr class="prop">
             <td valign="top" class="name">
               <label for="eventTitle"><g:message code="event.eventTitle.label" default="Event Title" /></label>

@@ -20,6 +20,9 @@
         <g:set var="stages" 
         value="${thisEvent.bookings.collect { booking -> booking.stage }.unique().join(', ')}" />
  <span class="date"><turfclub:formatFeedDate date="${thisEvent.event.eventDate}" /></span>
+ <span class="eventPic"><a href="${thisEvent.event.imageLink}">
+         <img src="${thisEvent.event.imageLink}" 
+     width="100px" height="100px" /></a></span>
  <div class="sponsorAndTitleLine">
       <div class="sponsor">
              <turfclub:sponsorshipListWebsite 
@@ -48,7 +51,7 @@
         <div class="description">
             ${thisEvent.event.description}
         </div>
-        <br />
+        <br /><br />
         <hr />
           </g:each>        
     </div>

@@ -28,6 +28,8 @@
 
         <g:sortableColumn property="eventTitle" title="${message(code: 'event.eventTitle.label', default: 'Event Title')}" />
 
+        <g:sortableColumn property="imageLink" title="${message(code: 'event.imageLink.label', default: 'Image Link')}" />
+
         <g:sortableColumn property="description" title="${message(code: 'event.description.label', default: 'Description')}" />
 
         <g:sortableColumn property="cover" title="${message(code: 'event.cover.label', default: 'Cover')}" />
@@ -47,6 +49,8 @@
            <td><g:formatBoolean boolean="${eventInstance.finalized}" /></td>
 
           <td>${fieldValue(bean: eventInstance, field: "eventTitle")}</td>
+
+          <td>${fieldValue(bean: eventInstance, field: "imageLink")}</td>
 
           <td>${fieldValue(bean: eventInstance, field: "description")}</td>
 
