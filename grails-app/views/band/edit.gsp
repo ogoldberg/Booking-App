@@ -107,11 +107,6 @@
                 </div>
                 <div class="buttons"> 
                     <span class="button"><g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" /></span>
-                    <span class="button"><g:actionSubmit class="delete" action="delete" 
-                        value="${message(code: 'band.button.delete.label', default: 'Delete')}" 
-                        onclick="return confirm('${message(code: 'band.button.delete.confirm.message', 
-                        default: 'ARE YOU SURE?<br /> When you delete a band, you also delete 
-                        ALL of that bands bookings: past, present, and future.')}');" /></span>
                 </div>
             </g:form>
         </div>

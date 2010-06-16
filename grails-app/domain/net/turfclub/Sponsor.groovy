@@ -15,7 +15,7 @@ class Sponsor implements Commentable {
     static hasMany=[sponsorships:Sponsorship]
 
     static constraints = {
-        name(blank:false)
+        name(blank:false, unique:true)
         website(url:true, nullable:true)
         logo(nullable:true, maxSize:1000000)
         contact(nullable:true)

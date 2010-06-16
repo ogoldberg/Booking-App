@@ -77,7 +77,6 @@
                 <g:form>
                     <g:hiddenField name="id" value="${shiroUserInstance?.id}" />
                     <span class="button"><g:actionSubmit class="edit" action="edit" value="${message(code: 'default.button.edit.label', default: 'Edit')}" /></span>
-                    <span class="button"><g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'user.button.delete.confirm.message', default: 'ARE YOU SURE? When you delete a user, you also delete ALL of that users events: past, present, and future!')}');" /></span>
                 </g:form>
             </div>
         </div>

@@ -12,7 +12,7 @@ class ShiroUser {
     static tranisents = [ 'password', 'passwordConfirm']
 
     static constraints = {
-        username(nullable: false, blank: false)
+        username(nullable: false, blank: false, unique:true)
         password(nullable:false, blank:false, validator: 
             { val, obj ->
                 def result = 'user.password.strength.confirmation'
