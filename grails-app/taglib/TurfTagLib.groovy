@@ -70,11 +70,11 @@ static namespace = "turfclub"
     
       def sponsorWebsite = {attrs ->
         def sponsor = attrs['sponsor']
-        if (sponsor.website) {
+        if (sponsor?.website) {
             out << "<a href=\"${sponsor.website}\">${sponsor}</a> Presents..."
         }
         else {
-        out << sponsor.name
+        out << sponsor?.name
         }
     }
     def sponsorshipListWebsite = { attrs ->
