@@ -68,15 +68,7 @@ class EventService {
             it.eventDate
         }
 
-        def confEvents = []
-        todaysEvents.each { 
-            if(it.bookings.find { booking -> booking.confirmed == true }) {
-                confEvents.add(it)
-            }
-        }
-
-        return confEvents
-
+        return filterPublishable(todaysEvents)
     }
 
      def futureEventsAndBookings() {
@@ -128,15 +120,10 @@ class EventService {
         def futureEvents = Event.findAllByEventDateGreaterThan(todayAt12am).sort {
             it.eventDate
         }
+        
+       
 
-        def confEvents = []
-        futureEvents.each { 
-            if(it.bookings.find { booking -> booking.confirmed == true }) {
-                confEvents.add(it)
-            }
-        }
-
-        return confEvents
+        return filterPublishable(futureEvents)
 
     }
 
@@ -147,6 +134,16 @@ class EventService {
     }
 
     return featuredEvents
+ }
+
+ def filterPublishable(eventList) {
+         def confEvents = []
+        eventList.each { 
+            if(it.bookings.find { booking -> booking.confirmed == true }) {
+                confEvents.add(it)
+            }
+            }
+         return confEvents
  }
 
   def eventDataFeed(events) {

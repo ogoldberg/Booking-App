@@ -10,8 +10,8 @@ class Event implements Commentable {
     String description
     Boolean featured = false
     String imageLink
-      
-
+    Integer holdPriority
+    
     
     String toString() {
         return eventDate.format('MMMM d, yyyy')
@@ -31,6 +31,7 @@ class Event implements Commentable {
         finalized(nullable:true)
         eventTitle(blank:true, nullable:true)
         description(nullable:true, maxSize:2000)
-        cover(nullable:true)
+        cover(nullable:true, blank:true)
+        holdPriority(nullable:true, blank:true)
     }
 }

@@ -137,6 +137,11 @@ class EventController {
     // eventTime:9:00, 
     // eventAmPm:PM
     def save = {
+        // TODO this is a kludge, and doesn't conform to
+        // the grails spec.
+        if (params.holdPriority == "null") {
+            params.remove('holdPriority')
+        }
         def eventInstance = new Event(params)
         eventInstance.eventDate = 
                 miscService.parseDate(params.remove('eventDate_value'),
@@ -175,6 +180,10 @@ class EventController {
 
     def update = {
         println "params inuupdate" + params
+        // TODO this is a kludge, and the g:select is not working properly
+        if (params.holdPriority == "null") {
+            params.remove('holdPriority')
+        }
         def eventInstance = Event.get(params.id)
         if (eventInstance) {
             if (params.version) {

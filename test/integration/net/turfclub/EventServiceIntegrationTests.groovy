@@ -233,6 +233,17 @@ class EventServiceIntegrationTests extends GrailsUnitTestCase {
         assertEquals 1, todaysEventsAndBookings[0].bookings.size()
 
     }
+    
+    void ntestHoldPriority() {
+        def event = createDummyEventAndBooking("Event with Hold", "2010-05-05 21:00")
+        event.holdPriority = 3
+        event.save()
+       
+        def may5at10pm = new GregorianCalendar(2010, Calendar.MAY, 5, 22, 0, 0)
+        java.util.Date.metaClass.constructor = { -> new Date(may5at10pm.timeInMillis)}
+        def todaysEventsAndBookings = eventService.todaysEventsAndBookings()
+        assertEquals 0, todaysEventsAndBookings.size()
+    }
 
     void testHeadliner() {
 

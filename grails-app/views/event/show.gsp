@@ -87,6 +87,12 @@ action:"featuredBooking")}',
           <td valign="top" class="name"><g:message code="event.doorTime.label" default="Door Time" /></td>
 
         <td valign="top" class="value"><turfclub:formatTime date="${eventInstance.eventDate}" /></td>
+         <tr class="prop">
+           <td valign="top" class="name"><g:message code="event.holdPriority.label" default="Hold Priority" /></td>
+
+        <td valign="top" class="value">${fieldValue(bean: eventInstance, field: "holdPriority")}</td>
+
+        </tr>
 
         </tr>
         <tr class="prop">

@@ -62,8 +62,19 @@
                     optionValue="username"
                     value="${eventInstance?.booker?.id}"  />
           </td>
-          </tr>
-
+      </tr>
+       <tr class="prop">
+            <td valign="top" class="name">
+              <label for="holdPriority">Hold Priority</label>
+          </td>
+            <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'holdPriority', 'errors')}">
+            <g:select id="holdPriority" 
+                          name='holdPriority' 
+                          from="${1..5}" 
+                          value="${eventInstance?.holdPriority}"
+                          noSelection="${['null':'--No Hold--']}" />
+                      </td>
+                  </tr>
           <tr class="prop">
             <td valign="top" class="name">
               <label for="cover">Cover $</label>
