@@ -9,8 +9,12 @@ class BootStrap {
             createAdminUser()
         }
 
-        if (grails.util.GrailsUtil.environment =~ /(development|test)/) {
+        if (grails.util.GrailsUtil.environment =~ "development") {
             createDummyData()
+        }
+        
+        if (grails.util.GrailsUtil.environment =~ "test") {
+            createDummyUsers()
         }
 
     }
