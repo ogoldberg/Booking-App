@@ -22,9 +22,10 @@ class EventController {
 
     def eventfeed = {
 
-        def events = Event.list().collect { event ->
-             [
-                title: event.booker.toString() + ' ' 
+        def events = Event.list().collect { event -> 
+            def holdPriority = event.holdPriority ? 'Hold' + ' ' +event.holdPriority?.toString() + ' ' : ""
+             [ 
+                title:  event.booker.toString() + ' ' + holdPriority
                 + event.eventTitle?.toString() + ' '     + event.bookings.toString(),
                 start: (event.eventDate.time / 1000).toLong(),
                 url : createLink(controller:'event', action:'show', id:event.id),
