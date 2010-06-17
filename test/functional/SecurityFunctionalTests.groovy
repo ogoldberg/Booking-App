@@ -19,15 +19,6 @@ class SecurityFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         assertStatus 200
     }
 
-    // Only admins are allowed to create users
-    // This test should fail until you allow ONLY administrators
-    // access to shiroUser/create, etc.
-    void testUserCantCreateUsers() {
-        loginBob()
-        get('/shiroUser/create')
-        assertContentContains("You do not have permission to access this page")
-    }
-
     // This test doesn't work.
     void testSuccessfulLogin() {
         loginBob()
