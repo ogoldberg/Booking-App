@@ -9,7 +9,7 @@
 
 </head>
 <body>
-  <div id="turfclubBanner" class="logo" align="left" align="top" ><a href="http://turfclub.net"><img src="${resource(dir:'images',file:'turfbanner.png')}" alt="Turf Club" border="0" /></a></div>
+  <!-- <div id="turfclubBanner" class="logo" align="left" align="top" ><a href="http://turfclub.net"><img src="${resource(dir:'images',file:'turfbanner.png')}" alt="Turf Club" border="0" /></a></div> -->
   <div id="menu">
     <nav:render/>
   </div>
