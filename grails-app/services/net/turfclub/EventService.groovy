@@ -137,13 +137,14 @@ class EventService {
  }
 
  def filterPublishable(eventList) {
-         def confEvents = []
-        eventList.each { 
-            if(it.bookings.find { booking -> booking.confirmed == true }) {
-                confEvents.add(it)
-            }
-            }
-         return confEvents
+     def publishableEvents = []
+     eventList.each { 
+         if(it.bookings.find { booking -> booking.confirmed == true } &&
+            it.holdPriority == null) {
+             publishableEvents.add(it)
+         }
+     }
+     return publishableEvents
  }
 
   def eventDataFeed(events) {
