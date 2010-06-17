@@ -63,7 +63,7 @@ action:"featuredBooking")}',
         <td valign="top" class="value">${fieldValue(bean: eventInstance, field: "booker")}</td>
 
         </tr>
-
+       
          <tr class="prop">
           <td valign="top" class="name">
             <label for="bookings"><g:message code="event.bookings.label" default="Bookings" /></label>
@@ -73,7 +73,7 @@ action:"featuredBooking")}',
             <ul>
               <g:each in="${eventInstance?.bookings?.sort{it.appearanceTime}.reverse()}" var="bookingInstance">
                 <li>
-                <g:link controller="booking" action="edit" id="${bookingInstance.id}">${bookingInstance?.encodeAsHTML()}</g:link>&nbsp;|
+                <g:link controller="booking" action="show" id="${bookingInstance.id}">${bookingInstance?.encodeAsHTML()}</g:link>&nbsp;|
                 <turfclub:formatTime date="${bookingInstance.appearanceTime}" />&nbsp;|
                 <label for="confirmed"><g:message code="booking.confirmed.label" default="Confirmed" /></label>
                 <g:checkBox class="confirmedSwitcher" bookingId="${bookingInstance.id}" name="confirmed" value="${bookingInstance.confirmed}" />
