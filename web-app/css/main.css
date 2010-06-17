@@ -49,7 +49,7 @@ select {
 }
 textarea {
 	width: 250px;
-	height: 150px;
+	height: 90px;
 	vertical-align: top;
 }
 
@@ -224,6 +224,9 @@ th.desc a {
     width: 400px;
 }
 
+.dialog1 {
+    float:left;
+}
 .dialog1 table {
     padding: 5px 0;
     margin-left: 15px;
