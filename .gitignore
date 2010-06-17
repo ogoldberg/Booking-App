@@ -18,3 +18,4 @@ web-app/images/mascot_real.png
 .DS_Store
 *~
 prodDb.*
+grails-app/conf/CloudFoundry.groovy
