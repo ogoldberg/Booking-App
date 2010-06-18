@@ -23,7 +23,7 @@ class EventController {
     def eventfeed = {
 
         def events = Event.list().collect { event -> 
-            def holdPriority = event.holdPriority ? 'Hold' + ' ' +event.holdPriority?.toString() + ' ' : ""
+            def holdPriority = (event.holdPriority > 0) ? 'Hold' + ' ' +event.holdPriority?.toString() + ' ' : ""
              [ 
                 title:  event.booker.toString() + ' ' + holdPriority
                 + event.eventTitle?.toString() + ' '     + event.bookings.toString(),
@@ -141,7 +141,7 @@ class EventController {
         // TODO this is a kludge, and doesn't conform to
         // the grails spec.
         if (params.holdPriority == "null") {
-            params.remove('holdPriority')
+            params.holdPriority = 0
         }
         def eventInstance = new Event(params)
         eventInstance.eventDate = 
@@ -182,8 +182,8 @@ class EventController {
     def update = {
         println "params inuupdate" + params
         // TODO this is a kludge, and the g:select is not working properly
-        if (params.holdPriority == "null") {
-            params.remove('holdPriority')
+        if (params.holdPriority == 'null') {
+            params.holdPriority = 0
         }
         def eventInstance = Event.get(params.id)
         if (eventInstance) {

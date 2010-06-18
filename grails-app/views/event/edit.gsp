@@ -78,7 +78,7 @@
                           name='holdPriority' 
                           from="${1..5}" 
                           value="${eventInstance?.holdPriority}"
-                          noSelection="${['null':'--No Hold--']}" />
+                          noSelection="${['0':'--No Hold--']}" />
                       </td>
                   </tr>
              <tr class="prop">
