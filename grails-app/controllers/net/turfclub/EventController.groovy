@@ -23,7 +23,7 @@ class EventController {
     def eventfeed = {
 
         def events = Event.list().collect { event -> 
-            def holdPriority = (event.holdPriority > 0) ? 'Hold' + ' ' +event.holdPriority?.toString() + ' ' : ""
+            def holdPriority = (event.holdPriority > 0) ? 'hold' + ' ' +event.holdPriority?.toString() + ' ' : ""
              [ 
                 title:  event.booker.toString() + ' ' + holdPriority
                 + event.eventTitle?.toString() + ' '     + event.bookings.toString(),
