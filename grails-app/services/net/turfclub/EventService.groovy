@@ -140,7 +140,7 @@ class EventService {
      def publishableEvents = []
      eventList.each { 
          if(it.bookings.find { booking -> booking.confirmed == true } &&
-            it.holdPriority > 0) {
+            (it.holdPriority == 0 || it.holdPriority == null)) {
              publishableEvents.add(it)
          }
      }
