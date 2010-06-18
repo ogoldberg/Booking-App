@@ -38,6 +38,7 @@
 	
 table.fc-header {
 	width: 100%;
+        border: none;
 	}
 	
 .fc-header-left {
@@ -58,16 +59,21 @@ table.fc-header {
 	}
 	
 .fc-header-right {
-	width: 25%;
+	width: 24%;
+        
 	}
 	
 .fc-header-right table {
 	float: right;
+        height: 100%
 	}
 	
 .fc-header-title {
-	margin-top: 0;
+	margin-top: 10;
         white-space: nowrap;
+        padding-bottom: 10px;
+        text-align:center;
+        font-size: 2.5em;
                
 	}
 	
