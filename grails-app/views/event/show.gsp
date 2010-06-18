@@ -168,7 +168,8 @@ action:"featuredBooking")}',
     <br />
     <ul type="none">
       <h1>Notes</h1>
-      <li>Confirmed bookings appear on the public facing website, while unconfirmed bookings do not.</li>
+      <li>Confirmed bookings will immediately be published to the public facing website, while unconfirmed bookings will not be published.</li>
+      <li>Bookings with a hold priority set above 0 will not be published.</li>
       <li>Appearance Time affects the order in which bands appear on the website (latest to earliest).</li>
       <li>The headliner will appear styled differently from the other bands.</li>
       <li>The finalized checkbox is just an internal flag to indicate that the booking of a show is complete.<br /> A finalized event will turn from orange to green on the calendar view.</li>
