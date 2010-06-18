@@ -24,9 +24,10 @@ class EventController {
 
         def events = Event.list().collect { event -> 
             def holdPriority = event.holdPriority ? 'Hold' + ' ' +event.holdPriority?.toString() + ' ' : ""
+            def eventTitle = event.eventTitle ? event.eventTitle?.toString() + ' ' : ""
              [ 
                 title:  event.booker.toString() + ' ' + holdPriority
-                + event.eventTitle?.toString() + ' '     + event.bookings.toString(),
+                + eventTitle + event.bookings.toString(),
                 start: (event.eventDate.time / 1000).toLong(),
                 url : createLink(controller:'event', action:'show', id:event.id),
                 className: event.finalized ? ["finalized"] : ""
