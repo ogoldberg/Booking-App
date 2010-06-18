@@ -42,16 +42,20 @@
           <calendar:resources lang="en" theme="green"/>
           <calendar:datePicker name="eventDate" precision="day" dateFormat="%m/%e/%Y" value="${eventInstance?.eventDate}"  />
           </td>
-          </tr>
+      </tr>
+
           <tr class="prop">
-    <td>
-        <label for="eventHour"><g:message code="event.eventDate.label" default="Time" /></label>
-    </td>
-    <td>
-        <turfclub:eventTimeSelectors date="${eventInstance.eventDate}" />
-    </td>
-</tr>
-          <tr class="prop">
+            <td>
+                <label for="eventHour"><g:message code="event.eventDate.label" default="Time" /></label>
+            </td>
+            <td>
+                <turfclub:eventTimeSelectors date="${eventInstance.eventDate}" />
+            </td>
+        </tr>
+
+      
+
+              <tr class="prop">
             <td valign="top" class="name">
               <label for="event"><g:message code="event.booker.label" default="Booker" /></label>
             </td>

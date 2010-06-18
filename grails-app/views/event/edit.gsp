@@ -57,6 +57,8 @@
           </td>
           </tr>
 
+         
+        
            <tr class="prop">
             <td valign="top" class="name">
               <label for="event"><g:message code="event.booker.label" default="Booker" /></label>

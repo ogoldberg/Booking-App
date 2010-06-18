@@ -56,6 +56,7 @@ action:"featuredBooking")}',
       <table>
         <tbody>
 
+           
 
         <tr class="prop">
            <td valign="top" class="name"><g:message code="event.booker.label" default="Booker" /></td>
