@@ -29,7 +29,7 @@ class EventController {
                 + event.eventTitle?.toString() + ' '     + event.bookings.toString(),
                 start: (event.eventDate.time / 1000).toLong(),
                 url : createLink(controller:'event', action:'show', id:event.id),
-                className: event.finalized ? ["finalized"] : ""
+                className: event.finalized ? ["finalized"] : "" || event.holdPriority > 0 ? ["hold"] : ""
             ]
         }
 

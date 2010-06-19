@@ -270,6 +270,13 @@ table.fc-header {
     color: white;           /* text color */
     }
 
+.hold,
+.fc-agenda .hold .fc-event-time,
+.hold a {
+    background-color: red; /* background color */
+    border-color: red;     /* border color */
+    color: white;           /* text color */
+    }
 	 
 .fc-event {
 	text-align: left;
