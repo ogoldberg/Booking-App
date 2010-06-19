@@ -4,7 +4,6 @@ import org.grails.comments.*
 class Event implements Commentable {
     ShiroUser booker
     Date eventDate
-   
     Boolean finalized
     String eventTitle = " "
     Double cover

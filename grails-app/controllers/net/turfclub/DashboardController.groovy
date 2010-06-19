@@ -13,5 +13,7 @@ class DashboardController {
 
         bookingInstanceList: Booking.list(params), bookingInstanceTotal: Booking.count()]
     }
+
+     
 }
 
