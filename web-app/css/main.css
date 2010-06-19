@@ -47,11 +47,11 @@ input, select, textarea {
 select {
    padding: 2px 2px 2px 0;
 }
-textarea {
-	width: 250px;
-	height: 90px;
-	vertical-align: top;
-}
+/* textarea { */
+	/* width: 250px; */
+	/* height: 90px; */
+	/* vertical-align: top; */
+/* } */
 
 input:focus, select:focus, textarea:focus {
     border: 1px solid #b2d1ff;

@@ -96,18 +96,16 @@
               <label for="eventTitle"><g:message code="event.eventTitle.label" default="Event Title" /></label>
             </td>
             <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'eventTitle', 'errors')}">
-          <g:textField name="eventTitle" value="${eventInstance?.eventTitle}" />
+          <g:textArea name="eventTitle" cols="30" rows="2" value="${eventInstance?.eventTitle}" />
           </td>
           </tr>
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="description"><g:message code="event.description.label" default="Description" /></label>
+              <label for="description"><g:message code="event.description.label" default="Description (optional)" /></label>
             </td>
             <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'description', 'errors')}">
-          <g:textArea name="description" cols="40" rows="5" value="${eventInstance?.description}" />
-          </td>
-          </tr>
+          <g:textArea name="description" cols="30" rows="4" value="${eventInstance?.description}" />
 
           <tr class="prop">
             <td valign="top" class="name">
