@@ -4,13 +4,15 @@ import org.grails.comments.*
 class Event implements Commentable {
     ShiroUser booker
     Date eventDate
-    Boolean finalized
+    Boolean finalized = false
     String eventTitle = " "
     Double cover
     String description
     Boolean featured = false
     String imageLink
     Integer holdPriority
+    Boolean multiDateEvent = false
+    Date endDate
     
     
     String toString() {
@@ -26,6 +28,7 @@ class Event implements Commentable {
     static constraints = {
         booker(nullable:false)
         eventDate(blank:false)
+        endDate(nullable:true, blank:true)
         imageLink(url:true, nullable:true, blank:true)
         featured()
         finalized(nullable:true)

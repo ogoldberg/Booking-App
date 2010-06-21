@@ -51,6 +51,34 @@
         <turfclub:eventTimeSelectors date="${eventInstance.eventDate}" />
     </td>
 </tr>
+
+ <tr class="prop">
+              <td valign="top" class="name">
+                <label for="multiDateEvent"><g:message code="event.multiDateEvent.label" default="Multi Date Event" /></label>
+              </td>
+              <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'multiDateEvent', 'errors')}">
+          <g:checkBox name="multiDateEvent" value="${eventInstance?.multiDateEvent}" />
+          </td>
+          </tr>
+
+ <tr class="prop">
+            <td valign="top" class="name">
+              <label for="date"><g:message code="event.endDate.label" default="End Date" /></label>
+            </td>
+            <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'endDate', 'errors')}">
+          <calendar:resources lang="en" theme="green"/>
+          <calendar:datePicker name="endDate" precision="day" dateFormat="%m/%e/%Y" value="${eventInstance?.endDate}"  />
+          </td>
+          </tr>
+          <tr class="prop">
+    <td>
+        <label for="eventHour"><g:message code="event.endDate.label" default="Time" /></label>
+    </td>
+    <td>
+        <turfclub:eventTimeSelectors date="${eventInstance.endDate}" />
+    </td>
+</tr>
+
           <tr class="prop">
             <td valign="top" class="name">
               <label for="event"><g:message code="event.booker.label" default="Booker" /></label>
