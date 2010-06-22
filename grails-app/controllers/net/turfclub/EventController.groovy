@@ -37,6 +37,15 @@ class EventController {
         render events as JSON
     }
 
+    def calendar = {
+        def eventInstanceList = Event.list()
+        def eventInstance
+        if (params.eventId) {
+            eventInstance = Event.get(params.eventId)
+        }
+        [ eventInstanceList : eventInstanceList, eventInstance : eventInstance ]
+    }
+
     def todaysEvent = {
 
         def todaysHtml = ''

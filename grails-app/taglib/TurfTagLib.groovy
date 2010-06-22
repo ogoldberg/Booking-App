@@ -87,4 +87,11 @@ static namespace = "turfclub"
             out << output 
         }
     }
+
+     def calendarLink = { attrs ->
+        def s = attrs['event']
+        if (s) {
+            out << g.link(controller:'event', action:'calendar', params: [eventId:s.id]) { ' Show in Calendar ' }
+        }
+    }
 }

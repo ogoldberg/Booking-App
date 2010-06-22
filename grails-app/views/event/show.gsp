@@ -49,6 +49,7 @@ action:"featuredBooking")}',
   </div>
   <div class="body">
       <h1><turfclub:formatDate date="${eventInstance.eventDate}" /></h1> 
+       <turfclub:calendarLink event="${ eventInstance }" />
     <g:if test="${flash.message}">
       <div class="message">${flash.message}</div>
     </g:if>
