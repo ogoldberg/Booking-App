@@ -21,11 +21,11 @@
 
     $('#calendar').fullCalendar({
             aspectRatio: 2,
-    
-    events: "${createLink(controller:'show', action:'eventData')}",
 
-        // put your options and callbacks here
-    dayClick: function(date, allDay, jsEvent, view) {
+        // put your options and callbacks here    
+        events: "${createLink(controller:'event', action:'eventfeed')}",
+        
+        dayClick: function(date, allDay, jsEvent, view) {
 
         var clicked_date = date.getDate();
 
