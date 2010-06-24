@@ -129,8 +129,7 @@ class EventService {
 
  def featuredEvents() {
     def futureEvents = futureEvents() 
-    def featuredEvents = futureEvents.findAllByGreaterThan(todaysEvent) {
-         
+    def featuredEvents = futureEvents.findAll {
         it.featured == true
     }
 
