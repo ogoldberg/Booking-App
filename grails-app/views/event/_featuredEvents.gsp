@@ -33,7 +33,7 @@
         <span class="eventtitle">
             ${thisEvent.event.eventTitle}
         </span>
-       
+        <br /> 
         <!--<div class="date"><turfclub:formatFeedDate date="${thisEvent.event.eventDate}" /></div> -->
        <span rel="v:url" property="v:summary"> 
         <g:each var="h" in="${thisEvent.headliners}">
