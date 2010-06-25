@@ -50,7 +50,6 @@ class EventController {
 
         def todaysHtml = ''
         def todaysEventsAndBookings = eventService.todaysEventsAndBookings()
-        println todaysEventsAndBookings
 
         if (todaysEventsAndBookings?.size() > 0) {
 
@@ -67,15 +66,19 @@ class EventController {
             ]
         ]
 
-        def output =  "${params.callback}(${data as JSON})"
-        render output
+        if (params.callback) {
+            // User wants JSONP
+            render "${params.callback}(${data as JSON})"
+        }
+        else {
+            render data as JSON
+        }
 
     }
 
      def futureEvents = {
         def futureHtml = ''
         def futureEventsAndBookings = eventService.futureEventsAndBookings()
-        println futureEventsAndBookings
 
         if (futureEventsAndBookings?.size() > 0) {
 
@@ -92,8 +95,13 @@ class EventController {
             ]
         ]
 
-        def output =  "${params.callback}(${data as JSON})"
-        render output
+        if (params.callback) {
+            // User wants JSONP
+            render "${params.callback}(${data as JSON})"
+        }
+        else {
+            render data as JSON
+        }
 
     }
 
@@ -117,8 +125,13 @@ class EventController {
             ]
         ]
 
-        def output =  "${params.callback}(${data as JSON})"
-        render output
+        if (params.callback) {
+            // User wants JSONP
+            render "${params.callback}(${data as JSON})"
+        }
+        else {
+            render data as JSON
+        }
 
     }
 
