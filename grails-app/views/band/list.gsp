@@ -17,6 +17,7 @@
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
+            <g:render template="bandSearchForm" />
             <div class="list">
                 <table>
                     <thead>

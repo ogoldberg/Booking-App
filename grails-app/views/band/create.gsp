@@ -11,9 +11,10 @@
   <div class="nav">
     <span class="menuButton"><a class="home" href="${createLink(uri: '/')}">Home</a></span>
     <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
+    <g:render template="bandSearchForm" />
   </div>
   <div class="body">
-    <h1><g:message code="default.create.label" args="[entityName]" /></h1>
+    <h1><g:message code="default.create.label" args="[entityName]" /></h1>  
     <g:if test="${flash.message}">
       <div class="message">${flash.message}</div>
     </g:if>
@@ -24,6 +25,7 @@
     </g:hasErrors>
     <g:form action="save" method="post" >
       <div class="dialog">
+                
         <table>
           <tbody>
 

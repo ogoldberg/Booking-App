@@ -12,8 +12,22 @@ class BandController {
     }
 
     def list = {
-        params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [bandInstanceList: Band.listOrderByBandName(params), bandInstanceTotal: Band.count()]
+        def bandInstanceList
+        def bandInstanceTotal
+        println "params are: " + params
+        params.max = 10
+        if (params.q) {
+            def search = Band.search("*" + params.q + "*",
+                                [ offset:params.offset, max:params.max ] )
+                bandInstanceList = search.results
+                bandInstanceTotal = search.total            
+        }
+        else {
+            bandInstanceList = Band.list(params)
+            bandInstanceTotal = Band.count()
+        }
+        params.max = Math.min(params.max ? params.int('max') : 20, 100)
+        [ prevQuery:params.q, bandInstanceList: bandInstanceList, bandInstanceTotal: bandInstanceTotal ]
     }
 
     def bandNames = {

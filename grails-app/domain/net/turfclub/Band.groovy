@@ -13,9 +13,15 @@ class Band implements Commentable {
 
     String toString() {
        this.bandName
-    }    
+    }   
+
+    static mapping = {
+       sort "bandName"
+    }
     
     static hasMany = [bookings:Booking]
+
+    
 
     static constraints = {
         bandName(nullable:false, blank:false, unique:true)

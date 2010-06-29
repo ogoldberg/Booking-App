@@ -26,6 +26,7 @@
             <g:form method="post" >
                 <g:hiddenField name="id" value="${bandInstance?.id}" />
                 <g:hiddenField name="version" value="${bandInstance?.version}" />
+                        <g:render template="bandSearchForm" />
                 <div class="dialog">
                     <table>
                         <tbody>
@@ -94,7 +95,7 @@
                                     
 <ul>
 <g:each in="${bandInstance?.bookings?}" var="b">
-    <li><g:link controller="booking" action="show" id="${b.id}">${b?.encodeAsHTML()}</g:link></li>
+    <li><g:link controller="booking" action="show" id="${b.id}">${b?.event.encodeAsHTML()}</g:link></li>
 </g:each>
 </ul>
 <g:link controller="booking" action="create" params="['band.id': bandInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'booking.label', default: 'Booking')])}</g:link>
