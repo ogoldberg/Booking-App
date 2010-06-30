@@ -7,12 +7,11 @@
         <g:set var="entityName" value="${message(code: 'band.label', default: 'Band')}" />
         <title><g:message code="default.edit.label" args="[entityName]" /></title>
          <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-  <link rel="stylesheet" href="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.css" type="text/css" />
   <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.js"></script>
           <script>
   $(document).ready(function(){
     var data = "/turf/band/bandNames";
-    $("#bandSearchBox").autocomplete(data, { autoFill:true, minChars:1});
+    $("#bandSearchBox").autocomplete(data, { autoFill:false, minChars:1});
 
     $("foo").click(function(){
       var i=1;
