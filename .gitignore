@@ -19,3 +19,4 @@ web-app/images/mascot_real.png
 *~
 prodDb.*
 grails-app/conf/CloudFoundry.groovy
+grails-app/conf/DataSource.groovy
