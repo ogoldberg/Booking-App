@@ -26,8 +26,8 @@ environments {
 	production {
 		dataSource {
 			dbCreate = "update"
-            username = ""
-            password = ""
+            username = "foo"
+            password = "foo"
             url = "jdbc:mysql://dbmaster/turf"
 		}
 	}
