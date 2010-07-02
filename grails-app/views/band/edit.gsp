@@ -109,7 +109,10 @@
                                     
 <ul>
 <g:each in="${bandInstance?.bookings?}" var="b">
-    <li><g:link controller="booking" action="show" id="${b.id}">${b?.encodeAsHTML()}</g:link></li>
+
+<li><g:link controller="booking" action="show" id="${b.id}">${b?.event.encodeAsHTML()}</g:link></li>
+
+
 </g:each>
 </ul>
 <g:link controller="booking" action="create" params="['band.id': bandInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'booking.label', default: 'Booking')])}</g:link>
