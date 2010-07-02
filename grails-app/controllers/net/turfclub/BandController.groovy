@@ -71,6 +71,7 @@ class BandController {
     }
 
     def edit = {
+        println "U"
         def bandInstance = Band.get(params.id)
         if (!bandInstance) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'band.label', default: 'Band'), params.id])}"
@@ -100,6 +101,31 @@ class BandController {
             }
             else {
                 render(view: "edit", model: [bandInstance: bandInstance])
+            }
+        }
+        else {
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'band.label', default: 'Band'), params.id])}"
+            redirect(action: "list")
+        }
+    }
+     def delete = {
+        def bandInstance = Band.get(params.id)
+        println "I'm here"
+        if (bandInstance) {
+            if (bandInstance.bookings) {
+                flash.message = "You cannot delete a band that has bookings"
+                redirect(action: "show", id: params.id)
+            }
+            else {
+                try {
+                    bandInstance.delete(flush: true)
+                    flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'band.label', default: 'Band'), params.id])}"
+                    redirect(action: "list")
+                }
+                catch (org.springframework.dao.DataIntegrityViolationException e) {
+                    flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'band.label', default: 'Band'), params.id])}"
+                    redirect(action: "show", id: params.id)
+                }
             }
         }
         else {
