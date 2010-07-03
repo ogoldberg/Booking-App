@@ -55,14 +55,6 @@
                                 </td>
                             </tr>
                         
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="roles"><g:message code="shiroUser.roles.label" default="Roles" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: shiroUserInstance, field: 'roles', 'errors')}">
-                                    <g:select name="roles" from="${net.turfclub.ShiroRole.list()}" multiple="yes" optionKey="id" size="5" value="${shiroUserInstance?.roles}" />
-                                </td>
-                            </tr>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
@@ -73,24 +65,20 @@
                                 </td>
                             </tr>
                         
-                          <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="password">Password:</label>
-                                </td>
-                                <td valign="top" >
-                                    <g:passwordField name="password" />
-                                </td>
-                            </tr>
 
+                        
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="passwordConfirm">Password Confirm:</label>
+                                    <label for="activeUser"><g:message code="event.activeUser.label" default="Active" /></label>
                                 </td>
-                                <td valign="top" >
-                                    <g:passwordField name="passwordConfirm" />
+                                <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'activeUser', 'errors')}">
+                                    <g:checkBox name="activeUser" value="${shiroUserInstance?.activeUser}" />
+
+
+                                    
                                 </td>
-                            </tr> 
-                        
+
+                            </tr>
                         </tbody>
                     </table>
                 </div>

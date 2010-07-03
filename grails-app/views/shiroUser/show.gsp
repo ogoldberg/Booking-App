@@ -35,7 +35,12 @@
                             <td valign="top" class="value">${fieldValue(bean: shiroUserInstance, field: "username")}</td>
                             
                         </tr>
-                    
+                        <tr class="prop">
+                            <td valign="top" class="name"><g:message code="shiroUser.activeUser.label" default="Active?" /></td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean: shiroUserInstance, field: "activeUser")}</td>
+                            
+                        </tr>
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="shiroUser.events.label" default="Events" /></td>
                             
