@@ -31,7 +31,40 @@ class ShiroUserController {
     }
 
     def submitPassword = {
-        
+        def shiroUserInstance = ShiroUser.get(params.id)
+        if (shiroUserInstance) {
+            if (params.version) {
+                def version = params.version.toLong()
+                if (shiroUserInstance.version > version) {
+                    
+                    shiroUserInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'shiroUser.label', default: 'ShiroUser')] as Object[], "Another user has updated this ShiroUser while you were editing")
+                    render(view: "edit", model: [shiroUserInstance: shiroUserInstance])
+                    return
+                }
+            }
+            if (params.password) shiroUserInstance.password = params.password
+            if (params.passwordConfirm) shiroUserInstance.passwordConfirm = params.passwordConfirm
+
+            if (!shiroUserInstance.hasErrors() && shiroUserInstance.validate()) {
+                if (params.password) {
+                    // We know that the password and password confirm are equal
+                    // due to constraints in ShiroUser
+                    // Generate a new password hash, now that we're sure that
+                    // the user typed something in the password box
+                    shiroUserInstance.passwordHash = new Sha1Hash(shiroUserInstance.password).toHex()
+                }
+                shiroUserInstance.save()
+                flash.message = "Password changed for ShiroUser ${shiroUserInstance}"
+                redirect(action:show, params:[username:shiroUserInstance.username])
+            }
+            else {
+                render(view: "edit", model: [shiroUserInstance: shiroUserInstance])
+            }
+        }
+        else {
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'shiroUser.label', default: 'ShiroUser'), params.id])}"
+            redirect(action: "list")
+        }
     }
 
     def create = {
@@ -76,8 +109,10 @@ class ShiroUserController {
         }
     }
 
+    // Users cannot change the password through this controller action.
+    // Must use the submitPassword action.
     def update = {
-        println "Update " + params
+
         def shiroUserInstance = ShiroUser.get(params.id)
         if (shiroUserInstance) {
             if (params.version) {
@@ -89,21 +124,14 @@ class ShiroUserController {
                     return
                 }
             }
-            if (params.username) shiroUserInstance.username = params.username
-            if (params.password) shiroUserInstance.password = params.password
-            if (params.passwordConfirm) shiroUserInstance.passwordConfirm = params.passwordConfirm
-            println "Validating"
-            if (!shiroUserInstance.hasErrors() && shiroUserInstance.validate()) {
-            println "Validated!"
 
-                if (params.password) {
-                    // We know that the password and password confirm are equal
-                    // due to constraints in ShiroUser
-                    // Generate a new password hash, now that we're sure that
-                    // the user typed something in the password box
-                    shiroUserInstance.passwordHash = new Sha1Hash(shiroUserInstance.password).toHex()
-                }
-                shiroUserInstance.save()
+            shiroUserInstance.properties['username', 'activeUser'] = params
+
+            // kludge the password and password confirm to avoid validation errors.
+            shiroUserInstance.password = "smurf123"
+            shiroUserInstance.passwordConfirm = "smurf123"
+            if (!shiroUserInstance.hasErrors() && shiroUserInstance.validate()) {
+                shiroUserInstance.save(flush:true)
                 flash.message = "ShiroUser ${params.id} updated"
                 redirect(action:show, params:[username:shiroUserInstance.username])
             }
