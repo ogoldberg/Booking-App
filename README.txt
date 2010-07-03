@@ -1,3 +1,7 @@
+* Installation:
+
+  Be sure to copy DataSource.groovy.example to DataSource.groovy
+
 * Access event data using jQuery
 
 You can create a simple HTML page using something like the below example to
