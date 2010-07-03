@@ -19,6 +19,21 @@ class ShiroUserController {
         [shiroUserInstanceList: ShiroUser.listOrderByUsername(params), shiroUserInstanceTotal: ShiroUser.count()]
     }
 
+    def changePassword = {
+        def shiroUserInstance = ShiroUser.get(params.id)
+        if (!shiroUserInstance) {
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'shiroUser.label', default: 'ShiroUser'), params.id])}"
+            redirect(action: "list")
+        }
+        else {
+            return [shiroUserInstance: shiroUserInstance]
+        }
+    }
+
+    def submitPassword = {
+        
+    }
+
     def create = {
         def shiroUserInstance = new ShiroUser()
         shiroUserInstance.properties = params
@@ -74,7 +89,9 @@ class ShiroUserController {
                     return
                 }
             }
-            shiroUserInstance.properties = params
+            if (params.username) shiroUserInstance.username = params.username
+            if (params.password) shiroUserInstance.password = params.password
+            if (params.passwordConfirm) shiroUserInstance.passwordConfirm = params.passwordConfirm
             println "Validating"
             if (!shiroUserInstance.hasErrors() && shiroUserInstance.validate()) {
             println "Validated!"
@@ -99,4 +116,30 @@ class ShiroUserController {
             redirect(action: "list")
         }
     }
+
+    def delete = {
+        def shiroUserInstance = ShiroUser.get(params.id)
+        if (shiroUserInstance) {
+            if (shiroUserInstance.events) {
+                flash.message = "You can't delete a user that has booked Events."
+                redirect(action: "show", params: [username:shiroUserInstance.username])
+            }
+            else {
+                try {
+                    shiroUserInstance.delete(flush: true)
+                    flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'shiroUser.label', default: 'ShiroUser'), params.id])}"
+                    redirect(action: "list")
+                }
+                catch (org.springframework.dao.DataIntegrityViolationException e) {
+                    flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'shiroUser.label', default: 'ShiroUser'), params.id])}"
+                    redirect(action: "show", params:[username:shiroUserInstance.username])
+                }
+            }
+        }
+        else {
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'shiroUser.label', default: 'ShiroUser'), params.id])}"
+            redirect(action: "list")
+        }
+    }
+
 }
