@@ -6,6 +6,8 @@ class ShiroUser {
     // passwordConfirm and password are transient - like hobos in the grails unisphere
     String password
     String passwordConfirm
+
+    boolean activeUser = true
     
     static hasMany = [ roles: ShiroRole, permissions: String, events: net.turfclub.Event ]
 
