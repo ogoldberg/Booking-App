@@ -20,7 +20,18 @@ class ShiroUserController {
     }
 
     def changePassword = {
-        render 'hello world'
+        def shiroUserInstance = ShiroUser.get(params.id)
+        if (!shiroUserInstance) {
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'shiroUser.label', default: 'ShiroUser'), params.id])}"
+            redirect(action: "list")
+        }
+        else {
+            return [shiroUserInstance: shiroUserInstance]
+        }
+    }
+
+    def submitPassword = {
+        
     }
 
     def create = {
@@ -78,7 +89,9 @@ class ShiroUserController {
                     return
                 }
             }
-            shiroUserInstance.properties = params
+            if (params.username) shiroUserInstance.username = params.username
+            if (params.password) shiroUserInstance.password = params.password
+            if (params.passwordConfirm) shiroUserInstance.passwordConfirm = params.passwordConfirm
             println "Validating"
             if (!shiroUserInstance.hasErrors() && shiroUserInstance.validate()) {
             println "Validated!"

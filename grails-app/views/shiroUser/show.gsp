@@ -77,6 +77,7 @@
                 <g:form>
                     <g:hiddenField name="id" value="${shiroUserInstance?.id}" />
                     <span class="button"><g:actionSubmit class="edit" action="edit" value="${message(code: 'default.button.edit.label', default: 'Edit')}" /></span>
+                    <span class="button"><g:actionSubmit class="edit" action="changePassword" value="Change Password" /></span>
                 </g:form>
             </div>
         </div>
