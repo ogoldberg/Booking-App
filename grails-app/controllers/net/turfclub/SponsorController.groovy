@@ -94,4 +94,29 @@ class SponsorController {
     }
      render sponsorList.join("\n")
 }
+ def delete = {
+        def sponsorInstance = Sponsor.get(params.id)
+        println "I'm here"
+        if (sponsorInstance) {
+            if (sponsorInstance.sponsorships) {
+                flash.message = "You cannot delete a sponsor that has sponsorships"
+                redirect(action: "show", id: params.id)
+            }
+            else {
+                try {
+                    sponsorInstance.delete(flush: true)
+                    flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'sponsor.label', default: 'Sponsor'), params.id])}"
+                    redirect(action: "list")
+                }
+                catch (org.springframework.dao.DataIntegrityViolationException e) {
+                    flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'sponsor.label', default: 'Sponsor'), params.id])}"
+                    redirect(action: "show", id: params.id)
+                }
+            }
+        }
+        else {
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'sponsor.label', default: 'Sponsor'), params.id])}"
+            redirect(action: "list")
+        }
+    }
 }
