@@ -116,4 +116,30 @@ class ShiroUserController {
             redirect(action: "list")
         }
     }
+
+    def delete = {
+        def shiroUserInstance = ShiroUser.get(params.id)
+        if (shiroUserInstance) {
+            if (shiroUserInstance.events) {
+                flash.message = "You can't delete a user that has booked Events."
+                redirect(action: "show", params: [username:shiroUserInstance.username])
+            }
+            else {
+                try {
+                    shiroUserInstance.delete(flush: true)
+                    flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'shiroUser.label', default: 'ShiroUser'), params.id])}"
+                    redirect(action: "list")
+                }
+                catch (org.springframework.dao.DataIntegrityViolationException e) {
+                    flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'shiroUser.label', default: 'ShiroUser'), params.id])}"
+                    redirect(action: "show", params:[username:shiroUserInstance.username])
+                }
+            }
+        }
+        else {
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'shiroUser.label', default: 'ShiroUser'), params.id])}"
+            redirect(action: "list")
+        }
+    }
+
 }
