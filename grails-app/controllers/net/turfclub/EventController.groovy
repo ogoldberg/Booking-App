@@ -3,9 +3,12 @@ import grails.converters.JSON
 import groovy.time.*
 
 class EventController {
+
+    
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
     def miscService
     def eventService
+    def userService
 
     def index = {
         redirect(action: "list", params: params)
@@ -152,7 +155,8 @@ class EventController {
         if (params.d) {
             eventInstance.eventDate=Date.parse("MM-dd-yyyy hh:mm", params.d + ' 21:00')
         }
-        return [eventInstance: eventInstance]
+        return [ eventInstance: eventInstance,
+                 activeBookers: userService.activeBookers() ]
 
     }
 
