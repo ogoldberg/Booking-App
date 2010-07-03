@@ -33,18 +33,18 @@ class BootStrap {
     def createAdminUser() {
         def adminRole = ShiroRole.findByName("Administrator")
         def adminUser = new ShiroUser(username: "admin", 
-        passwordHash: new Sha1Hash("admin0").toHex(),
-        password : 'admin0',
-        passwordConfirm : 'admin0',
-        )
-        	if (!adminUser.validate()) {
-			println "User didn't validate!"
-			println adminUser.errors.allErrors
-		}
-		else {
-			adminUser.save()
-			new ShiroRole(user: adminUser, role: adminRole).save()
-		}
+            passwordHash: new Sha1Hash("admin0").toHex(),
+            password : 'admin0',
+            passwordConfirm : 'admin0')
+
+        if (!adminUser.validate()) {
+            println "User didn't validate!"
+            println adminUser.errors.allErrors
+        }
+        else {
+            adminUser.save()
+            adminUser.addToRoles(ShiroRole.findByName("Administrator")).save()
+        }
         
     }
 
@@ -55,13 +55,13 @@ class BootStrap {
         passwordConfirm : 'admin0',
         passwordHash: new Sha1Hash("admin0").toHex())
         if (!bobUser.validate()) {
-			println "User didn't validate!"
-			println bobUser.errors.allErrors
-		}
-		else {
-			bobUser.save()
-			new ShiroRole(user: bobUser, role: userRole).save()
-		}
+            println "User didn't validate!"
+            println bobUser.errors.allErrors
+        }
+        else {
+            bobUser.save()
+            bobUser.addToRoles(ShiroRole.findByName("User")).save()
+        }
         
     }
 
@@ -95,7 +95,7 @@ class BootStrap {
 
     def createDummyEvents() {
         def e1 = new Event(
-            booker: ShiroUser.findByUsername("admin"),
+            booker: ShiroUser.findByUsername("bob"),
             eventDate: '4/25/2010',
             cover: 7
         )
