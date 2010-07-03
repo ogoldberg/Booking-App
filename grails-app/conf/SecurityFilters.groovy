@@ -19,7 +19,17 @@ class SecurityFilters {
             } 
         } 
 
-        adminOnlyForUserManagement(controller:"shiroUser", action:"changePassword") {
+        adminForManagingUsers(controller:"shiroUser", action:"edit|create|delete") {
+            before = {
+                accessControl {
+                     // Only admins
+                     role("Administrator") 
+
+                }
+            }
+        }
+
+        adminOrCurrentUserForChangingPassword(controller:"shiroUser", action:"changePassword") {
             before = {
                 accessControl {
                      // Only admins
