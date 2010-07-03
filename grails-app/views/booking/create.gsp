@@ -56,7 +56,7 @@
             <td valign="top" class="value ${hasErrors(bean: bookingInstance, field: 'band', 'errors')}">
               <label for="band"><g:message code="booking.band.label" default="Band" /></label>
             </td>
-            <td><input id="bandName" name="bandName"  />
+            <td><input id="bandName" value="${bookingInstance.band}" name="bandName"  />
             </td>
           </tr>
           <tr class="prop">
