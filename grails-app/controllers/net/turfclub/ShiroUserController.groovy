@@ -19,6 +19,10 @@ class ShiroUserController {
         [shiroUserInstanceList: ShiroUser.listOrderByUsername(params), shiroUserInstanceTotal: ShiroUser.count()]
     }
 
+    def changePassword = {
+        render 'hello world'
+    }
+
     def create = {
         def shiroUserInstance = new ShiroUser()
         shiroUserInstance.properties = params
