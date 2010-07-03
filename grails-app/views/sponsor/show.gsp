@@ -79,7 +79,7 @@
                         <ul>
                             <g:each in="${sponsorInstance?.sponsorships?}" var="s">
                             <li><g:link controller="sponsorship" 
-                            action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></li>
+                            action="show" id="${s.id}">${s?.event.encodeAsHTML()}</g:link></li>
                             </g:each>
                         </ul>
                         <g:link controller="sponsorship" action="create" 
@@ -96,6 +96,7 @@
                 <g:form>
                     <g:hiddenField name="id" value="${sponsorInstance?.id}" />
                     <span class="button"><g:actionSubmit class="edit" action="edit" value="${message(code: 'default.button.edit.label', default: 'Edit')}" /></span>
+                    <span class="button"><g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" /></span>
                 </g:form>
             </div>
         </div>
