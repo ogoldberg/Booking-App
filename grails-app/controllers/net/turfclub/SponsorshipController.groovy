@@ -13,6 +13,8 @@ class SponsorshipController {
     }
 
     def create = {
+        println "params are" + params
+        def sponsorInstance = Sponsor.get(params.id)
         def sponsorshipInstance = new Sponsorship()
         sponsorshipInstance.properties = params
         return [sponsorshipInstance: sponsorshipInstance]

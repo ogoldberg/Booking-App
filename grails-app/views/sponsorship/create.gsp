@@ -57,7 +57,7 @@
             <td valign="top" class="name">
               <label for="sponsor"><g:message code="sponsorship.sponsor.label" default="Sponsor" /></label>
             </td>
-            <td><input id="sponsor" name="sponsor"  />
+            <td><input id="sponsor" value="${sponsorshipInstance.sponsor}" name="sponsor"  />
             </td>
           </tr>
 
