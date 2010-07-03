@@ -9,7 +9,7 @@ class ShiroUser {
     
     static hasMany = [ roles: ShiroRole, permissions: String, events: net.turfclub.Event ]
 
-    static tranisents = [ 'password', 'passwordConfirm']
+    static transients = [ 'password', 'passwordConfirm']
 
     static constraints = {
         username(nullable: false, blank: false, unique:true)
