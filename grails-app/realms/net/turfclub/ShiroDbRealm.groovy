@@ -15,6 +15,7 @@ class ShiroDbRealm {
         log.info "Attempting to authenticate ${authToken.username} in DB realm..."
         def username = authToken.username
 
+        
         // Null username is invalid
         if (username == null) {
             throw new AccountException("Null usernames are not allowed by this realm.")
@@ -37,6 +38,13 @@ class ShiroDbRealm {
             log.info "Invalid password (DB realm)"
             throw new IncorrectCredentialsException("Invalid password for user '${username}'")
         }
+
+        // User must also be "active"
+        if (!user.activeUser) {
+            log.info "Inactive user trying to log in: ${user}"
+            throw new IncorrectCredentialsException("Inactive user trying to log in: '${user}'")
+        }
+
 
         return account
     }
