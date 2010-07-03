@@ -5,7 +5,6 @@ class UserService {
     boolean transactional = true
 
     def activeBookers() {
-        return ShiroUser.findByActive(true)
-
+        return ShiroUser.findAllByActiveUser(true)
     }
 }
