@@ -6,9 +6,9 @@
     <meta name="layout" content="main" />
   <g:set var="entityName" value="${message(code: 'booking.label', default: 'Booking')}" />
   <title><g:message code="default.edit.label" args="[entityName]" /></title>
-   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-  <link rel="stylesheet" href="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.css" type="text/css" />
-  <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.js"></script>
+  <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'jquery.autocomplete.css')}" />
+  <g:javascript src="jquery.js" />
+  <g:javascript src="jquery.autocomplete.js" />
   <script>
   $(document).ready(function(){
     var data = "/turf/band/bandNames";
