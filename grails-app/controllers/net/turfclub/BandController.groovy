@@ -34,7 +34,7 @@ class BandController {
         println "band names params" + params
         println "I'm being called" + new Date()
         println "letter is " + params["q"]
-        def bandList = Band.findByBandNameIlike(params.q +"%").collect {
+        def bandList = Band.findAllByBandNameIlike(params.q +"%").collect {
             it.bandName
         }
 
