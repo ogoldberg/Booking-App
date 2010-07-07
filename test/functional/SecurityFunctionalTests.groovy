@@ -1,22 +1,32 @@
 class SecurityFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 
-    def loginAdmin() {
+    def createUser(userName) {
+        loginAdmin()
+        click('User')
+        click('New User')
+        form {
+            username = userName
+            password = '1234567'
+            passwordConfirm = '1234567'
+            click 'Create'
+        }
+    }
+
+    def loginAs(user, pass) {
         get('/auth/login')
         form {
-            username = 'admin'
-            password = 'admin0'
+            username = user
+            password = pass
             click "Sign in"
         }
     }
+
+    def loginAdmin() {
+        loginAs("admin", "admin0")
+    }
     
     def loginBob() {
-        get('/auth/login')
-        form {
-            username = 'bob'
-            password = 'admin0'
-            click "Sign in"
-        }
-        assertStatus 200
+        loginAs("bob", "admin0")
     }
 
     // This test doesn't work.
