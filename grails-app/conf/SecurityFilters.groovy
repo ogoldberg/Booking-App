@@ -29,7 +29,7 @@ class SecurityFilters {
             }
         }
 
-        adminOrCurrentUserForChangingPassword(controller:"shiroUser", action:"changePassword") {
+        adminOrCurrentUserForChangingPassword(controller:"shiroUser", action:"changePassword|submitPassword") {
             before = {
                 accessControl {
                      // Only admins
