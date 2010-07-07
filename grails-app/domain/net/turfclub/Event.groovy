@@ -21,7 +21,10 @@ class Event implements Commentable {
 
     static mapping = {
         bookings sort: "appearanceTime"
+        bookings cascade:"all,delete-orphan"
+        sponsorships cascade:"all,delete-orphan"
     }
+    
 
     static constraints = {
         booker(nullable:false)
