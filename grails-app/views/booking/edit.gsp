@@ -4,11 +4,11 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="layout" content="main" />
-  <g:set var="entityName" value="${message(code: 'booking.label', default: 'Booking')}" />
-  <title><g:message code="default.edit.label" args="[entityName]" /></title>
-  <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'jquery.autocomplete.css')}" />
-  <g:javascript src="jquery.js" />
-  <g:javascript src="jquery.autocomplete.js" />
+    <g:set var="entityName" value="${message(code: 'booking.label', default: 'Booking')}" />
+    <title><g:message code="default.edit.label" args="[entityName]" /></title>
+    <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'jquery.autocomplete.css')}" />
+    <g:javascript src="jquery.js" />
+    <g:javascript src="jquery.autocomplete.js" />
   <script>
   $(document).ready(function(){
     var data = "/turf/band/bandNames";

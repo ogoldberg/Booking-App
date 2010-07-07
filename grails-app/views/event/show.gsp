@@ -2,44 +2,31 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <g:set var="entityName" value="${message(code: 'event.label', default: 'Event')}" />
-  <title><g:message code="default.show.label" args="[entityName]" /></title>
- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-  <link rel="stylesheet" href="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.css" type="text/css" />
-  <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.js"></script>
-  <script>
-  $(document).ready(function(){
-    var data = "/turf/band/bandNames";
-    $("#bandName").autocomplete(data, { autoFill:true, minChars:1});
+    <g:set var="entityName" value="${message(code: 'event.label', default: 'Event')}" />
+    <title><g:message code="default.show.label" args="[entityName]" /></title>
 
-    $("foo").click(function(){
-      var i=1;
-      alert ($("#bandName").current);
-      alert ($("#bandName").emptyList);
-  });
-  
-  $('.confirmedSwitcher').click(function() {
-       $.post('${createLink(controller:"event",
-action:"confirmBooking")}',
-              {'confirmed' : $(this).attr('checked'), 'id' : $(this).attr("bookingId") });
+    <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'jquery.autocomplete.css')}" />
+    <g:javascript src="jquery.js" />
+    <g:javascript src="jquery.autocomplete.js" />
+    <script>
+        $(document).ready(function(){
+            var data = "/turf/band/bandNames";
+            $("#bandName").autocomplete(data, { autoFill:true, minChars:1});
+
+            $('.finalizedSwitcher').click(function() {
+                $.post('${createLink(controller:"event",
+                    action:"finalizeBooking")}',
+                    {'finalized' : $(this).attr('checked'), 'id' : $(this).attr("eventId") });
+                });
+
+            $('.featuredSwitcher').click(function() {
+                $.post('${createLink(controller:"event",
+                    action:"featuredBooking")}',
+                    {'featured' : $(this).attr('checked'), 'id' : $(this).attr("eventId") });
+                });
             });
-
-  $('.finalizedSwitcher').click(function() {
-       $.post('${createLink(controller:"event",
-action:"finalizeBooking")}',
-              {'finalized' : $(this).attr('checked'), 'id' : $(this).attr("eventId") });
-              });
-
- $('.featuredSwitcher').click(function() {
-       $.post('${createLink(controller:"event",
-action:"featuredBooking")}',
-              {'featured' : $(this).attr('checked'), 'id' : $(this).attr("eventId") });
-            });
-      });
-
-      
-  </script>
-  <meta name="layout" content="main" />
+    </script>
+    <meta name="layout" content="main" />
 </head>
 <body>
   <div class="nav">
