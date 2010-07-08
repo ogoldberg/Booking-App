@@ -9,7 +9,7 @@
         <g:else>
             Updated by ${noteInstance.poster} on
         </g:else>
-        <enrollio:formatDate date="${noteInstance.lastUpdated}" />
+        <turfclub:formatDate date="${noteInstance.lastUpdated}" />
         <a href="#" class="editNote" editNoteId="${noteInstance.id}">Edit</a>&nbsp;
         <a href="#" class="saveNote" saveNoteId="${noteInstance.id}" style="display:none">Save</a>&nbsp;
         <a href="#" class="cancelNote" cancelNoteId="${noteInstance.id}" style="display:none">Cancel</a>
