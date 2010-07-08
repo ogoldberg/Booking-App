@@ -255,7 +255,7 @@ th.desc a {
     font-size: 10px;
     margin-top: 5px;
     overflow: hidden;
-    padding: 0;
+    padding: 0; 
 }
 
 .buttons input {
@@ -354,3 +354,6 @@ th.desc a {
 	color: white;
 }
 
+.checkboxes {
+    float:right;
+}

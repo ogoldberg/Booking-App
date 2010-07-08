@@ -25,15 +25,8 @@
     <g:form action="save" method="post" >
       <div class="dialog">
         <table>
-          <tbody>
-            <tr class="prop">
-              <td valign="top" class="name">
-                <label for="finalized"><g:message code="event.finalized.label" default="Finalized" /></label>
-              </td>
-              <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'finalized', 'errors')}">
-          <g:checkBox name="finalized" value="${eventInstance?.finalized}" />
-          </td>
-          </tr>
+            <tbody>
+                <tr><th>*Required</th> <td>Click "Create" to start adding bands</td></tr>
           <tr class="prop">
             <td valign="top" class="name">
               <label for="date"><g:message code="event.date.label" default="Date *" /></label>
@@ -41,23 +34,21 @@
             <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'eventDate', 'errors')}">
           <calendar:resources lang="en" theme="green"/>
           <calendar:datePicker name="eventDate" precision="day" dateFormat="%m/%e/%Y" value="${eventInstance?.eventDate}"  />
-          </td>
-      </tr>
+          </td>        
 
-          <tr class="prop">
-            <td>
-                <label for="eventHour"><g:message code="event.eventDate.label" default="Time" /></label>
+      </tr>      
+      <tr class="prop">
+        <td>
+                <label for="eventHour"><g:message code="event.eventDate.label" default="Time *" /></label>
             </td>
             <td>
                 <turfclub:eventTimeSelectors date="${eventInstance.eventDate}" />
             </td>
-        </tr>
-
-      
+      </tr>
 
               <tr class="prop">
             <td valign="top" class="name">
-              <label for="event"><g:message code="event.booker.label" default="Booker" /></label>
+              <label for="event"><g:message code="event.booker.label" default="Booker *" /></label>
             </td>
             <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'booker', 'errors')}">
           <g:select name="booker.id"
@@ -65,47 +56,59 @@
                     optionKey="id"
                     optionValue="username"
                     value="${eventInstance?.booker?.id}"  />
-          </td>
-      </tr>
-       <tr class="prop">
-            <td valign="top" class="name">
-              <label for="holdPriority">Hold Priority</label>
-          </td>
-            <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'holdPriority', 'errors')}">
-            <g:select id="holdPriority" 
-                          name='holdPriority' 
-                          from="${1..5}" 
-                          value="${eventInstance?.holdPriority}"
-                          noSelection="${['0':'--No Hold--']}" />
-                      </td>
-                  </tr>
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="cover">Cover $</label>
-            </td>
-            <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'cover', 'errors')}">
-          <g:textField name="cover" align="right" value="${eventInstance?.cover}" />
-          </td>
-          </tr>
-           <tr class="prop">
-            <td valign="top" class="name">
-              <label for="imageLink"><g:message code="event.imageLink.label" default="Image Link" /></label>
-            </td>
-            <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'imageLink', 'errors')}">
-          <g:textField name="imageLink" value="${eventInstance?.imageLink}" />
-          </td>
-          </tr>
+                </td>               
+        </tr>
+  </tbody>
+  </table>
 
-           <tr class="prop">
-              <td valign="top" class="name">
+  <table>
+      <tbody>
+      <tr class="prop">
+       <td valign="top" class="name">
+                <label for="finalized"><g:message code="event.finalized.label" default="Finalized" /></label>
+              </td>
+              <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'finalized', 'errors')}">
+          <g:checkBox name="finalized" value="${eventInstance?.finalized}" />
+      </td>
+       <td valign="top" class="name">
                 <label for="featured"><g:message code="event.featured.label" default="Featured" /></label>
               </td>
               <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'featured', 'errors')}">
           <g:checkBox name="featured" value="${eventInstance?.featured}" />
           </td>
-          </tr>
+       <td class="name">
+              <label for="holdPriority">Hold Priority</label>
+          </td>
+            <td class="value ${hasErrors(bean: eventInstance, field: 'holdPriority', 'errors')}">
+            <g:select id="holdPriority" 
+                          name='holdPriority' 
+                          from="${1..5}" 
+                          value="${eventInstance?.holdPriority}"
+                          noSelection="${['0':'--No Hold--']}" />
+                  </td>
+              </tr>
+              </tbody>
+          </table>
 
-          <tr class="prop">
+          <table class="dialog1">
+              <tbody>
+   <tr class="prop">
+            <td valign="top" class="name">
+              <label for="cover">Cover $</label>
+          </td>
+            <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'cover', 'errors')}">
+          <g:textField name="cover" align="right" value="${eventInstance?.cover}" />
+      </td>
+      </tr>
+           <tr class="prop">
+       <td valign="top" class="name">
+              <label for="imageLink"><g:message code="event.imageLink.label" default="Image Link" /></label>
+            </td>
+            <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'imageLink', 'errors')}">
+          <g:textField name="imageLink" value="${eventInstance?.imageLink}" />
+          </td>
+      </tr>
+       <tr class="prop">
             <td valign="top" class="name">
               <label for="eventTitle"><g:message code="event.eventTitle.label" default="Event Title (optional)" /></label>
             </td>
@@ -122,7 +125,6 @@
           <g:textArea name="description" cols="30" rows="4" value="${eventInstance?.description}" />
           </td>
           </tr>
-
           </tbody>
         </table>
       </div>
@@ -130,6 +132,7 @@
         <span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" /></span>
       </div>
     </g:form>
+    <div class="dialog0"></div>
   </div>
 </body>
 </html>

@@ -10,7 +10,7 @@
     <script>
         $(document).ready(function(){
             var data = "/turf/band/bandNames";
-            $("#bandName").autocomplete(data, { autoFill:true, minChars:1});
+            $("#bandName").autocomplete(data, { autoFill:false, minChars:1});
 
             $('.finalizedSwitcher').click(function() {
                 $.post('${createLink(controller:"event",
@@ -35,7 +35,6 @@
   </div>
   <div class="body">
       <h1><turfclub:formatDate date="${eventInstance.eventDate}" /></h1> 
-       <turfclub:calendarLink event="${ eventInstance }" />
     <g:if test="${flash.message}">
       <div class="message">${flash.message}</div>
     </g:if>
@@ -148,6 +147,7 @@
         <g:hiddenField name="id" value="${eventInstance?.id}" />
         <span class="button"><g:actionSubmit class="edit" action="edit" value="${message(code: 'default.button.edit.label', default: 'Edit')}" /></span>
         <span class="button"><g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" /></span>
+        <turfclub:calendarLink event="${ eventInstance }" />
       </g:form>
     </div>
   </div>
