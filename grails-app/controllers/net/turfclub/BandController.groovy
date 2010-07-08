@@ -3,6 +3,7 @@ import grails.converters.JSON
 
 class BandController {
 
+    def userService
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
     static navigation = [
         order:2
@@ -131,6 +132,40 @@ class BandController {
         else {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'band.label', default: 'Band'), params.id])}"
             redirect(action: "list")
+        }
+    }
+
+     def addNote = {
+        def bandInstance = Band.get( params.id )
+
+        if(!bandInstance) {
+            flash.message = "Band not found with id ${params.id}"
+            redirect(action:list)
+        }
+        else {
+            if (params.noteText) {
+                bandInstance.addComment(userService.loggedInUser(), params.noteText)
+                bandInstance.save()
+                flash.message = "Note saved."
+            }
+            else {
+                flash.message = "Blank notes are not allowed.  Meow."
+            }
+        
+        }
+        redirect(action:'show', id:bandInstance.id)
+    }
+
+    def updateNote = {
+        def noteInstance = Comment.get( params.id )
+        if (!noteInstance) {
+            render "Note not found with id: " + params.id
+        }
+        else {
+            noteInstance.body = params.noteText
+            noteInstance.posterId = userService.loggedInUser()?.id
+            noteInstance.save()
+            render(template:"/common/showNote", model:[noteInstance:noteInstance]);
         }
     }
 }

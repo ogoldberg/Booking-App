@@ -6,6 +6,70 @@
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'band.label', default: 'Band')}" />
         <title><g:message code="default.edit.label" args="[entityName]" /></title>
+        <g:javascript src="jquery-1/4/2/js" />
+        <script>
+         $(".editNote").click(function() {
+                      var noteId = $( this ).attr( 'editNoteId' );
+                      var noteElement=$( "[noteId=" + noteId + "]");
+                      var noteText = noteElement.text().trim();
+                      
+                      noteElement.html(
+                          '<input noteTextId="' + noteId + '" ' +
+                          'value="' + noteText + '" />'
+                      );
+
+                      // register an event handler to trap ENTER key
+                      // which will send the updated note
+                      $('[noteTextId=' + noteId + ']').keydown(function(event) {
+                        if (event.keyCode == '13') {
+                            $("[[saveNoteId=" + noteId + "]").click();
+                            event.preventDefault();
+                         }
+                      });
+
+                      toggleNoteLinks(noteId);
+                      
+                      // Don't actually trigger the href
+                      return false;
+                      
+                  });
+
+                  $(".saveNote").click(function() {
+                      var noteId = $( this ).attr( 'saveNoteId' );
+                      var noteElement=$( "[noteTextId=" + noteId + "]");
+                      var noteText = noteElement.val().trim();
+                      toggleNoteLinks(noteId);
+
+                      $.ajax({
+                          url:'${createLink(controller:"contact", action:"updateNote")}',
+                          data:  { 'noteText' : noteText, 'id' : noteId },
+                          success: function(msg) {
+                              $("[noteDiv=" + noteId + "]").replaceWith(msg)
+                          }});
+                      // Don't actually trigger the href
+                      return false;
+                  });
+
+                  $(".cancelNote").click(function() {
+                      var noteId = $( this ).attr( 'cancelNoteId' );
+                      var noteText = $( "[origNoteText=" + noteId + "]").val().trim();
+                      
+                      $( "[noteId=" + noteId + "]").text(noteText);
+
+                      toggleNoteLinks(noteId);
+
+                      // Don't actually trigger the href
+                      return false;
+                  });
+
+                  function toggleNoteLinks(noteId) {
+                      $("[editNoteId=" + noteId + "]").toggle();
+                      $("[cancelNoteId=" + noteId + "]").toggle();
+                      $("[saveNoteId=" + noteId + "]").toggle();
+                  }
+
+                  });
+              </script>
     </head>
     <body>
         <div class="nav">
@@ -74,18 +138,6 @@
                                     <g:textField name="contact" value="${bandInstance?.contact}" />
                                 </td>
                             </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="notes"><g:message code="band.notes.label" default="Notes" /></label>
-                                </td>
-                                <td><comments:render bean="${bandInstance}" /><br />
-                <comments:each bean="${bandInstance}">
-                      ${comment.body} - Posted by ${comment.poster}
-          </comments:each>
-          </td>
-                            </tr>
-                        
                             <tr class="prop">
                                 <td valign="top" class="name">
                                   <label for="bookings"><g:message code="band.bookings.label" default="Bookings" /></label>
@@ -115,7 +167,28 @@
                         onclick="return confirm('${message(code: 'default.button.delete.confirm.message', 
                         default: 'Are you sure?')}');" /></span>
                 </div>
-            </g:form>
+                </g:form>
+                <g:javascript src="notes.js" />
+                 <div class="infobox">
+                        <h3 class="reallynow">Notes:</h3><g:form id="${bandInstance.id}" controller="band" action="addNote">
+                        <table>
+                            <tbody>
+                                <comments:each bean="${bandInstance}">
+                                    <g:render template="/common/showNote"
+                                              model="[ noteInstance : comment ]"/>
+                                </comments:each>
+                                <tr>
+                                    <td>
+                                    <g:textField name="noteText" />
+                                </td>
+                                <td>
+                                    <input type="submit" value="Add Note" />
+                                    </td>
+                                      </tr>
+                            </tbody>
+                        </table></g:form>
+                    </div>
+                    </div>
         </div>
     </body>
 </html>

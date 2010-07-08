@@ -18,10 +18,12 @@
       alert ($("#bandSearchBox").current);
       alert ($("#bandSearchBox").emptyList);
       });
-   });
+   }); 
   </script>
+  
 </head>
 <body>
+     <g:javascript src="notes.js" />
   <div class="nav">
     <span class="menuButton"><a class="home" href="${createLink(uri: '/')}">Home</a></span>
     <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
@@ -79,16 +81,7 @@
 
         </tr>
 
-        <tr class="prop">
-          <td valign="top" class="name"><g:message code="band.notes.label" default="Notes" /></td>
-
-       <td><comments:render bean="${bandInstance}" /><br />
-                <comments:each bean="${bandInstance}">
-                      ${comment.body} - Posted by ${comment.poster}
-          </comments:each>
-          </td>
-
-        </tr>
+        
 
 
 
@@ -119,6 +112,26 @@
         <span class="button"><g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" /></span>
       </g:form>
     </div>
+     <div class="infobox">
+                        <h3 class="reallynow">Notes:</h3><g:form id="${bandInstance.id}" controller="band" action="addNote">
+                        <table>
+                            <tbody>
+                                <comments:each bean="${bandInstance}">
+                                    <g:render template="/common/showNote"
+                                              model="[ noteInstance : comment ]"/>
+                                </comments:each>
+                                <tr>
+                                    <td>
+                                    <g:textField name="noteText" />
+                                </td>
+                                <td>
+                                    <input type="submit" value="Add Note" />
+                                    </td>
+                                      </tr>
+                            </tbody>
+                        </table></g:form>
+                    </div>
+                    </div>
   </div>
 </body>
 </html>
