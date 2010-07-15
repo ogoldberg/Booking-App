@@ -12,6 +12,13 @@
             var data = "/turf/band/bandNames";
             $("#bandName").autocomplete(data, { autoFill:false, minChars:1});
 
+            $('.confirmedSwitcher').click(function() {
+                $.post('${createLink(controller:"event",
+                    action:"confirmBooking")}',
+                    {'confirmed' : $(this).attr('checked'), 'id' : $(this).attr("bookingId") });
+                });    
+
+            
             $('.finalizedSwitcher').click(function() {
                 $.post('${createLink(controller:"event",
                     action:"finalizeBooking")}',
@@ -22,7 +29,7 @@
                 $.post('${createLink(controller:"event",
                     action:"featuredBooking")}',
                     {'featured' : $(this).attr('checked'), 'id' : $(this).attr("eventId") });
-                });
+                    });
             });
     </script>
     <meta name="layout" content="main" />
