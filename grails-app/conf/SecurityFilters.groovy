@@ -12,7 +12,8 @@ class SecurityFilters {
                 if (controllerName == "event"
                         && (actionName == "todaysEvent"
                             || actionName == "futureEvents"
-                            || actionName == "featuredEvents")) {
+                            || actionName == "featuredEvents"
+                            || actionName == "pastEvents")) {
                     return true
                 }
                 accessControl { true } 
