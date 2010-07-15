@@ -7,10 +7,12 @@ class Event implements Commentable {
     Boolean finalized
     String eventTitle = " "
     Double cover
+    Double advancePrice
     String description
     Boolean featured = false
     String imageLink
     Integer holdPriority = 0
+    AgeRestriction ageRestriction
     
     
     String toString() {
@@ -29,7 +31,6 @@ class Event implements Commentable {
     static constraints = {
         booker(nullable:false)
         eventDate(blank:false)
-     
         imageLink(url:true, nullable:true, blank:true)
         featured()
         finalized(nullable:true)
@@ -37,5 +38,7 @@ class Event implements Commentable {
         description(nullable:true, maxSize:2000)
         cover(nullable:true, blank:true)
         holdPriority(nullable:true, blank:true)
+        advancePrice(nullable:true, blank:true)
+        ageRestriction(nullable:true, blank:true)
     }
 }

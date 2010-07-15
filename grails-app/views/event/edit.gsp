@@ -115,6 +115,25 @@
           <g:textField name="cover" value="${eventInstance?.cover}" />
           </td>
           </tr>
+
+             <tr class="prop">
+            <td valign="top" class="name">
+              <label for="advancePrice">Advance Price $</label>
+          </td>
+            <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'advancePrice', 'errors')}">
+          <g:textField name="advancePrice" align="right" value="${eventInstance?.advancePrice}" />
+      </td>
+      </tr>
+
+ <tr class="prop">
+            <td valign="top" class="name">
+              <label for="event"><g:message code="event.ageRestriction.label" default="Age Restriction" /></label>
+            </td>
+             
+            <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'ageRestriction', 'errors')}">
+                <g:select name="ageRestriction.id" from="${net.turfclub.AgeRestriction.list()}" optionKey="id" />
+                </td>               
+        </tr>
          <tr class="prop">
               <td valign="top" class="name">
                 <label for="featured"><g:message code="event.featured.label" default="Featured" /></label>

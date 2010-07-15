@@ -90,6 +90,21 @@
 
         </tr>
 
+         <tr class="prop">
+          <td valign="top" class="name">Advance Price</td>
+
+        <td valign="top" class="value"><g:formatNumber number="${eventInstance.advancePrice}" 
+            type="currency" currencyCode="USD" locale="en_US" minFractionDigits="2" maxFractionDigits="2" /></td>
+
+        </tr>
+
+         <tr class="prop">
+           <td valign="top" class="name"><g:message code="event.ageRestriction.label" default="Age Restriction" /></td>
+
+        <td valign="top" class="value">${fieldValue(bean: eventInstance, field: "ageRestriction")}</td>
+
+        </tr>
+
         <tr class="prop">
           <td valign="top" class="name">
             <label for="sponsorships"><g:message code="event.sponsorships.label" default="Sponsorships" /></label>
