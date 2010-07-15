@@ -23,9 +23,6 @@ class Booking implements Commentable {
         stage(nullable:false)
         appearanceTime()
         confirmed()
-        headliner()
-        
-
-
-        }
+        headliner() 
+    }
 }
