@@ -108,6 +108,37 @@ class EventController {
 
     }
 
+     def pastEvents = {
+        def pastHtml = ''
+        def pastEventsAndBookings = eventService.pastEventsAndBookings()
+
+        if (pastEventsAndBookings?.size() > 0) {
+
+            pastHtml = g.render(template:'/event/pastEvents', 
+                            model : [ pastEventsAndBookings : pastEventsAndBookings ])
+        }
+        else {
+            pastHtml = '<div class="past"><div class="content"><div class="title">Past Shows</div><div class="headliner">Come have a drink</div></div>'
+        }
+        
+        def data = [ 
+            'result' : [ 
+                'pastEvents' : pastHtml 
+            ]
+        ]
+
+        if (params.callback) {
+            // User wants JSONP
+            render "${params.callback}(${data as JSON})"
+        }
+        else {
+            render data as JSON
+        }
+
+    }
+
+
+
      def featuredEvents = {
         def featuredHtml = ''
         def featuredEventsAndBookings = eventService.featuredEventsAndBookings()

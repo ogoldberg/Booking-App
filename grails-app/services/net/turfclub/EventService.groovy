@@ -127,6 +127,64 @@ class EventService {
 
     }
 
+     def pastEventsAndBookings() {
+        // get our list pastEvents
+        def confEvents = pastEvents()
+
+        def pastEventsAndBookings = []
+        confEvents.each { confEvent ->
+            def individualEventMap = [ event : confEvent, headliners : [], bookings : [] ]
+
+            def confBookings = confEvent.bookings.findAll {
+                it.confirmed == true
+            }
+
+            // loop through conf bookings
+            // if booking.headliner == true, then set headliner
+            // else add booking to the bookings list
+            confBookings.sort{it.appearanceTime}.reverse().each { confBooking ->
+                if (confBooking.headliner) {
+                     individualEventMap.headliners.add confBooking
+                }
+                else {
+                    individualEventMap.bookings.add confBooking
+                }
+            }
+
+            pastEventsAndBookings.add(individualEventMap)
+        }
+
+        return pastEventsAndBookings
+
+    } 
+    
+    
+    def pastEvents() {
+        def today = new Date()
+        // Unfortunately, we have to use the lame Calendar to figure
+        // out what the hour of the day is :-(
+        def cal = Calendar.instance
+        cal.setTime(today)
+        
+        // If it's earlier than 2 a.m. right now, then back up one day
+        if (cal.get(Calendar.HOUR_OF_DAY) < 2) {
+            today = today - 1
+        }
+
+        // remove hour/min from today, so if we search for
+        // todays events, we're not limited to events that are after today.hour
+        def todayAt12am = Date.parse('yyyy-MM-dd', today.format('yyyy-MM-dd'))
+        def pastEvents = Event.findAllByEventDateLessThan(todayAt12am).sort {
+            it.eventDate
+        }
+        def revPastEvents = pastEvents.reverse();
+        
+       
+
+        return filterPublishable(revPastEvents)
+
+    }
+
  def featuredEvents() {
     def futureEvents = futureEvents() 
     def featuredEvents = futureEvents.findAll {
