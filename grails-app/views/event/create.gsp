@@ -26,7 +26,7 @@
       <div class="dialog">
         <table>
             <tbody>
-                <tr><th>*Required</th> <td>Click "Create" to start adding bands</td></tr>
+                <tr><th>*Required</th> <td>Click "Create" button at bottom to start adding bands</td></tr>
           <tr class="prop">
             <td valign="top" class="name">
               <label for="date"><g:message code="event.date.label" default="Date *" /></label>
@@ -142,15 +142,17 @@
             <td valign="top" class="value ${hasErrors(bean: eventInstance, field: 'description', 'errors')}">
           <g:textArea name="description" cols="30" rows="4" value="${eventInstance?.description}" />
           </td>
-          </tr>
-          </tbody>
+      </tr>
+    
+  </tbody>
+   
         </table>
-      </div>
+ 
       <div class="buttons">
-        <span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" /></span>
-      </div>
+        <div class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" /></div>
+    </div>
+       </div>
     </g:form>
-    <div class="dialog0"></div>
-  </div>
+   </div>
 </body>
 </html>
