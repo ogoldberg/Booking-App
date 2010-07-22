@@ -16,9 +16,7 @@
           <span property="v:latitude" content="44.9673" ></span>
           <span property="v:longitude" content="-93.161716" ></span>
         </span>
-      </span>
-        <g:set var="stages" 
-        value="${thisEvent.bookings.collect { booking -> booking.stage }.unique().join(', ')}" />
+    </span> 
  <span class="date"><turfclub:formatFeedDate date="${thisEvent.event.eventDate}" /></span>
  <g:if test="${thisEvent.event.imageLink}"><span class="eventPic"><a href="${thisEvent.event.imageLink}" border="0">
          <img style=”border: none;" border="0" src="${thisEvent.event?.imageLink}" 
@@ -44,8 +42,8 @@
     </span>
         <div class="doors">
             Doors <turfclub:formatTime date="${thisEvent.event.eventDate}" /> | <g:formatNumber number="${thisEvent.event.cover}" 
-            type="currency" currencyCode="USD" locale="en_US" minFractionDigits="2" maxFractionDigits="2" /> | ${stages} 
-            
+            type="currency" currencyCode="USD" locale="en_US" minFractionDigits="2" maxFractionDigits="2" /> | 
+            <turfclub:eventStages eventData="${thisEvent}" />        
     </div>
 </div>
         <div class="description">

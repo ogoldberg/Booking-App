@@ -21,9 +21,6 @@
           <span property="v:longitude" content="-93.161716" ></span>
         </span>
       </span>
-        <g:set var="stages" 
-             value="${thisEvent.bookings.collect 
-             { booking -> booking.stage }.unique().join(', ')}" />
      <div class="content">
      <div class="sponsor">
              <turfclub:sponsorshipListWebsite 
@@ -32,9 +29,9 @@
         <span class="eventtitle">
             ${thisEvent.event.eventTitle}
         </span>
-       
+       <span rel="v:url" property="v:summary">
         <g:each var="h" in="${thisEvent.headliners}">
-        <span rel="v:url" property="v:summary"><div class="headliner">
+        <div class="headliner">
             <turfclub:bandHomePage band="${h.band}" />
         </div>
         </g:each>
@@ -45,7 +42,8 @@
 
         <div class="doors">
             <turfclub:formatTime date="${thisEvent.event.eventDate}" /> |  <g:formatNumber number="${thisEvent.event.cover}" 
-            type="currency" currencyCode="USD" locale="en_US" minFractionDigits="2" maxFractionDigits="2" /> | ${stages} 
+            type="currency" currencyCode="USD" locale="en_US" minFractionDigits="2" maxFractionDigits="2" /> | 
+             <turfclub:eventStages eventData="${thisEvent}" /> 
             </div> 
             <div class="description" property="v:description">
             ${thisEvent.event.description}

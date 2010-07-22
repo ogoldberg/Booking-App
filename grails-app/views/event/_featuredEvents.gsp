@@ -1,6 +1,6 @@
 <!--
 
-[  
+thisEvent [  
   event : nate event,
   headliner : rusty booking,
   bookings : [ the plugs booking, baz booking ]
@@ -21,9 +21,6 @@
           <span property="v:longitude" content="-93.161716" ></span>
         </span>
       </span>
-        <g:set var="stages" 
-        value="${thisEvent.bookings.collect { booking -> booking.stage }.unique().join(', ')}" />
-
  <span class="date"><turfclub:formatFeedDate date="${thisEvent.event.eventDate}" /></span>
         <div class="sponsor">
              <turfclub:sponsorshipListWebsite 
@@ -48,7 +45,8 @@
         </span>
         <div class="doors">
             Doors <turfclub:formatTime date="${thisEvent.event.eventDate}" /> |  <g:formatNumber number="${thisEvent.event.cover}" 
-            type="currency" currencyCode="USD" locale="en_US" minFractionDigits="2" maxFractionDigits="2" /> | ${stages} 
+            type="currency" currencyCode="USD" locale="en_US" minFractionDigits="2" maxFractionDigits="2" /> | 
+            <turfclub:eventStages eventData="${thisEvent}" />  
         </div>
         <div class="description">
             ${thisEvent.event.description}
