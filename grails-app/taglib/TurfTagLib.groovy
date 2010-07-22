@@ -88,10 +88,17 @@ static namespace = "turfclub"
         }
     }
 
-     def calendarLink = { attrs ->
+    def calendarLink = { attrs ->
         def s = attrs['event']
         if (s) {
             out << g.link(controller:'event', action:'calendar', params: [eventId:s.id]) { ' Show in Calendar ' }
         }
     }
+
+    def eventStages = { attrs ->
+        def s = attrs['eventData']
+        out << s.bookings.collect { booking -> booking.stage }.unique().join(', ')
+    }
+
+
 }
