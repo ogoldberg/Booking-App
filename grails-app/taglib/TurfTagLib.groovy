@@ -1,7 +1,7 @@
 import net.turfclub.*
 
 class TurfTagLib {
-static namespace = "turfclub"
+    static namespace = "turfclub"
 
     def formatDate = { attrs ->
         def d = attrs['date']
@@ -97,8 +97,23 @@ static namespace = "turfclub"
 
     def eventStages = { attrs ->
         def s = attrs['eventData']
-        out << s.bookings.collect { booking -> booking.stage }.unique().join(', ')
+
+        // combine bookings and headliner arrays
+        def bookingsAndHeadliners = s.bookings + s.headliners
+
+        // gather their stages
+        def stages = bookingsAndHeadliners.collect { 
+            it.stage
+        }
+
+        // get the unique stages
+        def uniqueStages = stages.unique()
+
+        // join them with commas 
+        def stageList = uniqueStages.join(", ")
+
+        // output
+        out << stageList
+        
     }
-
-
 }

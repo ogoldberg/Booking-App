@@ -13,11 +13,28 @@ class TurfTagLibTests extends TagLibUnitTestCase {
     void testEventStages() {
 
         def tl = new TurfTagLib()
-        def testData = [
+
+        def bookings = [
+            [ stage : 'Main Stage' ], 
+            [ stage : 'Main Stage' ], 
+            [ stage : 'Clown Lounge' ]
         ]
 
+        def headliners = [
+            [ stage : 'Foo Stage' ], 
+            [ stage : 'Clown Lounge' ]
+        ]
+
+        def testData = [
+            bookings : bookings,
+            headliners : headliners
+        ]
+
+        assertEquals 2, testData.headliners.size() 
+
         tl.eventStages(eventData:testData)
-        assertEquals 'Main Stage, Clown Lounge', tagLib.out.toString()
+        assertEquals 'Main Stage, Clown Lounge, Foo Stage',
+                     tagLib.out.toString()
 
     }
 }
