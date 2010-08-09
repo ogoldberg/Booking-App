@@ -1,5 +1,6 @@
 package net.turfclub
 import grails.converters.JSON
+import org.grails.comments.Comment
 
 class BandController {
 
