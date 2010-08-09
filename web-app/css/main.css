@@ -357,3 +357,7 @@ th.desc a {
 .checkboxes {
     float:right;
 }
+
+.infobox {
+    width:400px;
+}
