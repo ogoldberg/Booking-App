@@ -322,5 +322,38 @@ class EventController {
         render ''
     }
 
-    
+     def addNote = {
+        def eventInstance = Event.get( params.id )
+
+        if(!eventInstance) {
+            flash.message = "Event not found with id ${params.id}"
+            redirect(action:list)
+        }
+        else {
+            if (params.noteText) {
+                eventInstance.addComment(userService.loggedInUser(), params.noteText)
+                eventInstance.save()
+                flash.message = "Note saved."
+            }
+            else {
+                flash.message = "Blank notes are not allowed.  Meow."
+            }
+        
+        }
+        redirect(action:'show', id:eventInstance.id)
+    }
+
+    def updateNote = {
+        def noteInstance = Comment.get( params.id )
+        if (!noteInstance) {
+            render "Note not found with id: " + params.id
+        }
+        else {
+            noteInstance.body = params.noteText
+            noteInstance.posterId = userService.loggedInUser()?.id
+            noteInstance.save()
+            render(template:"/common/showNote", model:[noteInstance:noteInstance]);
+        }
+    }
+
 }

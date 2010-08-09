@@ -30,6 +30,72 @@
                     action:"featuredBooking")}',
                     {'featured' : $(this).attr('checked'), 'id' : $(this).attr("eventId") });
                     });
+            $(".editNote").click(function() {
+                var noteId = $( this ).attr( 'editNoteId' );
+                var noteElement=$( "[noteId=" + noteId + "]");
+                var noteText = noteElement.text().trim();
+          
+          noteElement.html(
+              '<input noteTextId="' + noteId + '" ' +
+              'value="' + noteText + '" />'
+          );
+
+          // register an event handler to trap ENTER key
+          // which will send the updated note
+          $('[noteTextId=' + noteId + ']').keydown(function(event) {
+            if (event.keyCode == '13') {
+                $("[[saveNoteId=" + noteId + "]").click();
+                event.preventDefault();
+             }
+          });
+
+          toggleNoteLinks(noteId);
+          
+          // Don't actually trigger the href
+          return false;
+          
+      });
+
+      $(".saveNote").click(function() {
+          var noteId = $( this ).attr( 'saveNoteId' );
+          var noteElement=$( "[noteTextId=" + noteId + "]");
+          var noteText = noteElement.val().trim();
+          toggleNoteLinks(noteId);
+
+          $.ajax({
+              url:'${createLink(controller:"band", action:"updateNote")}',
+              data:  { 'noteText' : noteText, 'id' : noteId },
+              success: function(msg) {
+                  $("[noteDiv=" + noteId + "]").replaceWith(msg)
+              }});
+          // Don't actually trigger the href
+          return false;
+      });
+
+      $(".cancelNote").click(function() {
+          var noteId = $( this ).attr( 'cancelNoteId' );
+          var noteText = $( "[origNoteText=" + noteId + "]").val().trim();
+          
+          $( "[noteId=" + noteId + "]").text(noteText);
+
+          toggleNoteLinks(noteId);
+
+          // Don't actually trigger the href
+          return false;
+      });
+
+      function toggleNoteLinks(noteId) {
+          $("[editNoteId=" + noteId + "]").toggle();
+          $("[cancelNoteId=" + noteId + "]").toggle();
+          $("[saveNoteId=" + noteId + "]").toggle();
+      }
+
+    $("foo").click(function(){
+      var i=1;
+      alert ($("#bandSearchBox").current);
+      alert ($("#bandSearchBox").emptyList);
+      });
+ 
             });
     </script>
     <meta name="layout" content="main" />
@@ -172,6 +238,26 @@
         <turfclub:calendarLink event="${ eventInstance }" />
       </g:form>
     </div>
+         <div class="infobox" width="250px">
+          <h3 class="reallynow">Notes:</h3><g:form id="${eventInstance.id}" controller="event" action="addNote">
+           <table>
+                <tbody>
+                  <comments:each bean="${eventInstance}">
+                      <g:render template="/common/showNote"
+                                model="[ noteInstance : comment ]"/>
+                  </comments:each>
+                  <tr>
+                       <td>
+                           <g:textField name="noteText" />
+                       </td>
+                       <td>
+                           <input type="submit" value="Add Note" />
+                        </td>
+                 </tr>
+               </tbody>
+          </table></g:form>
+                    </div>
+
   </div>
   <div class="dialog1">
     <g:render template='createBooking' model="[eventInstance:eventInstance]" />
