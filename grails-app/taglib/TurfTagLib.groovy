@@ -49,6 +49,15 @@ class TurfTagLib {
 
     }
 
+    def headliners = { attrs ->
+        def thisEvent = attrs['thisEvent']
+        def headlinerLinks = thisEvent.headliners.collect { headliner ->
+            bandHomePage(band:headliner.band)
+        }.join(' | ')
+       out << '<span class="headliner">'
+       out << headlinerLinks
+       out << '</span>'
+    }
 
     def bandHomePage = {attrs ->
         def band = attrs['band']
