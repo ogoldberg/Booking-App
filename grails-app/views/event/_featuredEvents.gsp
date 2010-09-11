@@ -33,20 +33,19 @@ thisEvent [
         <br /> 
         <!--<div class="date"><turfclub:formatFeedDate date="${thisEvent.event.eventDate}" /></div> -->
        <span rel="v:url" property="v:summary"> 
-        <g:each var="h" in="${thisEvent.headliners}">
-        <div class="headliner">
-            <turfclub:bandHomePage band="${h.band}" />
-        </div>
-        </g:each>
-
+        <turfclub:headliners thisEvent="${thisEvent}" />
         <span class=”band”>
             <turfclub:bandListHomePage bookingList="${thisEvent.bookings}" />
         </span>
         </span>
-        <div class="doors">
-            Doors <turfclub:formatTime date="${thisEvent.event.eventDate}" /> |  <g:formatNumber number="${thisEvent.event.cover}" 
-            type="currency" currencyCode="USD" locale="en_US" minFractionDigits="2" maxFractionDigits="2" /> | 
-            <turfclub:eventStages eventData="${thisEvent}" />  
+         <div class="doors">
+            Doors <turfclub:formatTime date="${thisEvent.event.eventDate}" /> 
+            <g:if test="${thisEvent.event.cover}">
+                | <g:formatNumber number="${thisEvent.event.cover}" 
+                                type="currency" currencyCode="USD" locale="en_US" 
+                                minFractionDigits="2" maxFractionDigits="2" /> 
+            </g:if>
+            | <turfclub:eventStages eventData="${thisEvent}" />        
         </div>
         <div class="description">
             ${thisEvent.event.description}
